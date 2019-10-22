@@ -15,13 +15,16 @@
     </div>
     <div class="header">
         <div class="header-img">
-            
-          <p><iframe
-    allow="microphone;"
-    width="350"
-    height="430"
-    src="https://console.dialogflow.com/api-client/demo/embedded/78257b41-fbef-4e10-8246-8d7c8ac73e2e">
-</iframe></p>
+            <div class="iframe">
+               <p><iframe
+             allow="microphone;"
+             width="350"
+              height="430"
+              src="https://console.dialogflow.com/api-client/demo/embedded/78257b41-fbef-4e10-8246-8d7c8ac73e2e">
+          </iframe></p>
+
+            </div>
+         
 
     <button class="btn2">Open Chatbot</button>
     <p> </p>
@@ -134,4 +137,9 @@ button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+
+
+
+
 </style>
