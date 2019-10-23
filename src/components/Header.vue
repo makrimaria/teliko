@@ -92,7 +92,7 @@ body {
 
 .header .header-img {
   background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
-  background-repeat: no-repeat;
+  background-repeat:repeat;
   background-size: cover;
   background-position: 100% 100%;
  background-color: #f5f5f5;
