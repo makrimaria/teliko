@@ -15,21 +15,28 @@
     </div>
     <div class="header">
         <div class="header-img">
-            <div class="iframe">
-               <p><iframe
-             allow="microphone;"
-             width="350"
-              height="430"
-              src="https://console.dialogflow.com/api-client/demo/embedded/78257b41-fbef-4e10-8246-8d7c8ac73e2e">
-          </iframe></p>
+               <div class="col-4">
+            <p style="display:none"><iframe
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/cf3d0e99-4706-41f7-a109-0479266b4cd8">
+    </iframe></p>
 
-            </div>
-         
+    
+    
 
-    <button class="btn2">Open Chatbot</button>
+    <button style="margin:5px;" class="btn1" v-on:click="openBot">open Chatbot</button>
     <p> </p>
-    <button class="btn1">Close Chatbot</button>
+    <button class="btn2" v-on:click="openBot">close Chatbot</button>
 
+    
+
+            
+            
+
+          
+          </div>
             
         </div>
     </div>
@@ -44,22 +51,51 @@
 
 <script >
 
-export default {
-    name: 'header'
-}
+import $ from 'jquery'
 
+export default {
+    name: 'header',
+    methods: {
+      openBot() {
+        
+
+        $(document).ready(function(){
+
+            
+
+      $(".btn1").click(function(){
+        $("p").css("display", "block");
+        $("p").slideDown();
+      });
+      $(".btn2").click(function(){
+        $("p").slideUp();
+      });
+    });
+      
+    }
+}
+}
 
     </script>
 
 
 <style>
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: relative;
+  top: -30px; 
+}
+
 .header {
   height: 320px;
 }
 
 .header .header-img {
-  background-image: url(https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+  background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 100%;
@@ -115,19 +151,18 @@ li a:hover{
   transition: all 0.15s;
 }
 
-button {
+.btn1, .btn2 {
  
-  margin: 4px auto;
-  padding: 15px 25px;
+  margin: 10px auto;
+  padding: 30px 64px;
   font-size: 12px;
-  align-self: center;
+  text-align: center;
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: black;
+  background-color:#262626;
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+  
 }
 
 button:hover {background-color:grey}
