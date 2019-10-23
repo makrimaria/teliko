@@ -3,7 +3,7 @@
 
 
 <div id="app">
-    <div id="navbar">
+    
        
         <ul>
             <li><a href="">Home</a></li>
@@ -12,7 +12,7 @@
 
         </ul>
  
-    </div>
+    
     <div class="header">
         <div class="header-img">
                <div class="col-4">
@@ -26,7 +26,7 @@
     
     
 
-    <button style="margin:5px;" class="btn1" v-on:click="openBot">open Chatbot</button>
+    <button style="margin:5px; " class="btn1" v-on:click="openBot">open Chatbot</button>
     <p> </p>
     <button class="btn2" v-on:click="openBot">close Chatbot</button>
 
@@ -57,20 +57,16 @@ export default {
     name: 'header',
     methods: {
       openBot() {
-        
 
-        $(document).ready(function(){
-
-            
-
+         $(document).ready(function(){
       $(".btn1").click(function(){
-        $("p").css("display", "block");
         $("p").slideDown();
       });
       $(".btn2").click(function(){
         $("p").slideUp();
       });
     });
+      
       
     }
 }
@@ -124,7 +120,7 @@ li a {
 
 }
 li a:hover{
-    background-color: #111;
+    background-color: #92a8d1;
 }
 
 #search {
@@ -155,17 +151,19 @@ li a:hover{
  
   margin: 10px auto;
   padding: 30px 64px;
-  font-size: 12px;
-  text-align: center;
+  font-size: 20px;
+  text-align: right;
   cursor: pointer;
   outline: none;
   color: #fff;
   background-color:#262626;
   border: none;
+  font-family: 'Courier New', Courier, monospace;
+  
   
 }
 
-button:hover {background-color:grey}
+button:hover {background-color:#92a8d1 }
 
 button:active {
   background-color: black;
