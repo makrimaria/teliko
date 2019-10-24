@@ -3,6 +3,7 @@
     
     <Header />
     <Cards />
+    <InputForm />
     
   </div>
 </template>
@@ -11,13 +12,15 @@
 
 import Header from './components/Header.vue'
 import Cards from './components/Cards.vue'
+import InputForm from './components/InputForm.vue'
 
 
 export default {
   name: 'app',
   components: {
     Header,
-    Cards
+    Cards,
+    InputForm
   }
 }
 </script>
