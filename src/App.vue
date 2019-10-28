@@ -2,7 +2,7 @@
   <div id="app">
     
     <Header />
-    <Cards />
+    <!-- <Cards /> -->
     
   </div>
 </template>
@@ -10,14 +10,14 @@
 <script>
 
 import Header from './components/Header.vue'
-import Cards from './components/Cards.vue'
+//import Cards from './components/Cards.vue'
 
 
 export default {
   name: 'app',
   components: {
     Header,
-    Cards
+    // Cards
   }
 }
 </script>
