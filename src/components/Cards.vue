@@ -1,48 +1,41 @@
-<template>
-
-
-    <div>
+<!--<template>
+<div>
+<b-card-group deck>
+  <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
+    <b-card-text>
+      This is a wider card with supporting text below as a natural lead-in to additional content.
+      This content is a little bit longer.
+    </b-card-text>
   
+  </b-card>
 
-<b-card class="mb-2"
-        header-variant="card_header"
-        footer-variant="card_footer"
-        title-variant="card_title"
-        :header="card.header"
-        :title="card.items.title"
-        :sub-title="card.subheader"
-        show-footer
-></b-card >
-
-    </div>
-
-
-
-
-
+  <b-card title="Title"  img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
+    <b-card-text>
+      This card has supporting text below as a natural lead-in to additional content.
+    </b-card-text>
     
+  </b-card>
+
+  <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
+    <b-card-text>
+      This is a wider card with supporting text below as a natural lead-in to additional content.
+      This card has even longer content than the first to show that equal height action.
+    </b-card-text>
+    
+  </b-card>
+</b-card-group>
+</div>
 </template>
 
 <script>
+
 export default {
-    
 }
+  
 </script>
 
 <style>
 
-
-.card-card_title {
-    font-size: 1.2em;
-    font-shadow: 2px 2px #ccc;
-}
-.card-card_header {
-    font-shadow: 2px 2px #00ff00;
-}
-.card-card_footer {
-    color: #000;
-    font-shadow: 2px 2px #FFAAFF;
-}
 
 
 </style>

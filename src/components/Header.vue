@@ -1,89 +1,79 @@
 
 <template>
+  <div id="app">
+    <ul>
+      <li>
+        <a href>Home</a>
+      </li>
+      <li>
+        <a href>FAQ</a>
+      </li>
+      <li>
+        <a href>Contact</a>
+      </li>
+    </ul>
 
-
-<div id="app">
-    
-       
-        <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">FAQ</a></li>
-            <li><a href="">Contact</a></li>
-
-        </ul>
- 
-    
     <div class="header">
-        <div class="header-img">
-               <div class="col-4">
-            <p style="display:none"><iframe
-        allow="microphone;"
-        width="350"
-        height="430"
-        src="https://console.dialogflow.com/api-client/demo/embedded/cf3d0e99-4706-41f7-a109-0479266b4cd8">
-    </iframe></p>
+      <div class="header-img">
+        <div class="col-15">
+          <p style="display:none">
+            <iframe
+              allow="microphone;"
+              width="250"
+              height="330"
+              src="https://console.dialogflow.com/api-client/demo/embedded/cf3d0e99-4706-41f7-a109-0479266b4cd8"
+            ></iframe>
+          </p>
 
-    
-    
-
-    <button style="margin:5px; " class="btn1" v-on:click="openBot">open Chatbot</button>
-    <p> </p>
-    <button class="btn2" v-on:click="openBot">close Chatbot</button>
-
-    
-
-            
-            
-
-          
-          </div>
-            
+          <button style="margin:65px; " class="btn1" v-on:click="openBot">Open Chatbot</button>
+          <p></p>
+          <!-- <button class="btn2" v-on:click="closeBot">close Chatbot</button> -->
         </div>
+      </div>
     </div>
-
-
-
-</div>
-
-  
+  </div>
 </template>
 
 
 <script >
-
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
-    name: 'header',
-    methods: {
-      openBot() {
-
-         $(document).ready(function(){
-      $(".btn1").click(function(){
-        $("p").slideDown();
+  name: "header",
+  methods: {
+    openBot() {
+      var label = $(".btn1").text().trim();
+      $(document).ready(function() {
+        if(label == "Open Chatbot") {
+          $(".btn1").text("Close Chatbot");
+          $("p").slideDown();
+        }else{
+          $(".btn1").text("Open Chatbot"); 
+          $("p").slideUp();
+        }
       });
-      $(".btn2").click(function(){
-        $("p").slideUp();
-      });
-    });
-      
-      
-    }
-}
-}
-
-    </script>
+      /* $(document).ready(function() {
+          $("p").slideDown();
+      }); */
+    }/* ,
+    closeBot() {
+      $(document).ready(function() {
+          $("p").slideUp();
+        });
+    } */
+  }
+};
+</script>
 
 
 <style>
-
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
   position: relative;
-  top: -30px; 
+  top: -30px;
 }
 
 .header {
@@ -92,35 +82,33 @@ body {
 
 .header .header-img {
   background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
-  background-repeat: no-repeat;
+  background-repeat: repeat !important;
   background-size: cover;
   background-position: 100% 100%;
- background-color: #f5f5f5;
- height: 300%;
+  background-color: #f5f5f5;
+  height: 300%;
 }
 
-ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+ul {
+  list-style-type: none;
+  margin-bottom: 0 !important;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
-li{
-    float: left;
+li {
+  float: left;
 }
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 28px 32px;
-    text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
-    
-
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 28px 32px;
+  text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
 }
-li a:hover{
-    background-color: #92a8d1;
+li a:hover {
+  background-color: #92a8d1;
 }
 
 #search {
@@ -129,7 +117,6 @@ li a:hover{
   text-align: center;
   display: inline-block;
 }
-
 
 #search_text {
   width: 297px;
@@ -147,32 +134,31 @@ li a:hover{
   transition: all 0.15s;
 }
 
-.btn1, .btn2 {
- 
-  margin: 10px auto;
-  padding: 30px 64px;
+.btn1 {
+
+  /* margin: 10px auto; */
+  padding: 27px 62px;
   font-size: 20px;
   text-align: right;
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color:#262626;
+  background-color: #262626;
   border: none;
-  font-family: 'Courier New', Courier, monospace;
-  
-  
+  font-family: "Courier New", Courier, monospace;
+  align-self: right !important; 
+
 }
 
-button:hover {background-color:#92a8d1 }
+button:hover {
+  background-color: #92a8d1;
+}
 
 button:active {
   background-color: black;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-
-
-
 
 
 </style>
