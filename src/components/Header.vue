@@ -1,17 +1,7 @@
 
 <template>
-  <div id="app">
-    <ul>
-      <li>
-        <a href>Home</a>
-      </li>
-      <li>
-        <a href>FAQ</a>
-      </li>
-      <li>
-        <a href>Contact</a>
-      </li>
-    </ul>
+  <div id="home">
+    <Navbar />
 
     <div class="header">
       <div class="header-img">
@@ -31,15 +21,23 @@
         </div>
       </div>
     </div>
+    <InputForm />
   </div>
+
 </template>
 
 
 <script >
 import $ from "jquery";
+import InputForm from './InputForm.vue';
+import Navbar from './Navbar.vue';
 
 export default {
   name: "header",
+  components: {
+    InputForm,
+    Navbar
+  },
   methods: {
     openBot() {
       var label = $(".btn1").text().trim();

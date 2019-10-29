@@ -1,29 +1,27 @@
 <template>
-  <div id="app">
+  <div id="app1">
     
-    <Header />
-    <!-- <Cards /> -->
+    <router-view></router-view>
+    <Cards />
+
     
   </div>
 </template>
 
 <script>
 
-import Header from './components/Header.vue'
-//import Cards from './components/Cards.vue'
-
+import Cards from './components/Cards.vue'
 
 export default {
   name: 'app',
   components: {
-    Header,
-    // Cards
+    Cards
   }
 }
 </script>
 
 <style>
-#app {
+ #app1 {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
