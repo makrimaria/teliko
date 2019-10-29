@@ -1,21 +1,17 @@
 <template>
   <div id="app1">
+       <router-view></router-view>
     
-    <router-view></router-view>
-    <Cards />
-
-    
-  </div>
+     </div>
 </template>
 
 <script>
-
-import Cards from './components/Cards.vue'
+//import Cards from './components/Cards.vue'
 
 export default {
   name: 'app',
   components: {
-    Cards
+    
   }
 }
 </script>

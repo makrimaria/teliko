@@ -1,6 +1,9 @@
-<template>
+<!--template>
     <div class="container">
-        <b-form id="form" v-on:submit.prevent="submitHouse">
+
+        
+
+            <b-form id="form" v-on:submit.prevent="submitHouse">
             <b-form-group
                 label="City"
             >
@@ -43,7 +46,11 @@
             </b-form-group>
             <b-button type="submit" variant="outline-primary">Submit</b-button>
         </b-form>
-    </div>
+           
+        </div>
+
+
+        
 </template>
 
 <script>
@@ -75,6 +82,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
+
+.container {
+    /* max-width: 5000px; */
+    position: auto;
+  
+    background-image: url(https://colorate.azurewebsites.net/SwatchColor/262626);
+}
 
 </style>
