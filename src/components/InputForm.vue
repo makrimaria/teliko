@@ -1,11 +1,12 @@
-<template>
-    <div class="container">
-        <b-form id="form" v-on:submit.prevent="submitHouse">
-            <b-form-group
+<!--template>
+    <div class="container" >
+        <b-form id="form"  v-on:submit.prevent="submitHouse ">
+            <b-form-group 
                 label="City"
             >
-                <b-form-input
+                <b-form-input 
                     type='text'
+                    
                     v-model="house.city"
                     placeholder="City of the house"
                 >
@@ -14,7 +15,7 @@
             <b-form-group
                 label="Location"
             >
-                <b-form-input
+                <b-form-input 
                     type='text'
                     v-model="house.location"
                     placeholder="Specific location"
@@ -75,6 +76,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
+
+.container {
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url(https://www.colorhexa.com/262626.png);
+    width: 100%;
+
+    
+}
+
+
+
+
+
+
 
 </style>

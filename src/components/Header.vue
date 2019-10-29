@@ -1,27 +1,17 @@
 
 <template>
   <div id="app">
-    <ul>
-      <li>
-        <a href>Home</a>
-      </li>
-      <li>
-        <a href>FAQ</a>
-      </li>
-      <li>
-        <a href>Contact</a>
-      </li>
-    </ul>
+   
 
     <div class="header">
-      <div class="header-img">
-        <div class="col-15">
-          <p style="display:none">
+      <!-- <div class="header-img"> -->
+        <div class="col-12">
+          <p style="display:none; float:right">
             <iframe
               allow="microphone;"
               width="250"
               height="330"
-              src="https://console.dialogflow.com/api-client/demo/embedded/cf3d0e99-4706-41f7-a109-0479266b4cd8"
+              src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
             ></iframe>
           </p>
 
@@ -31,7 +21,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 
@@ -72,44 +62,24 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  position: relative;
-  top: -30px;
+  position:relative;
+   top: -30px; 
+
 }
 
 .header {
-  height: 320px;
+  height: 500px;
 }
 
-.header .header-img {
-  background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
-  background-repeat: repeat !important;
-  background-size: cover;
-  background-position: 100% 100%;
+/* .header .header-img {
+  /* background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80); */
+  /* background-repeat: repeat !important; */
+  /* background-size: cover; */
+  /* background-position: 100% 100%;
   background-color: #f5f5f5;
-  height: 300%;
-}
+  height: 300%; */
 
-ul {
-  list-style-type: none;
-  margin-bottom: 0 !important;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-li {
-  float: left;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 28px 32px;
-  text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
-}
-li a:hover {
-  background-color: #92a8d1;
-}
+
 
 #search {
   width: 357px;
@@ -137,6 +107,7 @@ li a:hover {
 .btn1 {
 
   /* margin: 10px auto; */
+  float: right;
   padding: 27px 62px;
   font-size: 20px;
   text-align: right;
