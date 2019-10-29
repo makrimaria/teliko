@@ -1,6 +1,6 @@
 
 <template>
-  <div id="app">
+  <div id="home">
     <ul>
       <li>
         <a href>Home</a>
@@ -31,15 +31,21 @@
         </div>
       </div>
     </div>
+    <InputForm />
   </div>
+
 </template>
 
 
 <script >
 import $ from "jquery";
+import InputForm from './InputForm.vue'
 
 export default {
   name: "header",
+  components: {
+    InputForm
+  },
   methods: {
     openBot() {
       var label = $(".btn1").text().trim();
