@@ -1,9 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app1">
     
-    <Header />
+    <router-view></router-view>
     <Cards />
-    <InputForm />
 
     
   </div>
@@ -11,25 +10,18 @@
 
 <script>
 
-import Header from './components/Header.vue'
 import Cards from './components/Cards.vue'
-import InputForm from './components/InputForm.vue'
-
-
 
 export default {
   name: 'app',
   components: {
-    Header,
-
-    Cards,
-    InputForm
+    Cards
   }
 }
 </script>
 
 <style>
-#app {
+ #app1 {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
