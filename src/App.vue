@@ -4,6 +4,7 @@
     <Header />
     <Cards />
     <InputForm />
+
     
   </div>
 </template>
@@ -15,10 +16,12 @@ import Cards from './components/Cards.vue'
 import InputForm from './components/InputForm.vue'
 
 
+
 export default {
   name: 'app',
   components: {
     Header,
+
     Cards,
     InputForm
   }

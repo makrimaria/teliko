@@ -1,109 +1,41 @@
-<template>
+<!--<template>
+<div>
+<b-card-group deck>
+  <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
+    <b-card-text>
+      This is a wider card with supporting text below as a natural lead-in to additional content.
+      This content is a little bit longer.
+    </b-card-text>
+  
+  </b-card>
 
-<div class="container">
-
-<div class="card-columns">
-
-  <div class="card">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-          <img style="width=100%;" src="https://m1.spitogatos.gr/179121786_900x675.jpg?v=20140916" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img style="width=100%" src="https://m3.spitogatos.gr/179121788_900x675.jpg?v=20140916" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img style="width=100%;" src="https://m3.spitogatos.gr/179121599_900x675.jpg?v=20140916" alt="Third slide">
-        </div>
-      </div>
-      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="icon-prev" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="icon-next" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <div class="card-block">
-      <h4 class="card-title">Nea Paralia</h4>
-    </div>
-  </div>
-
-
- <div class="card">
-    <div id="carousel-example-generic1" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic1" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic1" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic1" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-          <img style="width=100%;" src="https://m3.spitogatos.gr/179303942_900x675.jpg?v=20140916" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img style="width=100%;" src="https://m1.spitogatos.gr/179303943_900x675.jpg?v=20140916" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img style="width=100%;" src="https://m2.spitogatos.gr/179303944_900x675.jpg?v=20140916" alt="Third slide">
-        </div>
-      </div>
-      <a class="left carousel-control" href="#carousel-example-generic1" role="button" data-slide="prev">
-        <span class="icon-prev" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic1" role="button" data-slide="next">
-        <span class="icon-next" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-
-    <div class="card-block">
-      <h4 class="card-title">Pylaia</h4>
-    </div>
-  </div>
-
-</div>
-</div>
+  <b-card title="Title"  img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
+    <b-card-text>
+      This card has supporting text below as a natural lead-in to additional content.
+    </b-card-text>
     
+  </b-card>
+
+  <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
+    <b-card-text>
+      This is a wider card with supporting text below as a natural lead-in to additional content.
+      This card has even longer content than the first to show that equal height action.
+    </b-card-text>
+    
+  </b-card>
+</b-card-group>
+</div>
 </template>
 
 <script>
+
 export default {
-    name: 'cards'
-   
-    
 }
+  
 </script>
 
 <style>
 
-.card-columns {
-    -webkit-column-count: 3;
-       -moz-column-count: 3;
-            column-count: 3;
-    -webkit-column-gap: 1.25rem;
-       -moz-column-gap: 1.25rem;
-            column-gap: 1.25rem;
-  }
-  .card-columns .card {
-    display:none;
-    width: 100%;
-   
-  }
 
-.card-title {
-    font-family: 'Courier New', Courier, monospace;
-    background-color:#3e4444;
-    color: white;
-}
- 
 
 </style>
