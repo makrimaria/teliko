@@ -1,6 +1,6 @@
 <template>
   <div id="app1">
-    
+    <Navbar />
     <router-view></router-view>
     <Cards />
 
@@ -10,12 +10,14 @@
 
 <script>
 
-import Cards from './components/Cards.vue'
+import Cards from './components/Cards.vue';
+import Navbar from './components/Navbar.vue';
 
 export default {
   name: 'app',
   components: {
-    Cards
+    Cards,
+    Navbar
   }
 }
 </script>

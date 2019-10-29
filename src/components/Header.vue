@@ -1,7 +1,6 @@
 
 <template>
   <div id="home">
-    <Navbar />
 
     <div class="header">
       <div class="header-img">
@@ -30,13 +29,11 @@
 <script >
 import $ from "jquery";
 import InputForm from './InputForm.vue';
-import Navbar from './Navbar.vue';
 
 export default {
   name: "header",
   components: {
-    InputForm,
-    Navbar
+    InputForm
   },
   methods: {
     openBot() {
