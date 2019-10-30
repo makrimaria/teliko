@@ -3,7 +3,7 @@
   <div id="home">
 
     <div class="header">
-      <!-- <div class="header-img"> -->
+       <div class="header-img">
         <div class="col-12">
           <p style="display:none; float:right">
             <iframe
@@ -20,26 +20,25 @@
         </div>
       </div>
     </div>
-    <!-- <InputForm /> -->
+    <!-- <InputForm />  -->
 
-<Cards />
-  </div>
+<!-- <Cards /> -->
         
-
+  </div>
 </template>
 
 
 <script >
 import $ from "jquery";
 
-import InputForm from './InputForm.vue';
+//import InputForm from './InputForm.vue';
 
 
 export default {
   name: "header",
   components: {
 
-    InputForm
+  //InputForm
 
   },
   methods: {
