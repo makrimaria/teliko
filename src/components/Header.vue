@@ -3,28 +3,34 @@
   <div id="home">
     
     <div class="header">
-      <div class="header-img">
+       <div class="header-img">
+
+         <h1>Prodigy Real Estate</h1>
+         <h2>Find your dream home! </h2>
+
+
+         <DropDownMenu style="margin: 150px;" />
+
+
+       
+
+          <div id="chatbot" style="display:none;">
+            <iframe
+             style="margin-bottom:70px;"
+              allow="microphone;"
+              class="bottomright"
+              width="250"
+              height="330"
+              src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
+            ></iframe>
+          </div>
+
+                <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
+         
         
-        <div  style="color: white;">  
-          <h1> Welcome to <b>Prodigy</b> Real Estate</h1>
-          <h2 >Find your dreamhouse in a few minutes!</h2>
-        </div>
-      </div>
-    </div>
-    <div id="chatbot" style="display:none">  
-      <iframe
-        style="margin-bottom: 70px;"
-        class="bottomright"
-        allow="microphone;"
-        width="250"
-        height="330"
-        src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe">
-      </iframe>
-    </div>
-    <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
     <!--<InputForm />-->
-
-
+</div>
+</div>
   <Cards />
   </div>
 </template>
@@ -34,6 +40,7 @@
 import $ from "jquery";
 
 //import InputForm from './InputForm.vue';
+import DropDownMenu from './DropdownMenu.vue';
 
 import Cards from './Cards.vue'
 
@@ -42,7 +49,7 @@ import Cards from './Cards.vue'
 export default {
   name: "header",
   components: {
-
+    DropDownMenu,
     Cards
     //InputForm
 
@@ -60,15 +67,8 @@ export default {
           $("#chatbot").slideUp();
         }
       });
-      /* $(document).ready(function() {
-          $("p").slideDown();
-      }); */
-    }/* ,
-    closeBot() {
-      $(document).ready(function() {
-          $("p").slideUp();
-        });
-    } */
+     
+    }
   }
 };
 </script>
@@ -100,7 +100,6 @@ body {
 } 
 
 
-//sxolio?
 .bottomright {
   position: fixed;
   bottom: 0px;
@@ -163,8 +162,21 @@ button:active {
 
 h1 { 
 
-  
- }
+  color: white;
+  font-weight: 700!important;
+  font-size: 80px !important;
+  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   }
+h2 {
 
+  color: white;
+  font-size: 40px !important;
+  font-weight: 700 !important;
+  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  
+}
 
 </style>
