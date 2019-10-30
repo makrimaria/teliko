@@ -34,14 +34,18 @@
 import $ from "jquery";
 
 //import InputForm from './InputForm.vue';
+
 import Cards from './Cards.vue'
+
 
 
 export default {
   name: "header",
   components: {
+
     Cards
     //InputForm
+
 
   },
   methods: {
@@ -80,7 +84,6 @@ body {
    top: -30px; 
 
 }
-
 /* apo edw tha allazw poso pianei to background img */
 .header {
   /* height: 150px; */
@@ -97,18 +100,14 @@ body {
 } 
 
 
-
+//sxolio?
 .bottomright {
   position: fixed;
   bottom: 0px;
   right: 0px;
   z-index: 9;
+
 }
-
-
-
-
-
 
 #search {
   width: 357px;
@@ -131,12 +130,13 @@ body {
   float: left;
   box-sizing: border-box;
   transition: all 0.15s;
+
 }
 
 .btn1 {
 
-  /* margin: 10px auto; */
   float: right;
+
   padding: 20px;
   width: 250px;
   font-size: 20px;
@@ -160,6 +160,11 @@ button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+h1 { 
+
+  
+ }
 
 
 </style>
