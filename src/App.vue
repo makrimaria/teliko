@@ -1,9 +1,9 @@
 <template>
-  <div id="app1">
+  <div id="app">
 
     <Navbar />
     <router-view></router-view>
-    <Cards />
+    <!-- <Cards /> -->
 
     
   </div>
@@ -11,14 +11,14 @@
 
 <script>
 
-import Cards from './components/Cards.vue';
+//import Cards from './components/Cards.vue';
 import Navbar from './components/Navbar.vue';
 
 
 export default {
   name: 'app',
   components: {
-    Cards,
+    //Cards,
     Navbar
   }
 }
@@ -49,29 +49,7 @@ export default {
  
 
 
-ul {
-  list-style-type: none;
-   margin-bottom: -60px !important; 
-  margin-top: 0 !important;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-li {
-  float: left;
-  margin-block-end: 0px;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 28px 32px;
-  text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
-}
-li a:hover {
-  background-color: #92a8d1;
-}
+
 
 .header-img {
   background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
