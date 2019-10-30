@@ -1,7 +1,10 @@
 <!--template>
-    <div class="container" >
-        <b-form id="form"  v-on:submit.prevent="submitHouse ">
-            <b-form-group 
+    <div class="container">
+
+        
+
+            <b-form id="form" v-on:submit.prevent="submitHouse">
+            <b-form-group
                 label="City"
             >
                 <b-form-input 
@@ -44,7 +47,11 @@
             </b-form-group>
             <b-button type="submit" variant="outline-primary">Submit</b-button>
         </b-form>
-    </div>
+           
+        </div>
+
+
+        
 </template>
 
 <script>
@@ -79,17 +86,10 @@ export default {
 <style >
 
 .container {
-    font-family: 'Courier New', Courier, monospace;
-    background-image: url(https://www.colorhexa.com/262626.png);
-    width: 100%;
-
-    
+    /* max-width: 5000px; */
+    position: auto;
+  
+    background-image: url(https://colorate.azurewebsites.net/SwatchColor/262626);
 }
-
-
-
-
-
-
 
 </style>
