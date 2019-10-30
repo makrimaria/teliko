@@ -1,5 +1,5 @@
-<!--template>
-<b-container>
+<template>
+<b-container style="margin-top:10px;">
 <!--b-card-group deck>
   <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
     <b-card-text>
@@ -25,7 +25,7 @@
   </b-card>
 </b-card-group-->
 
-  <!--b-row>
+  <b-row>
     <b-col class="mb-4" sm="3" v-for="house in houses" v-bind:key="house">
       <b-card title="Title" v-bind:img-src="house.image" img-alt="Image" img-top>
         <b-card-text>
