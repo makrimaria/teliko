@@ -1,30 +1,8 @@
 <template>
   <div id="app">
-
-     <ul>
-      <li>
-        <a href>Home</a>
-      </li>
-      <li>
-        <a href>FAQ</a>
-      </li>
-      <li>
-        <a href>Contact</a>
-      </li>
-    </ul>
-
-    <div class="header-img"  >
-      <Header />
-      <Cards />
     
-      <Filters />
-
-      
-      
-
-    <!--InputForm /-->
-
-       </div>
+    <router-view></router-view>
+    <Cards />
 
     
   </div>
@@ -32,26 +10,18 @@
 
 <script>
 
-import Header from './components/Header.vue'
 import Cards from './components/Cards.vue'
-import Filters from './components/Filters.vue'
-//import InputForm from './components/InputForm.vue'
-
-
 
 export default {
   name: 'app',
   components: {
-    Header,
-    Filters,
-    //InputForm,
     Cards
   }
 }
 </script>
 
 <style>
-#app {
+ #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
