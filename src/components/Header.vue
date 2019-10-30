@@ -6,17 +6,17 @@
     <div class="header">
       <div class="header-img">
         <div class="col-15">
-          <p style="display:none">
+          <div id="chatbot" style="display:none">  
             <iframe
+              class="bottomright"
               allow="microphone;"
               width="250"
               height="330"
               src="https://console.dialogflow.com/api-client/demo/embedded/cf3d0e99-4706-41f7-a109-0479266b4cd8"
             ></iframe>
-          </p>
+          </div>
 
-          <button style="margin:65px; " class="btn1" v-on:click="openBot">Open Chatbot</button>
-          <p></p>
+          <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
           <!-- <button class="btn2" v-on:click="closeBot">close Chatbot</button> -->
         </div>
       </div>
@@ -49,10 +49,10 @@ export default {
       $(document).ready(function() {
         if(label == "Open Chatbot") {
           $(".btn1").text("Close Chatbot");
-          $("p").slideDown();
+          $("#chatbot").slideDown();
         }else{
           $(".btn1").text("Open Chatbot"); 
-          $("p").slideUp();
+          $("#chatbot").slideUp();
         }
       });
       /* $(document).ready(function() {
@@ -95,7 +95,12 @@ body {
 
 
 
-
+.bottomright {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 9;
+}
 
 
 
@@ -147,7 +152,7 @@ li a:hover {
 .btn1 {
 
   /* margin: 10px auto; */
-  padding: 27px 62px;
+  padding: 20px;
   font-size: 20px;
   text-align: right;
   cursor: pointer;
