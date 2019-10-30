@@ -11,7 +11,7 @@
 
 <script>
 
-//import Cards from './components/Cards.vue';
+
 import Navbar from './components/Navbar.vue';
 
 
