@@ -5,7 +5,7 @@
     <div class="header">
        <div class="header-img">
 
-         <h1>Prodigy Real Estate</h1>
+         <h1><span>Prodigy</span> Real Estate</h1>
          <h2>Find your dream home! </h2>
 
 
