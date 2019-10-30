@@ -3,7 +3,7 @@
         <ul>
             <li><router-link to="/" exact>Home</router-link></li>
             <li><router-link to="/faq" exact>FAQ</router-link></li>
-            <li><router-link to="/contact" exact>Contact</router-link></li>
+            <li><router-link to="/sell" exact>List Property</router-link></li>
         </ul>
     </div>   
 </template>
