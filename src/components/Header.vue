@@ -6,6 +6,12 @@
        <div class="header-img">
 
          <h1>Prodigy Real Estate</h1>
+         <h2>Find your dream home! </h2>
+
+
+         <DropDownMenu style="margin: 150px;" />
+
+
        
 
           <div id="chatbot" style="display:none;">
@@ -32,15 +38,14 @@
 import $ from "jquery";
 
 //import InputForm from './InputForm.vue';
-//import DropDownMenu from './DropdownMenu.vue';
+import DropDownMenu from './DropdownMenu.vue';
 
 
 export default {
   name: "header",
   components: {
-    //DropDownMenu
-
-  //InputForm
+    DropDownMenu
+    //InputForm
 
   },
   methods: {
@@ -55,15 +60,8 @@ export default {
           $("#chatbot").slideUp();
         }
       });
-      /* $(document).ready(function() {
-          $("p").slideDown();
-      }); */
-    }/* ,
-    closeBot() {
-      $(document).ready(function() {
-          $("p").slideUp();
-        });
-    } */
+     
+    }
   }
 };
 </script>
@@ -129,8 +127,21 @@ button:active {
 
 h1 { 
 
-  
- }
+  color: white;
+  font-weight: 700!important;
+  font-size: 80px !important;
+  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   }
+h2 {
 
+  color: white;
+  font-size: 40px !important;
+  font-weight: 700 !important;
+  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  
+}
 
 </style>

@@ -1,23 +1,118 @@
-<!--template>
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+<template>
+  <div class="menu">
+    <section class="search-sec">
+      <div class="container">
+        <form action="#" method="post" novalidate="novalidate">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                  <input type="text" class="form-control search-slt" placeholder="Enter City" />
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                  <input type="text" class="form-control search-slt" placeholder="Enter Area" />
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                  <select class="form-control search-slt" id="exampleFormControlSelect1">
+                    <option>Tenant</option>
+                    <option>Landlord</option>
+                  </select>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                  <button type="button" class="btn btn-secondary wrn-btn">Search</button>
+                </div>
+
+                <div class="price">
+                  <slider :values="sliderValues" min="0" max="100" raising v-model="slider"></slider>
+                  <!-- remember to set v-model -->
+
+                  {{ slider }}
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
   </div>
-</div>
 </template>
 
 <script>
-export default {
-    
-}
+  import Slider from "vue-custom-range-slider";
+  // import the styling, css or scss
+  import "vue-custom-range-slider/dist/vue-custom-range-slider.css";
+
+  export default {
+    components: {
+      Slider
+    },
+    data() {
+      return {
+        slider: "0",
+        sliderValues: [
+          {
+            label: "Not at all",
+            value: "0"
+          },
+          {
+            label: "A tiny bit",
+            value: "1"
+          },
+          {
+            label: "Its ok",
+            value: "2"
+          },
+          {
+            label: "Its very good",
+            value: "3"
+          },
+          {
+            label: "Its AMAZING!",
+            value: "4"
+          }
+        ]
+      };
+    }
+  };
 </script>
 
 <style>
+.search-sec {
+  padding: 15px;
+}
+.search-slt {
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  height: calc(3rem + 2px) !important;
+  border-radius: 0;
+}
+.wrn-btn {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  height: calc(3rem + 2px) !important;
+  border-radius: 0;
+}
+@media (min-width: 992px) {
+  .search-sec {
+    position: relative;
+    top: -114px;
+    background: rgba(0, 123, 255, 0.35);
+  }
+}
 
-
+@media (max-width: 992px) {
+  .search-sec {
+    background: #d9534f;
+  }
+}
 </style>
