@@ -4,27 +4,27 @@
 
     <div class="header">
        <div class="header-img">
-        <div class="col-12">
-          <p style="display:none; float:right">
+
+         <h1>Prodigy Real Estate</h1>
+       
+
+          <div id="chatbot" style="display:none;">
             <iframe
+             style="margin-bottom:70px;"
               allow="microphone;"
+              class="bottomright"
               width="250"
               height="330"
               src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
             ></iframe>
-          </p>
+          </div>
 
-          <button style="margin:65px; " class="btn1" v-on:click="openBot">Open Chatbot</button>
-          <p></p>
-          <!-- <button class="btn2" v-on:click="closeBot">close Chatbot</button> -->
-        </div>
-      </div>
-    </div>
-    <!-- <InputForm />  -->
-
-<!-- <Cards /> -->
+                <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
+         
         
-  </div>
+       </div>
+      </div>
+   </div>
 </template>
 
 
@@ -32,11 +32,13 @@
 import $ from "jquery";
 
 //import InputForm from './InputForm.vue';
+//import DropDownMenu from './DropdownMenu.vue';
 
 
 export default {
   name: "header",
   components: {
+    //DropDownMenu
 
   //InputForm
 
@@ -47,10 +49,10 @@ export default {
       $(document).ready(function() {
         if(label == "Open Chatbot") {
           $(".btn1").text("Close Chatbot");
-          $("p").slideDown();
+          $("#chatbot").slideDown();
         }else{
           $(".btn1").text("Open Chatbot"); 
-          $("p").slideUp();
+          $("#chatbot").slideUp();
         }
       });
       /* $(document).ready(function() {
@@ -77,7 +79,6 @@ body {
    top: -30px; 
 
 }
-
 /* apo edw tha allazw poso pianei to background img */
 .header {
   height: 150px;
@@ -92,43 +93,20 @@ body {
   height: 300%; 
 } 
 
-
-
-
-
-
-
-
-#search {
-  width: 357px;
-  margin: 4px auto;
-  text-align: center;
-  display: inline-block;
-}
-
-#search_text {
-  width: 297px;
-  padding: 15px 0 15px 20px;
-  font-size: 16px;
-  font-family: Montserrat, sans-serif;
-  border: 0 none;
-  height: 52px;
-  margin-right: 0;
-  color: grey;
-  outline: none;
-  background: white;
-  float: left;
-  box-sizing: border-box;
-  transition: all 0.15s;
+.bottomright {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 9;
 }
 
 .btn1 {
 
-  /* margin: 10px auto; */
   float: right;
-  padding: 27px 62px;
+  width: 250px;
+  padding: 20px;
   font-size: 20px;
-  text-align: right;
+  text-align: middle;
   cursor: pointer;
   outline: none;
   color: #fff;
@@ -148,6 +126,11 @@ button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+h1 { 
+
+  
+ }
 
 
 </style>
