@@ -1,47 +1,44 @@
 
 <template>
   <div id="home">
-    <Navbar />
 
     <div class="header">
       <div class="header-img">
-        <div class="col-15">
+        
           <div id="chatbot" style="display:none">  
             <iframe
+              style="margin-bottom: 70px;"
               class="bottomright"
               allow="microphone;"
               width="250"
               height="330"
-              src="https://console.dialogflow.com/api-client/demo/embedded/cf3d0e99-4706-41f7-a109-0479266b4cd8"
+              src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
             ></iframe>
           </div>
-
           <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
           <!-- <button class="btn2" v-on:click="closeBot">close Chatbot</button> -->
-        </div>
       </div>
     </div>
-    <!-- <InputForm /> -->
+    <!-- <InputForm />  -->
 
-<Cards />
-  </div>
+<!-- <Cards /> -->
         
-
+  </div>
 </template>
 
 
 <script >
 import $ from "jquery";
+
 //import InputForm from './InputForm.vue';
-import Navbar from './Navbar.vue';
-import Cards from './Cards.vue';
+
 
 export default {
   name: "header",
   components: {
-    //InputForm,
-    Navbar,
-    Cards
+
+  //InputForm
+
   },
   methods: {
     openBot() {
@@ -75,8 +72,9 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  position: relative;
-  top: -30px;
+  position:relative;
+   top: -30px; 
+
 }
 
 /* apo edw tha allazw poso pianei to background img */
@@ -104,27 +102,8 @@ body {
 
 
 
-ul {
-  list-style-type: none;
-  margin-bottom: 0 !important;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-li {
-  float: left;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 28px 32px;
-  text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
-}
-li a:hover {
-  background-color: #92a8d1;
-}
+
+
 
 #search {
   width: 357px;
@@ -152,9 +131,11 @@ li a:hover {
 .btn1 {
 
   /* margin: 10px auto; */
+  float: right;
   padding: 20px;
+  width: 250px;
   font-size: 20px;
-  text-align: right;
+  text-align: middle;
   cursor: pointer;
   outline: none;
   color: #fff;

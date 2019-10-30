@@ -7,8 +7,9 @@
             <b-form-group
                 label="City"
             >
-                <b-form-input
+                <b-form-input 
                     type='text'
+                    
                     v-model="house.city"
                     placeholder="City of the house"
                 >
@@ -17,7 +18,7 @@
             <b-form-group
                 label="Location"
             >
-                <b-form-input
+                <b-form-input 
                     type='text'
                     v-model="house.location"
                     placeholder="Specific location"
