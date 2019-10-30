@@ -1,28 +1,31 @@
 
 <template>
   <div id="home">
-
+    
     <div class="header">
       <div class="header-img">
         
-          <div id="chatbot" style="display:none">  
-            <iframe
-              style="margin-bottom: 70px;"
-              class="bottomright"
-              allow="microphone;"
-              width="250"
-              height="330"
-              src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
-            ></iframe>
-          </div>
-          <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
-          <!-- <button class="btn2" v-on:click="closeBot">close Chatbot</button> -->
+        <div  style="color: white;">  
+          <h1> Welcome to <b>Prodigy</b> Real Estate</h1>
+          <h2 >Find your dreamhouse in a few minutes!</h2>
+        </div>
       </div>
     </div>
-    <!-- <InputForm />  -->
+    <div id="chatbot" style="display:none">  
+      <iframe
+        style="margin-bottom: 70px;"
+        class="bottomright"
+        allow="microphone;"
+        width="250"
+        height="330"
+        src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe">
+      </iframe>
+    </div>
+    <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
+    <!--<InputForm />-->
 
-<!-- <Cards /> -->
-        
+
+  <Cards />
   </div>
 </template>
 
@@ -31,13 +34,14 @@
 import $ from "jquery";
 
 //import InputForm from './InputForm.vue';
+import Cards from './Cards.vue'
 
 
 export default {
   name: "header",
   components: {
-
-  //InputForm
+    Cards
+    //InputForm
 
   },
   methods: {
@@ -79,7 +83,8 @@ body {
 
 /* apo edw tha allazw poso pianei to background img */
 .header {
-  height: 150px;
+  /* height: 150px; */
+  height: 450px;
 }
 
  .header .header-img {
@@ -88,7 +93,7 @@ body {
   background-size: cover;
   background-position: 100% 100%;
   background-color: #f5f5f5;
-  height: 300%; 
+  /* height: 300%;  */
 } 
 
 

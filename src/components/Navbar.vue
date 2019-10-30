@@ -22,7 +22,7 @@ export default {
 
 ul {
   list-style-type: none;
-   margin-bottom: -16px !important; 
+  margin-bottom: 0 !important; 
   margin-top: 0 !important;
   padding: 0;
   overflow: hidden;
