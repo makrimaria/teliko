@@ -1,7 +1,7 @@
 
 <template>
   <div id="home">
-
+    
     <div class="header">
        <div class="header-img">
 
@@ -28,9 +28,11 @@
                 <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
          
         
-       </div>
-      </div>
-   </div>
+    <!--<InputForm />-->
+</div>
+</div>
+  <Cards />
+  </div>
 </template>
 
 
@@ -40,12 +42,17 @@ import $ from "jquery";
 //import InputForm from './InputForm.vue';
 import DropDownMenu from './DropdownMenu.vue';
 
+import Cards from './Cards.vue'
+
+
 
 export default {
   name: "header",
   components: {
-    DropDownMenu
+    DropDownMenu,
+    Cards
     //InputForm
+
 
   },
   methods: {
@@ -79,7 +86,8 @@ body {
 }
 /* apo edw tha allazw poso pianei to background img */
 .header {
-  height: 150px;
+  /* height: 150px; */
+  height: 450px;
 }
 
  .header .header-img {
@@ -88,21 +96,48 @@ body {
   background-size: cover;
   background-position: 100% 100%;
   background-color: #f5f5f5;
-  height: 300%; 
+  /* height: 300%;  */
 } 
+
 
 .bottomright {
   position: fixed;
   bottom: 0px;
   right: 0px;
   z-index: 9;
+
+}
+
+#search {
+  width: 357px;
+  margin: 4px auto;
+  text-align: center;
+  display: inline-block;
+}
+
+#search_text {
+  width: 297px;
+  padding: 15px 0 15px 20px;
+  font-size: 16px;
+  font-family: Montserrat, sans-serif;
+  border: 0 none;
+  height: 52px;
+  margin-right: 0;
+  color: grey;
+  outline: none;
+  background: white;
+  float: left;
+  box-sizing: border-box;
+  transition: all 0.15s;
+
 }
 
 .btn1 {
 
   float: right;
-  width: 250px;
+
   padding: 20px;
+  width: 250px;
   font-size: 20px;
   text-align: middle;
   cursor: pointer;

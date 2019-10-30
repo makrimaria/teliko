@@ -3,7 +3,7 @@
 
     <Navbar />
     <router-view></router-view>
-    <!-- <Cards /> -->
+    
 
     
   </div>
@@ -18,7 +18,6 @@ import Navbar from './components/Navbar.vue';
 export default {
   name: 'app',
   components: {
-    //Cards,
     Navbar
   }
 }
