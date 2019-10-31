@@ -44,7 +44,7 @@ li a {
 
 }
 li:hover {
-  background-color: #d58282;
+  background-color: #cf6f6f;
 }
 
 /* a:link {
