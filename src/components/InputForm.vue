@@ -38,7 +38,7 @@
             <b-form-group label="Price">
               <b-form-input type="number" id="price" v-model="house.price" style="font-weight:900;" placeholder="Price in €"></b-form-input>
             </b-form-group>
-            <b-button type="submit" v-b-modal="'my-modal'" variant="secondary">Submit</b-button>
+            <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Submit</b-button>
           </b-form>
         </b-col>
         <b-col sm="6" style="margin:auto;">
@@ -103,7 +103,7 @@ export default {
   margin: auto;
   top: 50px;
   width: 1000px;
-  background-color: rgb(206, 158, 158);
+  background-color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
   opacity: 0.9;
@@ -119,7 +119,7 @@ export default {
   background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80) !important;
   background-size: cover;
   background-position: bottom center;
-  height: 800px;
+  height: 860px;
   width: 100%;
 
  

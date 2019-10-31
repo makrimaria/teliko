@@ -114,26 +114,28 @@ export default {
   background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
   background-size: cover;
   background-position: bottom center;
-  height: 800px;
+  height: 860px;
   width: 100%;
+  color: black !important;
   
 }
 
 #background .faqq {
   display: block;
    font-family: 'Rajdhani', sans-serif;
-   font-weight: 900;
+   font-weight: 1100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: white;
+  
+  color: black !important;
   position: relative;
   margin: auto;
   top: 50px; 
   width: 1000px;
-  /* border: 2px solid black; */
-  background-color:rgb(206, 158, 158);
-  opacity: 0.9; 
+  /* border: 2px solid grey; */
+  background-color:whitesmoke;
+  opacity: 0.85; 
   padding: 50px;
 }
 
