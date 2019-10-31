@@ -24,10 +24,13 @@
     
   </b-card>
 </b-card-group-->
-
+<h2>Suggestions</h2>
+<p>------------</p>
   <b-row>
+    
+    
     <b-col class="mb-4" sm="3" v-for="house in houses" v-bind:key="house">
-      <b-card title="Title" v-bind:img-src="house.image" img-alt="Image" img-top>
+      <b-card title="" v-bind:img-src="house.image" img-alt="Image" img-top>
         <b-card-text>
           <b-list-group>
             <b-list-group-item>Πόλη: {{house.city}}</b-list-group-item>

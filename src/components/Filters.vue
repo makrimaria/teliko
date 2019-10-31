@@ -54,6 +54,8 @@ export default {
 
 .row-1 {
     float: right !important;
+     
+
 }
 
 
