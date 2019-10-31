@@ -25,7 +25,7 @@
   </b-card>
 </b-card-group-->
 <h2>Suggestions</h2>
-<h3>------------</h3>
+<p>------------</p>
   <b-row>
     
     

@@ -2,7 +2,7 @@
   <div class="listProperty">
     <div class="container" style="padding:20px;">
       <div>
-        <h3>Do you want to list your property?</h3>
+        <h4>Do you want to list your property?</h4>
         <h4>Just fill the form and we will take care of it.</h4>
       </div>
       <b-row>
@@ -103,7 +103,7 @@ export default {
   margin: auto;
   top: 50px;
   width: 1000px;
-  background-color: #cf6f6f;
+  background-color: rgb(206, 158, 158);
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
   opacity: 0.9;

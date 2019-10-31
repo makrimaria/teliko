@@ -126,14 +126,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: red;
+  color: white;
   position: relative;
   margin: auto;
   top: 50px; 
   width: 1000px;
-  border: 2px solid grey;
-  background-color: #cf6f6f;
-  opacity: 0.80; 
+  /* border: 2px solid black; */
+  background-color:rgb(206, 158, 158);
+  opacity: 0.9; 
   padding: 50px;
 }
 

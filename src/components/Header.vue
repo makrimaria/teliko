@@ -182,7 +182,7 @@ h2 {
   
 }
 
-h3 {
+p {
   color: #cf6f6f;
   font-size: 25px;
   font-weight: 500;
