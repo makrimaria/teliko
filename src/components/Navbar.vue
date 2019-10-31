@@ -1,6 +1,7 @@
 <template>
     <div id="navigation">
         <ul>
+          
             <li><router-link to="/" exact>Home</router-link></li>
             <li><router-link to="/faq" exact>FAQ</router-link></li>
             <li><router-link to="/sell" exact>List Property</router-link></li>
@@ -16,7 +17,7 @@ export default {
 
 <style>
 .router-link-active{
-    background-color: #92a8d1;
+    background-color: #cf6f6f;
     color: #444;
 }
 
@@ -35,13 +36,25 @@ li {
 li a {
   display: block;
   color: white;
+  font-weight:500;
   text-align: center;
-  padding: 28px 32px;
-  text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
+  padding: 17px 32px;
+  text-decoration: none !important;
+  font-family: 'Rajdhani', sans-serif;
+
 }
-li a:hover {
-  background-color: #92a8d1;
+li:hover {
+  background-color: #d58282;
+}
+
+/* a:link {
+  color: white;
+} */
+a:visited {
+  color: white;
+}
+a:hover {
+  color: white !important;
 }
 
 

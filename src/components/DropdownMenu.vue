@@ -1,3 +1,4 @@
+
 <template>
   <div class="menu">
     <section class="search-sec">
@@ -5,29 +6,22 @@
         <form action="#" method="post" novalidate="novalidate">
           <div class="row">
             <div class="col-lg-12">
-              <div class="row">
+              <div class="row" style="margin-left: 250px;">
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                  <input type="text" class="form-control search-slt" placeholder="Enter City" />
+                  <select class="form-control search-slt" id="exampleFormControlSelect1">
+                    <option>Thessaloniki</option>
+                    <option>Athina</option>
+                    <option>Larisa</option>
+                    <option>Patra</option>
+                  </select>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                   <input type="text" class="form-control search-slt" placeholder="Enter Area" />
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                  <select class="form-control search-slt" id="exampleFormControlSelect1">
-                    <option>Tenant</option>
-                    <option>Landlord</option>
-                  </select>
-                </div>
+
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                   <button type="button" class="btn btn-secondary wrn-btn">Search</button>
                 </div>
-
-                <!-- <div class="price">
-                  <slider :values="sliderValues" min="0" max="100" raising v-model="slider"></slider>
-                  < remember to set v-model 
-
-                  {{ slider }}
-                </div--> 
 
 
               </div>
@@ -39,15 +33,17 @@
   </div>
 </template>
 
+
 <script>
 
-  export default { }
-    
+export default {
+  
+}
 </script>
 
-<style>
-.search-sec {
+<style lang="scss">.search-sec {
   padding: 5px;
+  
 }
 .search-slt {
   display: block;
@@ -60,14 +56,19 @@
   border: 1px solid #ccc;
   height: calc(3rem + 2px) !important;
   border-radius: 0;
+    font-family: 'Rajdhani', sans-serif;
+
 }
 .wrn-btn {
+  background-color: #cf6f6f !important;
   width: 100%;
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
   height: calc(3rem + 2px) !important;
   border-radius: 0;
+    font-family: 'Rajdhani', sans-serif;
+
 }
 @media (min-width: 992px) {
   .search-sec {
@@ -79,7 +80,19 @@
 
 @media (max-width: 992px) {
   .search-sec {
-    background: #d9534f;
+    margin-left: -150px;
+        top: -114px;
+
+    background: rgba(0, 123, 255, 0);
   }
 }
+
+
+
+
+
 </style>
+
+
+
+

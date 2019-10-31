@@ -1,117 +1,128 @@
 <template>
+  <div class="listProperty">
     <div class="container" style="padding:20px;">
-        <div>
-            <h3>Do you want to list your property?</h3>
-            <h4>Just fill the form and we will take care of it</h4>
-        </div>
-        <b-row style="background-color: aliceblue;">
-            <b-col sm="6" style="padding: 10px;">
-            <b-form id="form" v-on:submit.prevent="submitHouse">
-            <b-form-group
-                label="City"
-            >
-                <b-form-input 
-                    type='text'
-                    id="city"                    
-                    v-model="house.city"
-                    placeholder="City of the house"
-                >
-                </b-form-input>
+      <div>
+        <h3>Do you want to list your property?</h3>
+        <h4>Just fill the form and we will take care of it.</h4>
+      </div>
+      <b-row>
+        <b-col sm="6" style="padding: 10px;">
+          <b-form id="form" v-on:submit.prevent="submitHouse">
+            <b-form-group label="City">
+              <b-form-input
+                type="text"
+                id="city"
+                v-model="house.city"
+                style="font-weight:900;"
+                placeholder="City of the house"
+              ></b-form-input>
             </b-form-group>
-            <b-form-group
-                label="Location"
-            >
-                <b-form-input 
-                    type='text'
-                    id="location"
-                    v-model="house.location"
-                    placeholder="Specific location"
-                >
-                </b-form-input>
+            <b-form-group label="Area">
+              <b-form-input
+                type="text"
+                id="location"
+                v-model="house.location"
+                style="font-weight:900;"
+                placeholder="Specific area"
+              ></b-form-input>
             </b-form-group>
-            <b-form-group
-                label="Area"
-            >
-                <b-form-input
-                    type='number'
-                    id="area"
-                    v-model="house.area"
-                    placeholder="Area in square meters"
-                >
-                </b-form-input>
+            <b-form-group label="Size">
+              <b-form-input
+                type="number"
+                id="area"
+                v-model="house.area"
+                style="font-weight:900;"
+                placeholder="Area in square meters"
+              ></b-form-input>
             </b-form-group>
-            <b-form-group
-                label="Price"
-            >
-                <b-form-input
-                    type='number'
-                    id="price"
-                    v-model="house.price"
-                    placeholder="Price in €"
-                >
-                </b-form-input>
+            <b-form-group label="Price">
+              <b-form-input type="number" id="price" v-model="house.price" style="font-weight:900;" placeholder="Price in €"></b-form-input>
             </b-form-group>
-            <b-button type="submit" v-b-modal="'my-modal'" variant="outline-primary">Submit</b-button>
-        </b-form>
-            </b-col>
-            <b-col sm="6" style="margin:auto;">
-                <img style="max-width: 60%" src="https://www.trzcacak.rs/myfile/full/387-3871068_5d-city-life-dimensional-png-and-vector-image.png">
-            </b-col>
-        </b-row>
-           
-        </div>
-
-
-        
+            <b-button type="submit" v-b-modal="'my-modal'" variant="secondary">Submit</b-button>
+          </b-form>
+        </b-col>
+        <b-col sm="6" style="margin:auto;">
+          <img
+            style="max-width: 60%"
+            src="https://www.trzcacak.rs/myfile/full/387-3871068_5d-city-life-dimensional-png-and-vector-image.png"
+          />
+        </b-col>
+      </b-row>
+    </div>
+  </div>
 </template>
 
 <script>
-import {db} from '../config/db'
+import { db } from "../config/db";
 
-var housesRef = db.ref('houses')
+var housesRef = db.ref("houses");
 
 export default {
-    data: function() {
-        return {
-            house: {
-                city:'',
-                location:'',
-                area:'',
-                price: ''
-            }
-        }
-    },
-    firebase: {
-        houses: housesRef
-
-    },
-    methods: {
-        submitHouse: function() {
-           
-           var city = document.forms["form"]["city"].value;
-           var location = document.forms["form"]["location"].value;
-           var area = document.forms["form"]["area"].value;
-           var price = document.forms["form"]["price"].value;
-            if (city == "" || location == "" || area == "" || price == "") {
-                alert("Please fill all fields");
-                return false;}
-            else {
-                housesRef.push(this.house);
-                document.getElementById("form").reset();
-                alert("Property listed successfully")
-            }
-        }
+  data: function() {
+    return {
+      house: {
+        city: "",
+        location: "",
+        area: "",
+        price: ""
+      }
+    };
+  },
+  firebase: {
+    houses: housesRef
+  },
+  methods: {
+    submitHouse: function() {
+      var city = document.forms["form"]["city"].value;
+      var location = document.forms["form"]["location"].value;
+      var area = document.forms["form"]["area"].value;
+      var price = document.forms["form"]["price"].value;
+      if (city == "" || location == "" || area == "" || price == "") {
+        alert("Please fill all fields");
+        return false;
+      } else {
+        housesRef.push(this.house);
+        document.getElementById("form").reset();
+        alert("Property listed successfully");
+      }
     }
-    }
+  }
+};
 </script>
 
-<style >
+
+<style scoped>
+
 
 .container {
-    /* max-width: 5000px; */
-    position: auto;
-  
-    /* background-image: url(https://colorate.azurewebsites.net/SwatchColor/262626); */
+  /* max-width: 5000px; */
+  /* position: auto;   */
+
+   display: block;
+  position: relative;
+  margin: auto;
+  top: 50px;
+  width: 1000px;
+  background-color: #cf6f6f;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 900;
+  opacity: 0.9;
 }
 
+.listProperty {
+  /* background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+    background-repeat: repeat !important;
+  background-size:cover;
+  background-position: 100%;
+  background-color: #f5f5f5; */
+
+  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80) !important;
+  background-size: cover;
+  background-position: bottom center;
+  height: 800px;
+  width: 100%;
+
+ 
+  
+}
 </style>

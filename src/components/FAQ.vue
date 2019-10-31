@@ -111,7 +111,7 @@ export default {
 <style>
 
 #background {
-  background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
+  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
   background-size: cover;
   background-position: bottom center;
   height: 800px;
@@ -121,19 +121,22 @@ export default {
 
 #background .faqq {
   display: block;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+   font-family: 'Rajdhani', sans-serif;
+   font-weight: 900;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: red;
   position: relative;
   margin: auto;
-  top: 60px; 
-  width: 850px;
-  border: 3px solid #9E9E9E;
-  background-color: rgb(236, 223, 202);
-  opacity: 0.85; 
-  padding: 0;
+  top: 50px; 
+  width: 1000px;
+  border: 2px solid grey;
+  background-color: #cf6f6f;
+  opacity: 0.80; 
+  padding: 50px;
 }
+
+
 
 </style>
