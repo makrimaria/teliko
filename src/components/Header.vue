@@ -15,19 +15,7 @@
 
        
 
-          <div id="chatbot" style="display:none;">
-            <iframe
-             style="margin-bottom:52px;"
-              allow="microphone;"
-              class="bottomright"
-              width="250"
-              height="330"
-              src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
-            ></iframe>
-          </div>
-
-                <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
-         
+          
         
     <!--<InputForm />-->
 </div>
@@ -38,7 +26,7 @@
 
 
 <script >
-import $ from "jquery";
+
 
 //import InputForm from './InputForm.vue';
 import DropDownMenu from './DropdownMenu.vue';
@@ -55,23 +43,8 @@ export default {
     //InputForm
 
 
-  },
-  methods: {
-    openBot() {
-      var label = $(".btn1").text().trim();
-      $(document).ready(function() {
-        if(label == "Open Chatbot") {
-          $(".btn1").text("Close Chatbot");
-          $("#chatbot").slideDown();
-        }else{
-          $(".btn1").text("Open Chatbot"); 
-          $("#chatbot").slideUp();
-        }
-      });
-     
-    }
   }
-};
+}
 </script>
 
 
@@ -101,13 +74,7 @@ body {
 } 
 
 
-.bottomright {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-  z-index: 9;
 
-}
 
 /* #search {
   width: 357px;
@@ -133,7 +100,7 @@ body {
 
 } */
 
-.btn1 {
+/* .btn1 {
 
   float: right;
 
@@ -153,7 +120,7 @@ body {
 
 button:hover {
   background-color: #d58282;
-}
+} */
 
 button:active {
   background-color: black;
