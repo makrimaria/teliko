@@ -26,7 +26,7 @@
 
 
 <script >
-import $ from "jquery";
+
 
 //import InputForm from './InputForm.vue';
 import DropDownMenu from './DropdownMenu.vue';
