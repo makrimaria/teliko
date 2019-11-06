@@ -1,10 +1,24 @@
 <template>
   <div id="background">
-    <div class="container2">
-        
+
+    
+    <div class="container4" style="width:300px; height:700px; overflow-y:scroll;">
+
+
+
+      
+
+
+
+
+
+
+
+
+
       <p>Filters</p>
 
-      <b-form-group label="City" label-for="table-style-variant" >
+      <b-form-group label="City" label-for="table-style-variant">
         <b-form-select v-model="tableVariant" :options="cityVariants" id="table-style-variant">
           <template v-slot:first>
             <option value>Select city</option>
@@ -12,7 +26,7 @@
         </b-form-select>
       </b-form-group>
 
-      <b-form-group label="Area" label-for="table-style-variant" >
+      <b-form-group label="Area" label-for="table-style-variant">
         <b-form-select v-model="tableVariant" :options="areaVariants" id="table-style-variant">
           <template v-slot:first>
             <option value>Select area</option>
@@ -20,43 +34,14 @@
         </b-form-select>
       </b-form-group>
 
-        <b-form-group label="Property for"  >
+      <b-form-group label="Property for">
         <b-form-radio-group v-model="headVariant" class="mt-lg-2">
           <b-form-radio value="light" inline>Rent</b-form-radio>
           <b-form-radio value="dark" inline>Sale</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-      <b-form-group label="Rental/Sale" label-for="table-style-variant" >
-        <b-form-select v-model="tableVariant" :options="rentalsaleVariants" id="rentalsale">
-          <template v-slot:first>
-            <option value>--</option>
-          </template>
-        </b-form-select>
-      </b-form-group> -->
-
-    
-
-      <b-form-group label="Type" label-for="table-style-variant" >
+      <b-form-group label="Type" label-for="table-style-variant">
         <b-form-select v-model="tableVariant" :options="typeVariants" id="table-style-variant">
           <template v-slot:first>
             <option value>Type</option>
@@ -64,69 +49,22 @@
         </b-form-select>
       </b-form-group>
 
+      <hr>
 
-      <div class="slider">
-          <v-container fluid>
-    <v-row>
-      <v-col cols="12">
-        <v-subheader class="pl-0">Show thumb when using slider</v-subheader>
-        <v-slider
-          v-model="slider"
-          thumb-label
-        ></v-slider>
-      </v-col>
-
-      <v-col cols="12">
-        <v-subheader class="pl-0">Always show thumb label</v-subheader>
-        <v-slider
-          v-model="slider"
-          thumb-label="always"
-        ></v-slider>
-      </v-col>
-
-      <v-col cols="12">
-        <v-subheader class="pl-0">Custom thumb size</v-subheader>
-        <v-slider
-          v-model="slider"
-          :thumb-size="24"
-          thumb-label="always"
-        ></v-slider>
-      </v-col>
-    </v-row>
-  </v-container>
-      </div>
-
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-      <b-form-group label="Heating Type" >
+      <b-form-group label="Heating Type">
         <b-form-radio-group v-model="headVariant" class="mt-lg-2">
-                      <b-form-radio value="any" inline>Any</b-form-radio>
+          <b-form-radio value="any" inline>Any</b-form-radio>
 
           <b-form-radio value="autonomous" inline>Autonomous heating System</b-form-radio>
-          <br>
+          <br />
           <b-form-radio value="central" inline>Central Heating</b-form-radio>
-                    <b-form-radio :value="null" inline>None</b-form-radio>
-
+          <b-form-radio :value="null" inline>None</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
-      
 
+      <hr>
 
-
-      <b-form-group label="Head Variant" >
+      <b-form-group label="Head Variant">
         <b-form-radio-group v-model="headVariant" class="mt-lg-2">
           <b-form-radio :value="null" inline>None</b-form-radio>
           <b-form-radio value="light" inline>Light</b-form-radio>
@@ -134,7 +72,54 @@
         </b-form-radio-group>
       </b-form-group>
 
-<!--       
+      <hr>
+
+
+
+<b-form-group label="with price(€) from:" label-for="price-style-variant">
+        <b-form-select v-model="tableVariant" :options="priceMin" id="price-style-variant">
+          <template v-slot:first>
+           
+            <option value>min</option>
+           
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+      <b-form-group label="to:" label-for="price-style-variant">
+        <b-form-select v-model="tableVariant" :options="priceMax" id="price-style-variant">
+          <template v-slot:first>
+            <option value>max</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <b-form-group label="Floor" label-for="table-style-variant">
+        <b-form-select v-model="tableVariant" :options="floorVariants" id="table-style-variant">
+          <template v-slot:first>
+            <option value>Select floor</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+      <hr>
+
+      <!--       
 
       <b-table
         :striped="striped"
@@ -151,51 +136,53 @@
         :fields="fields"
         :head-variant="headVariant"
         :table-variant="tableVariant"
-      ></b-table> -->
+      ></b-table>-->
 
-         <b-form-group label="Key Features" >
+      <b-form-group label="Key Features">
         <b-form-checkbox v-model="furnished" inline>Furnished</b-form-checkbox>
         <b-form-checkbox v-model="storage" inline>Storage</b-form-checkbox>
         <b-form-checkbox v-model="secureDoor" inline>Secure Door</b-form-checkbox>
-        <br>
+        <br />
         <b-form-checkbox v-model="alarm" inline>Alarm</b-form-checkbox>
-        
+
         <b-form-checkbox v-model="elevator" inline>Elevator</b-form-checkbox>
-                <b-form-checkbox v-model="garden" inline>Garden</b-form-checkbox>
-                <br>
+        <b-form-checkbox v-model="garden" inline>Garden</b-form-checkbox>
+        <br />
         <b-form-checkbox v-model="petsWelcome" inline>Pets welcome</b-form-checkbox>
 
-        
         <b-form-checkbox v-model="parking" inline>Parking</b-form-checkbox>
         <b-form-checkbox v-model="balcony" inline>Balcony</b-form-checkbox>
-        <br>
+        <br />
         <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
         <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
         <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
       </b-form-group>
+
+     <b-button type="submit" v-b-modal="'my-modal'" variant="danger">Apply</b-button>
+
+   
     </div>
+
+    <br />
   </div>
 </template>
 
 <script>
+
+
+
 export default {
   data() {
     return {
-        slider: 45,
-    //   fields: ["first_name", "last_name", "age"],
-    //   items: [
-    //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-    //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
-    //     { age: 89, first_name: "Geneva", last_name: "Wilson" }
-    //   ],
-      cityVariants: [
-        "Thessaloniki",
-        "Athens",
-        "Larisa",
-        "Volos",
-        "Giannena"
-      ],
-        areaVariants: [
+    
+      //   fields: ["first_name", "last_name", "age"],
+      //   items: [
+      //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
+      //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
+      //     { age: 89, first_name: "Geneva", last_name: "Wilson" }
+      //   ],
+      cityVariants: ["Thessaloniki", "Athens", "Larisa", "Volos", "Giannena"],
+      areaVariants: [
         "Pefka",
         "Neapoli",
         "Sykies",
@@ -205,7 +192,7 @@ export default {
         "Thermi",
         "Kalamaria"
       ],
-       typeVariants: [
+      typeVariants: [
         "Apartment",
         "Studio",
         "Maisonette",
@@ -214,8 +201,48 @@ export default {
         "Apartment Complex",
         "Bungalow"
       ],
-     
+      floorVariants: [
+        "Basement",
+        "Semi Basement",
+        "Ground floor",
+        "1st",
+        "2nd",
+        "3rd",
+        "4th",
+        "5th",
+        "6th",
+        "7th",
+        "8+"
 
+      ],
+       priceMin: [
+        "150",
+        "200",
+        "300",
+        "500",
+        "700",
+        "1.000",
+        "1.600",
+        "2.000",
+        "2.500",
+        "3.000+"
+        
+
+      ],
+       priceMax: [
+        "150",
+        "200",
+        "300",
+        "500",
+        "700",
+        "1.000",
+        "1.600",
+        "2.000",
+        "2.500",
+        "3.000+"
+        
+
+      ],
 
       furnished: false,
       storage: false,
@@ -242,45 +269,93 @@ export default {
   background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
   background-size: cover;
   background-position: bottom center;
-  height: 860px;
+  height: 1200px;
   width: 100%;
   color: black !important;
 }
 
 #table-style-variant {
-    width: 200px;
+  width: 200px;
 }
 
-.container2 {
-    display: block;
-   font-family: 'Rajdhani', sans-serif;
-   font-weight: 900;
+#price-style-variant {
+  width: 100px;
+}
+
+.container4 {
+  display: block;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 900;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  
+
   color: black !important;
-  position: relative;
- margin-left: 0px;
-  top: 0px;
- 
+  position: absolute;
+  /* margin-left: 0px; */
+  /* top: 0px; */
+
   /* width: 287px; */
-  width:max-content;
+  
 
   border: 1px solid grey;
-  background-color:whitesmoke;
-  opacity: 0.85; 
+  background-color: whitesmoke;
+  opacity: 0.85;
   padding: 50px;
 }
 
 p {
-    color:black;
-    margin-top: -20px;
+  color: black;
+  margin-top: -20px;
 }
 
 #rentalsale {
-    width: 100px;
+  width: 100px;
+}
+
+.container3 {
+  display: block;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+
+  color: black !important;
+  position: relative;
+  margin-left: 0px;
+  top: 0px;
+
+  /* width: 287px; */
+  width: max-content;
+
+  border: 1px solid grey;
+  background-color: whitesmoke;
+  opacity: 0.85;
+  padding: 50px;
 }
 
 
+
+.container2 {
+  display: block;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+
+  color: black !important;
+  position: absolute;
+  /* margin-left: 0px; */
+  /* top: 0px; */
+
+  /* width: 287px; */
+  
+
+  border: 1px solid grey;
+  background-color: whitesmoke;
+  opacity: 0.85;
+  padding: 50px;
+}
 </style>

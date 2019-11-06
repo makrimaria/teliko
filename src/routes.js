@@ -10,4 +10,5 @@ export default[
     { path:'/faq', component: FAQ},
     { path:'/sell', component: InputForm},
     { path: '/houses', component: Houses}
+ 
 ]
