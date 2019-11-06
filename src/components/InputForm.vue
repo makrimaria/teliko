@@ -53,9 +53,10 @@
 </template>
 
 <script>
-import { db } from "../config/db";
+import { dbfs } from "../config/db";
+//import Firebase from 'firebase';
 
-var housesRef = db.ref("houses");
+var housesRef = dbfs.collection("houses");
 
 export default {
   data: function() {
@@ -63,8 +64,9 @@ export default {
       house: {
         city: "",
         location: "",
-        area: "",
-        price: ""
+        area: Number,
+        price: Number
+        //updatedAt: Number
       }
     };
   },
@@ -72,19 +74,40 @@ export default {
     houses: housesRef
   },
   methods: {
+    //Real Time Database
+    // submitHouse: function() {
+    //   var city = document.forms["form"]["city"].value;
+    //   var location = document.forms["form"]["location"].value;
+    //   var area = document.forms["form"]["area"].value;
+    //   var price = document.forms["form"]["price"].value;
+    //   if (city == "" || location == "" || area == "" || price == "") {
+    //     alert("Please fill all fields");
+    //     return false;
+    //   } else {
+    //     housesRef.push(this.house);
+    //     document.getElementById("form").reset();
+    //     alert("Property listed successfully");
+    //   }
+    // }
+    
+    //Firestore
     submitHouse: function() {
       var city = document.forms["form"]["city"].value;
       var location = document.forms["form"]["location"].value;
       var area = document.forms["form"]["area"].value;
       var price = document.forms["form"]["price"].value;
+      //const created = Firebase.firestore.FieldValue.serverTimestamp();
+      
       if (city == "" || location == "" || area == "" || price == "") {
-        alert("Please fill all fields");
-        return false;
-      } else {
-        housesRef.push(this.house);
-        document.getElementById("form").reset();
-        alert("Property listed successfully");
-      }
+         alert("Please fill all fields");
+         return false;
+       } else {
+         housesRef.doc().set(this.house);
+         //housesRef.doc().update({ updatedAt: created });
+         document.getElementById("form").reset();
+         alert("Property listed successfully");
+       }
+      
     }
   }
 };
