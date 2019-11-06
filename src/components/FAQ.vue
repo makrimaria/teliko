@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 
 #background {
   background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);

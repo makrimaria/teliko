@@ -1,0 +1,286 @@
+<template>
+  <div id="background">
+    <div class="container2">
+        
+      <p>Filters</p>
+
+      <b-form-group label="City" label-for="table-style-variant" >
+        <b-form-select v-model="tableVariant" :options="cityVariants" id="table-style-variant">
+          <template v-slot:first>
+            <option value>Select city</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+      <b-form-group label="Area" label-for="table-style-variant" >
+        <b-form-select v-model="tableVariant" :options="areaVariants" id="table-style-variant">
+          <template v-slot:first>
+            <option value>Select area</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+        <b-form-group label="Property for"  >
+        <b-form-radio-group v-model="headVariant" class="mt-lg-2">
+          <b-form-radio value="light" inline>Rent</b-form-radio>
+          <b-form-radio value="dark" inline>Sale</b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+      <b-form-group label="Rental/Sale" label-for="table-style-variant" >
+        <b-form-select v-model="tableVariant" :options="rentalsaleVariants" id="rentalsale">
+          <template v-slot:first>
+            <option value>--</option>
+          </template>
+        </b-form-select>
+      </b-form-group> -->
+
+    
+
+      <b-form-group label="Type" label-for="table-style-variant" >
+        <b-form-select v-model="tableVariant" :options="typeVariants" id="table-style-variant">
+          <template v-slot:first>
+            <option value>Type</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+
+      <div class="slider">
+          <v-container fluid>
+    <v-row>
+      <v-col cols="12">
+        <v-subheader class="pl-0">Show thumb when using slider</v-subheader>
+        <v-slider
+          v-model="slider"
+          thumb-label
+        ></v-slider>
+      </v-col>
+
+      <v-col cols="12">
+        <v-subheader class="pl-0">Always show thumb label</v-subheader>
+        <v-slider
+          v-model="slider"
+          thumb-label="always"
+        ></v-slider>
+      </v-col>
+
+      <v-col cols="12">
+        <v-subheader class="pl-0">Custom thumb size</v-subheader>
+        <v-slider
+          v-model="slider"
+          :thumb-size="24"
+          thumb-label="always"
+        ></v-slider>
+      </v-col>
+    </v-row>
+  </v-container>
+      </div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+      <b-form-group label="Heating Type" >
+        <b-form-radio-group v-model="headVariant" class="mt-lg-2">
+                      <b-form-radio value="any" inline>Any</b-form-radio>
+
+          <b-form-radio value="autonomous" inline>Autonomous heating System</b-form-radio>
+          <br>
+          <b-form-radio value="central" inline>Central Heating</b-form-radio>
+                    <b-form-radio :value="null" inline>None</b-form-radio>
+
+        </b-form-radio-group>
+      </b-form-group>
+      
+
+
+
+      <b-form-group label="Head Variant" >
+        <b-form-radio-group v-model="headVariant" class="mt-lg-2">
+          <b-form-radio :value="null" inline>None</b-form-radio>
+          <b-form-radio value="light" inline>Light</b-form-radio>
+          <b-form-radio value="dark" inline>Dark</b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+
+<!--       
+
+      <b-table
+        :striped="striped"
+        :bordered="bordered"
+        :borderless="borderless"
+        :outlined="outlined"
+        :small="small"
+        :hover="hover"
+        :dark="dark"
+        :fixed="fixed"
+        :foot-clone="footClone"
+        :no-border-collapse="noCollapse"
+        :items="items"
+        :fields="fields"
+        :head-variant="headVariant"
+        :table-variant="tableVariant"
+      ></b-table> -->
+
+         <b-form-group label="Key Features" >
+        <b-form-checkbox v-model="furnished" inline>Furnished</b-form-checkbox>
+        <b-form-checkbox v-model="storage" inline>Storage</b-form-checkbox>
+        <b-form-checkbox v-model="secureDoor" inline>Secure Door</b-form-checkbox>
+        <br>
+        <b-form-checkbox v-model="alarm" inline>Alarm</b-form-checkbox>
+        
+        <b-form-checkbox v-model="elevator" inline>Elevator</b-form-checkbox>
+                <b-form-checkbox v-model="garden" inline>Garden</b-form-checkbox>
+                <br>
+        <b-form-checkbox v-model="petsWelcome" inline>Pets welcome</b-form-checkbox>
+
+        
+        <b-form-checkbox v-model="parking" inline>Parking</b-form-checkbox>
+        <b-form-checkbox v-model="balcony" inline>Balcony</b-form-checkbox>
+        <br>
+        <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
+        <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
+        <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
+      </b-form-group>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+        slider: 45,
+    //   fields: ["first_name", "last_name", "age"],
+    //   items: [
+    //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
+    //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
+    //     { age: 89, first_name: "Geneva", last_name: "Wilson" }
+    //   ],
+      cityVariants: [
+        "Thessaloniki",
+        "Athens",
+        "Larisa",
+        "Volos",
+        "Giannena"
+      ],
+        areaVariants: [
+        "Pefka",
+        "Neapoli",
+        "Sykies",
+        "Agios Pavlos",
+        "Stavroupoli",
+        "Pylaia",
+        "Thermi",
+        "Kalamaria"
+      ],
+       typeVariants: [
+        "Apartment",
+        "Studio",
+        "Maisonette",
+        "Villa",
+        "Loft",
+        "Apartment Complex",
+        "Bungalow"
+      ],
+     
+
+
+      furnished: false,
+      storage: false,
+      secureDoor: false,
+      alarm: false,
+      elevator: false,
+      garden: false,
+      petsWelcome: false,
+      parking: false,
+      balcony: false,
+      fireplace: null,
+      view: "",
+      swimmingPool: false
+    };
+  }
+};
+</script>
+
+
+
+
+<style >
+#background {
+  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+  background-size: cover;
+  background-position: bottom center;
+  height: 860px;
+  width: 100%;
+  color: black !important;
+}
+
+#table-style-variant {
+    width: 200px;
+}
+
+.container2 {
+    display: block;
+   font-family: 'Rajdhani', sans-serif;
+   font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  
+  color: black !important;
+  position: relative;
+ margin-left: 0px;
+  top: 0px;
+ 
+  /* width: 287px; */
+  width:max-content;
+
+  border: 1px solid grey;
+  background-color:whitesmoke;
+  opacity: 0.85; 
+  padding: 50px;
+}
+
+p {
+    color:black;
+    margin-top: -20px;
+}
+
+#rentalsale {
+    width: 100px;
+}
+
+
+</style>
