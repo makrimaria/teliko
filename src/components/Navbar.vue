@@ -23,7 +23,7 @@ export default {};
 
 <style>
 .router-link-active {
-  background-color: #cf6f6f;
+  background-color: #b34c37;
   color: #444;
 }
 
@@ -49,7 +49,7 @@ li a {
   font-family: "Rajdhani", sans-serif;
 }
 li:hover {
-  background-color: #cf6f6f;
+  background-color: #b34c37;
 }
 
 /* a:link {

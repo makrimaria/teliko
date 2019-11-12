@@ -5,7 +5,7 @@
     <div class="text-center content icon-boxes">
       <div class="icon-boxes__box1" style="float:left; margin-left:auto">
         <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-2.png" alt />
-        <h4 style="margin-top:5px; font-size:18px;">Find the perfect home</h4>
+        <h4 style="margin-top:5px; font-size:18px;">Find the perfect home</h4> <br>
         <p
           class="house"
           style="width: 100%; max-width: 400px; font-size:16px;"
@@ -14,7 +14,7 @@
     </div>
     <div class="icon-boxes__box2" style="float:right; margin-left:10px;">
       <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-1.png" alt />
-      <h4 style="margin-top:5px; font-size:18px;">For each device</h4>
+      <h4 style="margin-top:10px; font-size:18px;">For each device</h4> <br>
       <p
         class="house"
         style="width: 100%; max-width: 400px; font-size:16px;"
@@ -22,7 +22,7 @@
     </div>
     <div class="icon-boxes__box3">
       <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-3.png" alt />
-      <h4 style="margin-top:5px; font-size:18px;">Properties on the map</h4>
+      <h4 style="margin-top:10px; font-size:18px;">Properties on the map</h4> <br>
       <p
         class="house"
         style="font-size:16px;"

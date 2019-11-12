@@ -7,7 +7,7 @@
          <br>
 
          <h1><span>Prodigy</span> Real Estate</h1>
-         <h2 class="head" style="color: #cf6f6f">Find your dream home! </h2>
+         <h2 class="head" style="color: white">Find your dream home! </h2>
 
 
          <DropDownMenu style="margin: 150px;" />
@@ -49,6 +49,8 @@ export default {
 
 
 <style >
+
+
 html,
 body {
   margin: 0;
@@ -65,11 +67,12 @@ body {
 }
 
  .header .header-img {
-  background-image:url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+  background-image:url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-repeat: no-repeat !important;
   background-size:cover;
   background-position: 100%;
   background-color: #f5f5f5;
+  height: 100%;
   /* height: 300%;  */
 } 
 
@@ -130,20 +133,20 @@ button:active {
 
 h1 { 
 
-  color: #cf6f6f;
-  font-weight: 700!important;
-  font-size: 80px !important;
+  color: white;
+  font-weight: 800!important;
+  font-size: 90px !important;
   text-align: center;
-  font-family: 'Rajdhani', sans-serif;
+   font-family: 'Archivo Black', sans-serif;
 
    }
 h2 .head {
 
-   ;
+   
   font-size: 40px !important;
   font-weight: 700 !important;
   text-align: center;
-  font-family: 'Rajdhani', sans-serif;
+ font-family: 'Archivo Black', sans-serif;
 
 
   
