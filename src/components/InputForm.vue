@@ -142,13 +142,9 @@ export default {
 }
 
 .listProperty {
-  /* background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
-    background-repeat: repeat !important;
-  background-size:cover;
-  background-position: 100%;
-  background-color: #f5f5f5; */
 
-  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80) !important;
+
+  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
   background-size: cover;
   background-position: bottom center;
   height: 860px;

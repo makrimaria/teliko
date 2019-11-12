@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style >
+<style  >
 
 #background {
   background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
@@ -132,11 +132,19 @@ export default {
   position: relative;
   margin: auto;
   top: 50px; 
-  width: 1000px;
+  width: 1000px ;
   /* border: 2px solid grey; */
   background-color:whitesmoke;
   opacity: 0.85; 
   padding: 50px;
+}
+
+  p {
+  color: #cf6f6f;
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 
