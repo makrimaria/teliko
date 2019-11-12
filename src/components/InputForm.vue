@@ -17,7 +17,8 @@
                 placeholder="City of the house"
               ></b-form-input>
             </b-form-group>
-            <b-form-group label="Area">
+
+            <b-form-group label="Area" id="location" v-model="house.location">
               <b-form-input
                 type="text"
                 id="location"
@@ -36,8 +37,15 @@
               ></b-form-input>
             </b-form-group>
             <b-form-group label="Price">
-              <b-form-input type="number" id="price" v-model="house.price" style="font-weight:900;" placeholder="Price in €"></b-form-input>
+              <b-form-input
+                type="number"
+                id="price"
+                v-model="house.price"
+                style="font-weight:900;"
+                placeholder="Price in €"
+              ></b-form-input>
             </b-form-group>
+
             <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Submit</b-button>
           </b-form>
         </b-col>
@@ -56,6 +64,7 @@
 import { dbfs } from "../config/db";
 import Firebase from 'firebase';
 
+
 var housesRef = dbfs.collection("houses");
 
 export default {
@@ -66,11 +75,13 @@ export default {
         location: "",
         area: Number,
         price: Number
+
       }
     };
   },
   firebase: {
-    houses: housesRef
+    houses: housesRef,
+    Cities: citiesRef
   },
   methods: {
     //Real Time Database
@@ -115,13 +126,11 @@ export default {
 
 
 <style scoped>
-
-
 .container {
   /* max-width: 5000px; */
   /* position: auto;   */
 
-   display: block;
+  display: block;
   position: relative;
   margin: auto;
   top: 50px;
@@ -144,8 +153,5 @@ export default {
   background-position: bottom center;
   height: 860px;
   width: 100%;
-
- 
-  
 }
 </style>

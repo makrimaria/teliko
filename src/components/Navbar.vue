@@ -1,29 +1,35 @@
 <template>
-    <div id="navigation">
-        <ul>
-          
-            <li><router-link to="/" exact>Home</router-link></li>
-            <li><router-link to="/faq" exact>FAQ</router-link></li>
-            <li><router-link to="/sell" exact>List Property</router-link></li>
-        </ul>
-    </div>   
+  <div id="navigation">
+    <ul>
+      <li>
+        <router-link to="/" exact>Home</router-link>
+      </li>
+      <li>
+        <router-link to="/faq" exact>FAQ</router-link>
+      </li>
+      <li>
+        <router-link to="/sell" exact>List your property</router-link>
+      </li>
+      <li>
+        <router-link to="/houses" exact>Houses</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-export default {
-    
-}
+export default {};
 </script>
 
 <style>
-.router-link-active{
-    background-color: #cf6f6f;
-    color: #444;
+.router-link-active {
+  background-color: #cf6f6f;
+  color: #444;
 }
 
 ul {
   list-style-type: none;
-  margin-bottom: 0px !important; 
+  margin-bottom: 0px !important;
   margin-top: 0 !important;
   padding: 0;
   overflow: hidden;
@@ -36,12 +42,11 @@ li {
 li a {
   display: block;
   color: white;
-  font-weight:500;
+  font-weight: 500;
   text-align: center;
   padding: 17px 32px;
   text-decoration: none !important;
-  font-family: 'Rajdhani', sans-serif;
-
+  font-family: "Rajdhani", sans-serif;
 }
 li:hover {
   background-color: #cf6f6f;
@@ -56,9 +61,4 @@ a:visited {
 a:hover {
   color: white !important;
 }
-
-
-
-
-
 </style>
