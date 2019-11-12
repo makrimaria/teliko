@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import {dbrtd} from '../config/db'
+//import {dbrtd} from '../config/db'
 import {dbfs} from '../config/db'
-var housesRef = dbrtd.ref('houses')
+//var housesRef = dbrtd.ref('houses')
 
 export default {
   data: () =>({
@@ -60,22 +60,22 @@ export default {
 
   ),
   mounted() {
-    //Real Time Database
-     housesRef.once('value', (houses) => {
-       houses.forEach((house) => {
-         this.houses.push({
-           ref: house.ref,
-           city: house.child('city').val(),
-           area: house.child('area').val(),
-           price: house.child('price').val(),
-           location: house.child('location').val(),
-           image: house.child('image').val()
-         })
-       })
-     })
+    // //Real Time Database
+    //  housesRef.once('value', (houses) => {
+    //    houses.forEach((house) => {
+    //      this.houses.push({
+    //        ref: house.ref,
+    //        city: house.child('city').val(),
+    //        area: house.child('area').val(),
+    //        price: house.child('price').val(),
+    //        location: house.child('location').val(),
+    //        image: house.child('image').val()
+    //      })
+    //    })
+    //  })
 
     //Firestore
-    dbfs.collection("houses").orderBy().get().then(querySnapshot => {
+    dbfs.collection("houses").orderBy("created", "desc").get().then(querySnapshot => {
       querySnapshot.docs.forEach((doc) => {
           this.a.push(doc.data()
             //ref: doc.ref,

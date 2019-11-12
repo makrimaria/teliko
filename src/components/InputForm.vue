@@ -54,7 +54,7 @@
 
 <script>
 import { dbfs } from "../config/db";
-//import Firebase from 'firebase';
+import Firebase from 'firebase';
 
 var housesRef = dbfs.collection("houses");
 
@@ -66,7 +66,6 @@ export default {
         location: "",
         area: Number,
         price: Number
-        //updatedAt: Number
       }
     };
   },
@@ -96,14 +95,15 @@ export default {
       var location = document.forms["form"]["location"].value;
       var area = document.forms["form"]["area"].value;
       var price = document.forms["form"]["price"].value;
-      //const created = Firebase.firestore.FieldValue.serverTimestamp();
-      
+      //var created = Math.round(+new Date()/1000);
+     
       if (city == "" || location == "" || area == "" || price == "") {
          alert("Please fill all fields");
          return false;
        } else {
-         housesRef.doc().set(this.house);
-         //housesRef.doc().update({ updatedAt: created });
+         var house = housesRef.doc();
+         house.set(this.house);
+         house.update({created: Firebase.firestore.FieldValue.serverTimestamp()});
          document.getElementById("form").reset();
          alert("Property listed successfully");
        }
