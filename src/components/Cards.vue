@@ -34,7 +34,7 @@
     <h2 style="font-size:35px;">Added Recently</h2>
     <br>
     <b-row>
-      <b-col class="mb-4" sm="3" v-for="house in houses" v-bind:key="house">
+      <b-col class="mb-4" sm="3" v-for="house in a" v-bind:key="house">
         <b-card title v-bind:img-src="house.image" img-alt="Image" img-top>
           <b-card-text>
             <b-list-group style="font-size:16px;">
@@ -50,30 +50,53 @@
   </b-container>
 </template>
 
+
+
 <script>
-import { db } from "../config/db";
-var housesRef = db.ref("houses");
+//import {dbrtd} from '../config/db'
+import {dbfs} from '../config/db'
+//var housesRef = dbrtd.ref('houses')
 
 export default {
-  data: () => ({
-    houses: []
+  data: () =>({
+    houses: [],
+    a: []
+
   }),
   mounted() {
-    housesRef.once("value", houses => {
-      houses.forEach(house => {
-        this.houses.push({
-          ref: house.ref,
-          city: house.child("city").val(),
-          area: house.child("area").val(),
-          price: house.child("price").val(),
-          location: house.child("location").val(),
-          image: house.child("image").val()
-        });
+    // //Real Time Database
+    //  housesRef.once('value', (houses) => {
+    //    houses.forEach((house) => {
+    //      this.houses.push({
+    //        ref: house.ref,
+    //        city: house.child('city').val(),
+    //        area: house.child('area').val(),
+    //        price: house.child('price').val(),
+    //        location: house.child('location').val(),
+    //        image: house.child('image').val()
+    //      })
+    //    })
+    //  })
+
+    //Firestore
+    dbfs.collection("houses").orderBy("created", "desc").get().then(querySnapshot => {
+      querySnapshot.docs.forEach((doc) => {
+          this.a.push(doc.data()
+            //ref: doc.ref,
+            // city: doc.data(),
+            // area: doc.getString("area"),
+            // price: doc.getString("price"),
+            // location: doc.getString("location"),
+            // image: doc.getString("image")
+          )
+      // doc.data() is never undefined for query doc snapshots
+      //console.log(doc.id, " => ", doc.data())
       });
     });
   }
 };
 </script>
+
 
 <style scoped >
 p .house {
@@ -82,6 +105,7 @@ p .house {
   font-family: "Rajdhani", sans-serif;
   display: block;
   white-space: normal;
+  
 }
 
 h2 {
