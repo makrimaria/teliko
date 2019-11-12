@@ -1,80 +1,101 @@
 <template>
-<b-container style="margin-top:10px;">
-<!--b-card-group deck>
-  <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-    <b-card-text>
-      This is a wider card with supporting text below as a natural lead-in to additional content.
-      This content is a little bit longer.
-    </b-card-text>
-  
-  </b-card>
+  <b-container style="margin-top:10px;">
+    <br />
 
-  <b-card title="Title"  img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-    <b-card-text>
-      This card has supporting text below as a natural lead-in to additional content.
-    </b-card-text>
-    
-  </b-card>
+    <div class="text-center content icon-boxes">
+      <div class="icon-boxes__box1" style="float:left; margin-left:auto">
+        <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-2.png" alt />
+        <h4 style="margin-top:5px; font-size:18px;">Find the perfect home</h4>
+        <p
+          class="house"
+          style="width: 100%; max-width: 400px; font-size:16px;"
+        >Select advanced search filters according to the criteria you want to show results that fit your needs.</p>
+      </div>
+    </div>
+    <div class="icon-boxes__box2" style="float:right; margin-left:10px;">
+      <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-1.png" alt />
+      <h4 style="margin-top:5px; font-size:18px;">For each device</h4>
+      <p
+        class="house"
+        style="width: 100%; max-width: 400px; font-size:16px;"
+      >Explore Prodigy RealEstate ads from any smart device, thanks to its mobile-friendly design that adapts to any screen size.</p>
+    </div>
+    <div class="icon-boxes__box3">
+      <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-3.png" alt />
+      <h4 style="margin-top:5px; font-size:18px;">Properties on the map</h4>
+      <p
+        class="house"
+        style="font-size:16px;"
+      >View the results of each search on the map and discover the available properties in each area based on their exact location.</p>
+    </div>
+    <br />
+    <hr />
 
-  <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-    <b-card-text>
-      This is a wider card with supporting text below as a natural lead-in to additional content.
-      This card has even longer content than the first to show that equal height action.
-    </b-card-text>
-    
-  </b-card>
-</b-card-group-->
-<h2>Suggestions</h2>
-<p>------------</p>
-  <b-row>
-    
-    
-    <b-col class="mb-4" sm="3" v-for="house in houses" v-bind:key="house">
-      <b-card title="" v-bind:img-src="house.image" img-alt="Image" img-top>
-        <b-card-text>
-          <b-list-group>
-            <b-list-group-item>Πόλη: {{house.city}}</b-list-group-item>
-            <b-list-group-item>Περιοχή: {{house.location}}</b-list-group-item>
-            <b-list-group-item>Εμβαδό: {{house.area}} τ.μ.</b-list-group-item>
-            <b-list-group-item>Τιμή: {{house.price}} €</b-list-group-item>
-          </b-list-group>
-        </b-card-text>
-      </b-card>
-    </b-col>
-  </b-row>
-</b-container>
+    <h2 style="font-size:35px;">Added Recently</h2>
+    <br>
+    <b-row>
+      <b-col class="mb-4" sm="3" v-for="house in houses" v-bind:key="house">
+        <b-card title v-bind:img-src="house.image" img-alt="Image" img-top>
+          <b-card-text>
+            <b-list-group style="font-size:16px;">
+              <b-list-group-item style="font-size:20px;"> {{house.city}}</b-list-group-item>
+              <b-list-group-item>Area: {{house.location}}</b-list-group-item>
+              <b-list-group-item>Size: {{house.area}} m2 </b-list-group-item>
+              <b-list-group-item>Price: {{house.price}} €</b-list-group-item>
+            </b-list-group>
+          </b-card-text>
+        </b-card>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import {db} from '../config/db'
-var housesRef = db.ref('houses')
+import { db } from "../config/db";
+var housesRef = db.ref("houses");
 
 export default {
-  data: () =>({
+  data: () => ({
     houses: []
-  }
-
-  ),
+  }),
   mounted() {
-        housesRef.once('value', (houses) => {
-          houses.forEach((house) => {
-            this.houses.push({
-              ref: house.ref,
-              city: house.child('city').val(),
-              area: house.child('area').val(),
-              price: house.child('price').val(),
-              location: house.child('location').val(),
-              image: house.child('image').val()
-            })
-          })
-        })
-      }
-}
-  
+    housesRef.once("value", houses => {
+      houses.forEach(house => {
+        this.houses.push({
+          ref: house.ref,
+          city: house.child("city").val(),
+          area: house.child("area").val(),
+          price: house.child("price").val(),
+          location: house.child("location").val(),
+          image: house.child("image").val()
+        });
+      });
+    });
+  }
+};
 </script>
 
-<style>
+<style scoped >
+p .house {
+  color: black;
+  font-size: 12px !important;
+  font-family: "Rajdhani", sans-serif;
+  display: block;
+  white-space: normal;
+}
+
+h2 {
+   color: black ;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
 
 
+  
 
+}
 </style>
+
+
+

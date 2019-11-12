@@ -62,15 +62,7 @@
         </b-form-radio-group>
       </b-form-group>
 
-      <hr>
-
-      <b-form-group label="Head Variant">
-        <b-form-radio-group v-model="headVariant" class="mt-lg-2">
-          <b-form-radio :value="null" inline>None</b-form-radio>
-          <b-form-radio value="light" inline>Light</b-form-radio>
-          <b-form-radio value="dark" inline>Dark</b-form-radio>
-        </b-form-radio-group>
-      </b-form-group>
+     
 
       <hr>
 
@@ -164,6 +156,11 @@
     </div>
 
     <br />
+
+ 
+
+
+
   </div>
 </template>
 
@@ -303,6 +300,7 @@ export default {
   opacity: 0.85;
   padding: 50px;
 }
+
 
 p {
   color: black;

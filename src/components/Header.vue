@@ -7,7 +7,7 @@
          <br>
 
          <h1><span>Prodigy</span> Real Estate</h1>
-         <h2>Find your dream home! </h2>
+         <h2 class="head" style="color: #cf6f6f">Find your dream home! </h2>
 
 
          <DropDownMenu style="margin: 150px;" />
@@ -48,7 +48,7 @@ export default {
 </script>
 
 
-<style>
+<style >
 html,
 body {
   margin: 0;
@@ -137,9 +137,9 @@ h1 {
   font-family: 'Rajdhani', sans-serif;
 
    }
-h2 {
+h2 .head {
 
-  color: #cf6f6f;
+   ;
   font-size: 40px !important;
   font-weight: 700 !important;
   text-align: center;
@@ -149,12 +149,12 @@ h2 {
   
 }
 
-p {
+/* p {
   color: #cf6f6f;
   font-size: 25px;
   font-weight: 500;
   text-align: center;
   font-family: 'Rajdhani', sans-serif;
-}
+} */
 
 </style>
