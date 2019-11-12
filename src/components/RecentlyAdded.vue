@@ -1,6 +1,6 @@
 <template>
   <b-container style="margin-top:10px;">
-    <h2 style="font-size:35px;">Houses</h2>
+    <h2 style="font-size:35px;">Added Recently</h2>
     <br>
     <b-row>
       <b-col class="mb-4" sm="3" v-for="house in a" v-bind:key="house">
@@ -22,7 +22,7 @@
 
 
 <script>
-//import {dbfs} from '../config/db'
+import {dbfs} from '../config/db'
 
 export default {
   data: () =>({
@@ -46,15 +46,14 @@ export default {
     //  })
 
     //Firestore
-    // dbfs.collection("houses").where("city", "==", "Thessaloniki").get().then(querySnapshot => {
-    //   querySnapshot.docs.forEach((doc) => {
-    //       this.a.push(doc.data())
-    //   });
-    // });
+    dbfs.collection("houses").orderBy("created", "desc").get().then(querySnapshot => {
+      querySnapshot.docs.forEach((doc) => {
+          this.a.push(doc.data())
+      });
+    });
   }
 };
 </script>
-
 
 <style scoped >
 p .house {
@@ -62,8 +61,7 @@ p .house {
   font-size: 12px !important;
   font-family: "Rajdhani", sans-serif;
   display: block;
-  white-space: normal;
-  
+  white-space: normal;  
 }
 
 h2 {

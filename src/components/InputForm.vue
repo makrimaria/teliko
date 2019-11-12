@@ -80,8 +80,7 @@ export default {
     };
   },
   firebase: {
-    houses: housesRef,
-    Cities: citiesRef
+    houses: housesRef
   },
   methods: {
     //Real Time Database
