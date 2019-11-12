@@ -1,5 +1,5 @@
 <template>
-  <div class="listProperty">
+  <div id="background">
     <div class="container" style="padding:20px;">
       <div>
         <h4>Do you want to list your property?</h4>
@@ -52,7 +52,7 @@
         <b-col sm="6" style="margin:auto;">
           <img
             style="max-width: 60%"
-            src="https://www.trzcacak.rs/myfile/full/387-3871068_5d-city-life-dimensional-png-and-vector-image.png"
+            src="https://png2.cleanpng.com/sh/9d9d39498957aaf842eaba55777dba84/L0KzQYm3VMA5N5DBj5H0aYP2gLBuTfhwfaRqRdV4bYD4hLb5Tflkd594ReVEbXLyfH7vjB1mNZRxgeI2YYL3PbLrkvV0e146edVqM0Hpc4LsgcM2P182TKs7NkK6QoK8UsMzOGE6SKo6MkW4PsH1h5==/kisspng-house-computer-icons-symbol-home-clip-art-adress-5aca31fc1ea357.1492627215232005081255.png"
           />
         </b-col>
       </b-row>
@@ -80,8 +80,7 @@ export default {
     };
   },
   firebase: {
-    houses: housesRef,
-    Cities: citiesRef
+    houses: housesRef
   },
   methods: {
     //Real Time Database
@@ -141,13 +140,23 @@ export default {
   opacity: 0.9;
 }
 
-.listProperty {
+/* .listProperty {
 
 
-  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
   background-position: bottom center;
   height: 860px;
   width: 100%;
+} */
+
+#background {
+  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
+  background-size: cover;
+  background-position: bottom center;
+  height: 1200px;
+  width: 100%;
+  color: black !important;
+  
 }
 </style>

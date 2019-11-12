@@ -111,10 +111,10 @@ export default {
 <style  >
 
 #background {
-  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
   background-position: bottom center;
-  height: 860px;
+  height: 1200px;
   width: 100%;
   color: black !important;
   
@@ -140,7 +140,7 @@ export default {
 }
 
   p {
-  color: #cf6f6f;
+  color: #b34c37;
   font-size: 25px;
   font-weight: 500;
   text-align: center;

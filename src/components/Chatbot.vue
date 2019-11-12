@@ -65,7 +65,7 @@ export default {
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: #cf6f6f;
+  background-color: #b34c37;
   border: none;
   font-family: 'Rajdhani', sans-serif;
   align-self: right !important; 
@@ -73,7 +73,7 @@ export default {
 }
 
 button:hover {
-  background-color: #d58282;
+  background-color: #b34c37;
 }
 
 button:active {

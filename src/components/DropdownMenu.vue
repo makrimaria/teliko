@@ -50,7 +50,7 @@ export default {
   width: 100%;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: #cf6f6f;
+  color: #b34c37;
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
@@ -60,7 +60,7 @@ export default {
 
 }
 .wrn-btn {
-  background-color: #cf6f6f !important;
+  background-color: #b34c37 !important;
   width: 100%;
   font-size: 16px;
   font-weight: 400;
