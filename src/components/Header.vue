@@ -1,50 +1,53 @@
 <template>
   <div id="home">
     <div class="header">
-
-       <div class="header-img">
-         <br>
-
-         <h1><span>Prodigy</span> Real Estate</h1>
-         <h2 class="head" style="color: white">Find your dream home! </h2>
-
-
-         <DropDownMenu style="margin: 150px;" />
-
-
-       
-
-          
-        
-    <!--<InputForm />-->
-</div>
-</div>
-<Cards/>
-  <RecentlyAdded />
-
+      <div class="header-img">
+        <br />
+        <h1>
+          <span>Prodigy</span> Real Estate
+        </h1>
+        <h2 class="head" style="color: white">Find your dream home!</h2>
+        <DropDownMenu style="margin: 150px;" />
+      </div>
+    </div>
+    <Intro/>
+    <b-container>
+    <Cards :houses="houses">Added Recently</Cards>
+    </b-container>
+    
   </div>
 </template>
 
-
 <script >
 import DropDownMenu from "./DropdownMenu.vue";
-import RecentlyAdded from "./RecentlyAdded.vue";
+import Intro from "./Intro.vue";
 import Cards from "./Cards.vue";
+import {dbfs} from '../config/db'
 
 export default {
   name: "header",
   components: {
     DropDownMenu,
-    RecentlyAdded,
+    Intro,
     Cards
+  },
+  data() {
+    return {
+      houses: []
+    }
+  },
+  mounted() {
+    dbfs.collection("houses").orderBy("created", "desc").limit(4).get().then(querySnapshot => {
+      querySnapshot.docs.forEach((doc) => {
+          this.houses.push(doc.data())
+      });
+    });
   }
 };
 </script>
 
 
 <style >
-
-
 html,
 body {
   margin: 0;
@@ -59,9 +62,8 @@ body {
   height: 450px;
 }
 
-
- .header .header-img {
-  background-image:url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
+.header .header-img {
+  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-repeat: no-repeat !important;
   background-size: cover;
   background-position: 100%;
@@ -122,23 +124,18 @@ button:active {
   transform: translateY(4px);
 }
 
-
-h1 { 
-
+h1 {
   color: white;
-  font-weight: 800!important;
+  font-weight: 800 !important;
   font-size: 90px !important;
   text-align: center;
-   font-family: 'Archivo Black', sans-serif;
-
-   }
+  font-family: "Archivo Black", sans-serif;
+}
 h2 .head {
-
-   
   font-size: 40px !important;
   font-weight: 700 !important;
   text-align: center;
- font-family: 'Archivo Black', sans-serif;
+  font-family: "Archivo Black", sans-serif;
 }
 
 /* p {
