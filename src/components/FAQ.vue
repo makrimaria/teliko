@@ -135,7 +135,7 @@ export default {
   width: 1000px ;
   /* border: 2px solid grey; */
   background-color:whitesmoke;
-  opacity: 0.85; 
+  /* opacity: 0.85;  */
   padding: 50px;
 }
 
