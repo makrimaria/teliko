@@ -17,8 +17,7 @@
                 placeholder="City of the house"
               ></b-form-input>
             </b-form-group>
-
-            <b-form-group label="Area" id="location" v-model="house.location">
+            <b-form-group label="Area">
               <b-form-input
                 type="text"
                 id="location"
@@ -107,7 +106,7 @@ export default {
       var price = document.forms["form"]["price"].value;
       //var created = Math.round(+new Date()/1000);
      
-      if (city == "" || location == "" || area == "" || price == "") {
+      if (city == "" || location == "" || area == "" || price == "") {  
          alert("Please fill all fields");
          return false;
        } else {

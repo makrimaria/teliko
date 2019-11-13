@@ -2,23 +2,23 @@
   <div id="background">
     <div class="container4" style="width:300px; height:700px; overflow-y:scroll;">
       <p>Filters</p>
-     <b-form id="form" v-on:submit.prevent="submitFilters">
-      <b-form-group label="City" label-for="table-style-variant">
-        <b-form-select v-model="city" :options="cityVariants" id="table-style-variant">
-          <template v-slot:first>
-            <option :value="null" disabled>Select city</option>
-          </template>
-        </b-form-select>
-      </b-form-group>
+      <b-form id="form" v-on:submit.prevent="submitFilters">
+        <b-form-group label="City" label-for="table-style-variant">
+          <b-form-select v-model="city" :options="cityVariants" id="table-style-variant">
+            <template v-slot:first>
+              <option :value="null" disabled>Select city</option>
+            </template>
+          </b-form-select>
+        </b-form-group>
 
-      <!-- <b-form-group label="Area" label-for="table-style-variant">
-        <b-form-select v-model="tableVariant" :options="areaVariants" id="table-style-variant">
-          <template v-slot:first>
-            <option value>Select area</option>
-          </template>
-        </b-form-select>
-      </b-form-group>
-
+        <b-form-group label="Area" label-for="table-style-variant">
+          <b-form-select v-if="city!=null" v-model="area" :options="areaVariants[city].text" id="table-style-variant">
+            <template v-slot:first>
+              <option :value="null" disabled>Select area</option>
+            </template>
+          </b-form-select>
+        </b-form-group>
+        <!--
       <b-form-group label="Property for">
         <b-form-radio-group v-model="headVariant" class="mt-lg-2">
           <b-form-radio value="light" inline>Rent</b-form-radio>
@@ -118,33 +118,31 @@
         <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
         <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
         <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
-      </b-form-group>-->
+        </b-form-group>-->
 
-      <b-button type="submit" v-b-modal="'my-modal'" variant="danger">Apply</b-button>
-     </b-form>
+        <b-button type="submit" v-b-modal="'my-modal'" variant="danger">Apply</b-button>
+      </b-form>
     </div>
 
     <br />
-      <b-container style="margin-top:10px;">
-    <h2 style="font-size:35px;">Houses</h2>
-    <br>
-    <b-row>
-      <b-col class="mb-4" sm="3" v-for="house in a" v-bind:key="house">
-        <b-card title v-bind:img-src="house.image" img-alt="Image" img-top>
-          <b-card-text>
-            <b-list-group style="font-size:16px;">
-              <b-list-group-item style="font-size:20px;"> {{house.city}}</b-list-group-item>
-              <b-list-group-item>Area: {{house.location}}</b-list-group-item>
-              <b-list-group-item>Size: {{house.area}} m2 </b-list-group-item>
-              <b-list-group-item>Price: {{house.price}} €</b-list-group-item>
-            </b-list-group>
-          </b-card-text>
-        </b-card>
-      </b-col>
-    </b-row>
-  </b-container>
-    <p>{{city}}</p>
-    <p>{{a}}</p>
+    <b-container style="margin-top:10px;">
+      <h2 style="font-size:35px;">Houses</h2>
+      <br />
+      <b-row>
+        <b-col class="mb-4" sm="3" v-for="house in a" v-bind:key="house">
+          <b-card title v-bind:img-src="house.image" img-alt="Image" img-top>
+            <b-card-text>
+              <b-list-group style="font-size:16px;">
+                <b-list-group-item style="font-size:20px;">{{house.city}}</b-list-group-item>
+                <b-list-group-item>Area: {{house.location}}</b-list-group-item>
+                <b-list-group-item>Size: {{house.area}} m2</b-list-group-item>
+                <b-list-group-item>Price: {{house.price}} €</b-list-group-item>
+              </b-list-group>
+            </b-card-text>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -156,23 +154,27 @@ export default {
     return {
       a: [],
       city: null,
+      area: null,
       //   fields: ["first_name", "last_name", "age"],
       //   items: [
       //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
       //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
       //     { age: 89, first_name: "Geneva", last_name: "Wilson" }
       //   ],
-      cityVariants: ["Thessaloniki", "Athens", "Larisa", "Volos", "Giannena"],
-      areaVariants: [
-        "Pefka",
-        "Neapoli",
-        "Sykies",
-        "Agios Pavlos",
-        "Stavroupoli",
-        "Pylaia",
-        "Thermi",
-        "Kalamaria"
-      ],
+      //cityVariants: ["Thessaloniki", "Athens", "Larisa", "Volos", "Giannena"],
+      cityVariants: [],
+      cityVariantsID: [],
+      // areaVariants: [
+      //   "Pefka",
+      //   "Neapoli",
+      //   "Sykies",
+      //   "Agios Pavlos",
+      //   "Stavroupoli",
+      //   "Pylaia",
+      //   "Thermi",
+      //   "Kalamaria"
+      // ],
+      areaVariants: [],
       typeVariants: [
         "Apartment",
         "Studio",
@@ -234,22 +236,61 @@ export default {
       swimmingPool: false
     };
   },
-    mounted() {
+  mounted() {
     //Firestore
-     dbfs.collection("houses").get().then(querySnapshot => {
-       querySnapshot.docs.forEach((doc) => {
-           this.a.push(doc.data())
-       });
-     });
-  },
-  methods: {
-    submitFilters: function(){
-      this.a = []
-      dbfs.collection("houses").where("city", "==", this.city).get().then(querySnapshot => {
-        querySnapshot.docs.forEach((doc) => {
-            this.a.push(doc.data())
+    dbfs
+      .collection("houses")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+          this.a.push(doc.data());
         });
       });
+    var i = 0;
+    dbfs
+      .collection("cities")
+      .orderBy("name", "asc")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+          this.cityVariants.push({value: i, text: doc.data().name});
+          i++;
+        });
+      });
+    var j = 0;
+    dbfs
+      .collection("cities")
+      .orderBy("name", "asc")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+         this.areaVariants.push({value: j, text: doc.data().regions});
+         j++;
+          //this.areaVariants.push(doc.data().regions);
+        });
+      });
+  },
+  methods: {
+    submitFilters: function() {
+      this.a = [];
+      dbfs
+        .collection("houses")
+        .where("city", "==", this.cityVariants[this.city].text)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.a.push(doc.data());
+          });
+        });
+      // dbfs
+      //  .collection("houses")
+      //  .where("location", "==", this.area)
+      //  .get()
+      //  .then(querySnapshot => {
+      //   querySnapshot.docs.forEach(doc => {
+      //     this.a.push(doc.data());
+      //   });
+      // });
     }
   }
 };
