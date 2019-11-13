@@ -1,5 +1,6 @@
 <template>
   <b-container style="margin-top:10px;">
+
     <br />
 
     <div class="text-center content icon-boxes">
@@ -53,9 +54,7 @@
 
 
 <script>
-//import {dbrtd} from '../config/db'
-import {dbfs} from '../config/db'
-//var housesRef = dbrtd.ref('houses')
+//import {dbfs} from '../config/db'
 
 export default {
   data: () =>({
@@ -79,20 +78,11 @@ export default {
     //  })
 
     //Firestore
-    dbfs.collection("houses").orderBy("created", "desc").get().then(querySnapshot => {
-      querySnapshot.docs.forEach((doc) => {
-          this.a.push(doc.data()
-            //ref: doc.ref,
-            // city: doc.data(),
-            // area: doc.getString("area"),
-            // price: doc.getString("price"),
-            // location: doc.getString("location"),
-            // image: doc.getString("image")
-          )
-      // doc.data() is never undefined for query doc snapshots
-      //console.log(doc.id, " => ", doc.data())
-      });
-    });
+    // dbfs.collection("houses").where("city", "==", "Thessaloniki").get().then(querySnapshot => {
+    //   querySnapshot.docs.forEach((doc) => {
+    //       this.a.push(doc.data())
+    //   });
+    // });
   }
 };
 </script>
@@ -114,10 +104,6 @@ h2 {
   font-weight: 700;
   text-align: center;
   font-family: 'Rajdhani', sans-serif;
-
-
-  
-
 }
 </style>
 

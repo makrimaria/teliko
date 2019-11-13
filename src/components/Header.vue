@@ -1,8 +1,7 @@
-
 <template>
   <div id="home">
-    
     <div class="header">
+
        <div class="header-img">
          <br>
 
@@ -21,30 +20,22 @@
 </div>
 </div>
   <Cards />
+
   </div>
 </template>
 
 
 <script >
-
-
-//import InputForm from './InputForm.vue';
-import DropDownMenu from './DropdownMenu.vue';
-
-import Cards from './Cards.vue'
-
-
+import DropDownMenu from "./DropdownMenu.vue";
+import RecentlyAdded from "./RecentlyAdded.vue";
 
 export default {
   name: "header",
   components: {
     DropDownMenu,
-    Cards
-    //InputForm
-
-
+    RecentlyAdded
   }
-}
+};
 </script>
 
 
@@ -56,9 +47,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  position:relative;
-   top: -30px; 
-
+  position: relative;
+  top: -30px;
 }
 /* apo edw tha allazw poso pianei to background img */
 .header {
@@ -66,18 +56,16 @@ body {
   height: 450px;
 }
 
+
  .header .header-img {
   background-image:url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-repeat: no-repeat !important;
-  background-size:cover;
+  background-size: cover;
   background-position: 100%;
   background-color: #f5f5f5;
   height: 100%;
   /* height: 300%;  */
-} 
-
-
-
+}
 
 /* #search {
   width: 357px;
@@ -131,6 +119,7 @@ button:active {
   transform: translateY(4px);
 }
 
+
 h1 { 
 
   color: white;
@@ -147,9 +136,6 @@ h2 .head {
   font-weight: 700 !important;
   text-align: center;
  font-family: 'Archivo Black', sans-serif;
-
-
-  
 }
 
 /* p {
@@ -159,5 +145,4 @@ h2 .head {
   text-align: center;
   font-family: 'Rajdhani', sans-serif;
 } */
-
 </style>

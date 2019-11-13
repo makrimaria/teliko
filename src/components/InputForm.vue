@@ -190,8 +190,6 @@ export default {
       var category = document.forms["form"]["category"].value;
       var propertyType = document.forms["form"]["propertyType"].value;
 
-      //var created = Math.round(+new Date()/1000);
-
       if (
         city == "" ||
         location == "" ||
