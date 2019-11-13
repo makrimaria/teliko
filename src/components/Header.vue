@@ -19,7 +19,8 @@
     <!--<InputForm />-->
 </div>
 </div>
-  <Cards />
+<Cards/>
+  <RecentlyAdded />
 
   </div>
 </template>
@@ -28,12 +29,14 @@
 <script >
 import DropDownMenu from "./DropdownMenu.vue";
 import RecentlyAdded from "./RecentlyAdded.vue";
+import Cards from "./Cards.vue";
 
 export default {
   name: "header",
   components: {
     DropDownMenu,
-    RecentlyAdded
+    RecentlyAdded,
+    Cards
   }
 };
 </script>

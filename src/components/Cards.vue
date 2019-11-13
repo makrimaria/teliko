@@ -32,7 +32,6 @@
     <br />
     <hr />
 
-    <h2 style="font-size:35px;">Added Recently</h2>
     <br>
     <b-row>
       <b-col class="mb-4" sm="3" v-for="house in a" v-bind:key="house">

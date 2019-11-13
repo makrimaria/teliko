@@ -29,7 +29,7 @@
             </template>
           </b-form-select>
         </b-form-group>
-        <!--
+        
       <b-form-group label="Property for">
         <b-form-radio-group v-model="headVariant" class="mt-lg-2">
           <b-form-radio value="light" inline>Rent</b-form-radio>
