@@ -1,6 +1,12 @@
 <template>
   <div id="background">
-    <div class="container4" style="width:300px; height:700px; overflow-y:scroll;">
+
+
+    
+    <div class="container4" style="width:300px; height:auto; float:left;">
+
+
+
       <p>Filters</p>
       <b-form id="form" v-on:submit.prevent="submitFilters">
         <b-form-group label="City" id="city" label-for="table-style-variant">
@@ -123,13 +129,19 @@
         <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
         <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
         <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
-        </b-form-group>-->
 
-        <b-button type="submit" v-b-modal="'my-modal'" variant="danger">Apply</b-button>
+      </b-form-group>
+
+     <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Apply</b-button>
+
       </b-form>
     </div>
 
+
     <br />
+    
+
+    <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;">
     <b-container style="margin-top:10px;">
       <h2 style="font-size:35px;">Houses</h2>
       <br />
@@ -148,6 +160,17 @@
         </b-col>
       </b-row>
     </b-container>
+
+    </div>
+
+
+
+
+ 
+
+
+
+
   </div>
 </template>
 
@@ -301,13 +324,16 @@ export default {
 
 
 <style >
+
+
 #background {
-  background-image: url(https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
   background-position: bottom center;
   height: 1200px;
   width: 100%;
   color: black !important;
+  
 }
 
 #table-style-variant {
@@ -325,6 +351,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
+  
 
   color: black !important;
   position: absolute;
@@ -349,6 +376,26 @@ p {
 }
 
 .container3 {
+  display: block;
+  width:fit-content;
+
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+
+  color: black !important;
+ 
+ 
+
+  border: 1px solid grey;
+  background-color: whitesmoke;
+  /* opacity: 0.85;
+  padding: 50px; */
+}
+
+.containerHouses {
   display: block;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;

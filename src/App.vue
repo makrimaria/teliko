@@ -2,11 +2,16 @@
   <div id="app">
 
 
+
     <Navbar />
     <Chatbot />
     
     <router-view></router-view>
     
+    
+
+
+
     
 
     
@@ -30,6 +35,8 @@ export default {
 </script>
 
 <style>
+
+
  #app {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,8 +54,8 @@ export default {
 
 
 
-.header-img {
-  background-image: url(https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
+/* .header-img {
+   background-image: url(https://images.unsplash.com/photo-1529928341740-5a40b87adaa2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80); 
   width: 100%;
  background-repeat: repeat; 
   background-size:cover;
@@ -60,7 +67,7 @@ export default {
  
    
 
-}
+} */
 
 
 </style>

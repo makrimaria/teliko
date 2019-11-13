@@ -1,6 +1,38 @@
 <template>
   <b-container style="margin-top:10px;">
-    <h2 style="font-size:35px;">Houses</h2>
+
+    <br />
+
+    <div class="text-center content icon-boxes">
+      <div class="icon-boxes__box1" style="float:left; margin-left:auto">
+        <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-2.png" alt />
+        <h4 style="margin-top:5px; font-size:18px;">Find the perfect home</h4> <br>
+        <p
+          class="house"
+          style="width: 100%; max-width: 400px; font-size:16px;"
+        >Select advanced search filters according to the criteria you want to show results that fit your needs.</p>
+      </div>
+    </div>
+    <div class="icon-boxes__box2" style="float:right; margin-left:10px;">
+      <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-1.png" alt />
+      <h4 style="margin-top:10px; font-size:18px;">For each device</h4> <br>
+      <p
+        class="house"
+        style="width: 100%; max-width: 400px; font-size:16px;"
+      >Explore Prodigy RealEstate ads from any smart device, thanks to its mobile-friendly design that adapts to any screen size.</p>
+    </div>
+    <div class="icon-boxes__box3">
+      <img src="https://d2dlxvmcs24r4u.cloudfront.net/modules/spiti24/images/box-3.png" alt />
+      <h4 style="margin-top:10px; font-size:18px;">Properties on the map</h4> <br>
+      <p
+        class="house"
+        style="font-size:16px;"
+      >View the results of each search on the map and discover the available properties in each area based on their exact location.</p>
+    </div>
+    <br />
+    <hr />
+
+    <h2 style="font-size:35px;">Added Recently</h2>
     <br>
     <b-row>
       <b-col class="mb-4" sm="3" v-for="house in a" v-bind:key="house">
