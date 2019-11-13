@@ -3,16 +3,21 @@
     <div class="container4" style="width:300px; height:700px; overflow-y:scroll;">
       <p>Filters</p>
       <b-form id="form" v-on:submit.prevent="submitFilters">
-        <b-form-group label="City" label-for="table-style-variant">
-          <b-form-select v-model="city" :options="cityVariants" id="table-style-variant">
+        <b-form-group label="City" id="city" label-for="table-style-variant">
+          <b-form-select v-model="filters.city" :options="cityVariants" v-on:change="onChange()" id="table-style-variant">
             <template v-slot:first>
               <option :value="null" disabled>Select city</option>
             </template>
           </b-form-select>
         </b-form-group>
 
-        <b-form-group label="Area" label-for="table-style-variant">
-          <b-form-select v-if="city!=null" v-model="area" :options="areaVariants[city].text" id="table-style-variant">
+        <b-form-group label="Region" id="region" label-for="table-style-variant">
+          <b-form-select
+            v-if="filters.city!=null"
+            v-model="filters.region"
+            :options="regionVariants[filters.city].text"
+            id="table-style-variant"
+          >
             <template v-slot:first>
               <option :value="null" disabled>Select area</option>
             </template>
@@ -153,18 +158,13 @@ export default {
   data() {
     return {
       a: [],
-      city: null,
-      area: null,
-      //   fields: ["first_name", "last_name", "age"],
-      //   items: [
-      //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-      //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
-      //     { age: 89, first_name: "Geneva", last_name: "Wilson" }
-      //   ],
-      //cityVariants: ["Thessaloniki", "Athens", "Larisa", "Volos", "Giannena"],
+      query: "",
+      filters: {
+        city: null,
+        region: null
+      },
       cityVariants: [],
-      cityVariantsID: [],
-      // areaVariants: [
+      // regionVariants: [
       //   "Pefka",
       //   "Neapoli",
       //   "Sykies",
@@ -174,7 +174,7 @@ export default {
       //   "Thermi",
       //   "Kalamaria"
       // ],
-      areaVariants: [],
+      regionVariants: [],
       typeVariants: [
         "Apartment",
         "Studio",
@@ -253,7 +253,7 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          this.cityVariants.push({value: i, text: doc.data().name});
+          this.cityVariants.push({ value: i, text: doc.data().name });
           i++;
         });
       });
@@ -261,36 +261,37 @@ export default {
     dbfs
       .collection("cities")
       .orderBy("name", "asc")
+      
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-         this.areaVariants.push({value: j, text: doc.data().regions});
-         j++;
-          //this.areaVariants.push(doc.data().regions);
+          this.regionVariants.push({ value: j, text: doc.data().regions });
+          j++;
         });
       });
   },
   methods: {
+    onChange: function() {
+      this.filters.region = null;
+    },
     submitFilters: function() {
       this.a = [];
-      dbfs
-        .collection("houses")
-        .where("city", "==", this.cityVariants[this.city].text)
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.docs.forEach(doc => {
-            this.a.push(doc.data());
-          });
+      this.query = 'dbfs.collection("houses")';
+      var query = dbfs.collection("houses");
+
+      if (this.filters.city != null) {
+        query = query.where("city", "==", this.cityVariants[this.filters.city].text);
+      }
+
+      if (this.filters.region != "Anywhere" && this.filters.region != null) {
+        query = query.where("location", "==", this.filters.region);
+      }
+
+      query.get().then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+          this.a.push(doc.data());
         });
-      // dbfs
-      //  .collection("houses")
-      //  .where("location", "==", this.area)
-      //  .get()
-      //  .then(querySnapshot => {
-      //   querySnapshot.docs.forEach(doc => {
-      //     this.a.push(doc.data());
-      //   });
-      // });
+      });
     }
   }
 };

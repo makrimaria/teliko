@@ -46,7 +46,7 @@ export default {
     //  })
 
     //Firestore
-    dbfs.collection("houses").orderBy("created", "desc").get().then(querySnapshot => {
+    dbfs.collection("houses").orderBy("created", "desc").limit(4).get().then(querySnapshot => {
       querySnapshot.docs.forEach((doc) => {
           this.a.push(doc.data())
       });
