@@ -5,7 +5,7 @@
     <b-col md="3" lg="2">
     <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
       <p>Filters</p>
-      <b-form id="form" v-on:submit.prevent="submitFilters">
+      <b-form id="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
         <b-form-group label="City" id="city" label-for="table-style-variant">
           <b-form-select
             v-model="filters.city"
@@ -130,6 +130,7 @@
       </b-col>
     <!-- </div> -->
     <br />
+    <div style="margin-left:15px; border-left:1px solid grey;height:inherit;"></div>
     <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
       <b-col md="8" lg="8" style="margin: auto;">
       <Cards :houses="houses">Houses</Cards>
