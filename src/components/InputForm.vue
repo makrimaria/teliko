@@ -5,7 +5,7 @@
         <br />
         <h4>Do you want to list your property?</h4>
         <h4>Just fill the form and we will take care of it :)</h4>
-        <br />
+        
         <hr />
       </div>
 
@@ -128,7 +128,16 @@
         </b-form-group>
         <br>
 
-        <ImageUploader> </ImageUploader>
+      
+        
+        <ImageUploader> 
+         
+        </ImageUploader>
+
+         <button style="margin-top:80px; margin-left:-25px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+
+        
+
       </div>
     </div>
 

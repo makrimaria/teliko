@@ -21,7 +21,7 @@
 export default {};
 </script>
 
-<style>
+<style >
 .router-link-active {
   background-color: #b34c37;
   color: #444;

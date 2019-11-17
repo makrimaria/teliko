@@ -4,7 +4,7 @@
     <b-row>
     <b-col md="3" lg="2">
     <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
-      <p>Filters</p>
+      <br><p>Filters</p>
       <b-form id="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
         <b-form-group label="City" id="city" label-for="table-style-variant">
           <b-form-select
@@ -130,7 +130,7 @@
       </b-col>
     <!-- </div> -->
     <br />
-    <div style="margin-left:15px; border-left:1px solid grey;height:inherit;"></div>
+    <div style="margin-left:auto; border-left:1px solid grey;height:inherit;"></div>
     <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
       <b-col md="8" lg="8" style="margin: auto;">
       <Cards :houses="houses">Houses</Cards>
@@ -298,13 +298,13 @@ export default {
 
 
 
-<style >
+<style scoped >
 #background {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
   background-position: bottom center;
-  height: 1200px;
-  width: 100%;
+  height:max-content;
+  width: max-content;
   color: black !important;
 }
 

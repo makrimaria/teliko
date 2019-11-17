@@ -5,6 +5,8 @@
 
     <Navbar />
     <Chatbot />
+
+ 
     
     <router-view></router-view>
     

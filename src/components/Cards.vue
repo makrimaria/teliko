@@ -4,16 +4,9 @@
     <h2><slot></slot></h2>
     <b-row>
       <b-col class="mb-4" cols="12" sm="6" xl="3" v-for="house in houses" v-bind:key="house">
-        <b-card title v-bind:img-src="house.image" img-alt="Image" img-top>
-          <b-card-text>
-            <b-list-group style="font-size:16px;">
-              <b-list-group-item style="font-size:20px;">{{house.city}}</b-list-group-item>
-              <b-list-group-item>Area: {{house.location}}</b-list-group-item>
-              <b-list-group-item>Size: {{house.area}} m2</b-list-group-item>
-              <b-list-group-item>Price: {{house.price}} €</b-list-group-item>
-            </b-list-group>
-          </b-card-text>
-        </b-card>
+        <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
+              <router-link to="/details" class="houze" exact><b-list-group-item>{{house.city}} {{house.location}}, {{house.area}}m2, {{house.price}}€ </b-list-group-item></router-link>
+              
       </b-col>
     </b-row>
 </div>
@@ -73,6 +66,13 @@ h2 {
   text-align: center;
   font-family: "Rajdhani", sans-serif;
 }
+
+.houze {
+  color: black;
+}
+
+
+
 </style>
 
 

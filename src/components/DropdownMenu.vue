@@ -9,14 +9,16 @@
               <div class="row" style="margin-left: 250px;">
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                   <select class="form-control search-slt" id="exampleFormControlSelect1">
-                    <option>Thessaloniki</option>
-                    <option>Athina</option>
-                    <option>Larisa</option>
-                    <option>Patra</option>
+                    <option>City</option>
+                    
                   </select>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                  <input type="text" class="form-control search-slt" placeholder="Enter Area" />
+                  <select class="form-control search-slt" id="exampleFormControlSelect1">
+                    <option>Area</option>
+                    
+                  </select>
+                  
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">

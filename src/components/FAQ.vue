@@ -127,20 +127,17 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  
   color: black !important;
   position: relative;
   margin: auto;
   top: 50px; 
-  width: 1000px ;
-  /* border: 2px solid grey; */
+  width: max-content;
   background-color:whitesmoke;
-  /* opacity: 0.85;  */
   padding: 50px;
 }
 
   p {
-  color: #b34c37;
+  color:black;
   font-size: 25px;
   font-weight: 500;
   text-align: center;
