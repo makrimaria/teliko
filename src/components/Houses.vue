@@ -237,7 +237,7 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          this.houses.push(doc.data());
+          this.houses.push({id: doc.id, data: doc.data()});
         });
       });
     var i = 0;

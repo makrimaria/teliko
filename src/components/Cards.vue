@@ -1,15 +1,22 @@
 <template>
-<div>
-  <!-- <b-container style="margin-top:10px;"> -->
-    <h2><slot></slot></h2>
+  <div>
+    <!-- <b-container style="margin-top:10px;"> -->
+    <h2>
+      <slot></slot>
+    </h2>
     <b-row>
-      <b-col class="mb-4" cols="12" sm="6" xl="3" v-for="house in houses" v-bind:key="house">
+      <b-col class="mb-4" cols="12" sm="6" xl="3" v-for="house in houses" v-bind:key="house.id">
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
-              <router-link to="/details" class="houze" exact><b-list-group-item>{{house.city}} {{house.location}}, {{house.area}}m2, {{house.price}}€ </b-list-group-item></router-link>
-              
+        <router-link :to="{name: 'Details', params: { house: house }}" class="houze" exact>
+          <b-img class="card" :src="house.image"></b-img>
+          <p>{{house.id}}</p>
+          <b-list-group-item>
+            {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€
+          </b-list-group-item>
+        </router-link>
       </b-col>
     </b-row>
-</div>
+  </div>
   <!-- </b-container> -->
 </template>
 
@@ -67,12 +74,15 @@ h2 {
   font-family: "Rajdhani", sans-serif;
 }
 
-.houze {
+.houze,
+:hover {
   color: black;
 }
 
-
-
+.card, :hover {
+  max-width: -webkit-fill-available;
+  color: black;
+}
 </style>
 
 
