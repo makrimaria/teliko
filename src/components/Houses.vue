@@ -1,37 +1,38 @@
 <template>
-<b-container fluid>
-  <!-- <div id="background"> -->
+  <b-container fluid>
+    <!-- <div id="background"> -->
     <b-row>
-    <b-col md="3" lg="2">
-    <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
-      <br><p>Filters</p>
-      <b-form id="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
-        <b-form-group label="City" id="city" label-for="table-style-variant">
-          <b-form-select
-            v-model="filters.city"
-            :options="cityVariants"
-            v-on:change="onChange()"
-            id="table-style-variant"
-          >
-            <template v-slot:first>
-              <option :value="null" disabled>Select city</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
+      <b-col md="3" lg="2">
+        <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
+        <br />
+        <p>Filters</p>
+        <b-form id="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
+          <b-form-group label="City" id="city" label-for="table-style-variant">
+            <b-form-select
+              v-model="filters.city"
+              :options="cityVariants"
+              v-on:change="onChange()"
+              id="table-style-variant"
+            >
+              <template v-slot:first>
+                <option :value="null" disabled>Select City</option>
+              </template>
+            </b-form-select>
+          </b-form-group>
 
-        <b-form-group label="Region" id="region" label-for="table-style-variant">
-          <b-form-select
-            v-if="filters.city!=null"
-            v-model="filters.region"
-            :options="regionVariants[filters.city].text"
-            id="table-style-variant"
-          >
-            <template v-slot:first>
-              <option :value="null" disabled>Select area</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-
+          <b-form-group label="Region" id="region" label-for="table-style-variant">
+            <b-form-select
+              v-if="filters.city!=null"
+              v-model="filters.region"
+              :options="regionVariants[filters.city].text"
+              id="table-style-variant"
+            >
+              <template v-slot:first>
+                <option :value="null" disabled>Select area</option>
+              </template>
+            </b-form-select>
+          </b-form-group>
+          <!-- 
         <b-form-group label="Property for">
           <b-form-radio-group v-model="headVariant" class="mt-lg-2">
             <b-form-radio value="light" inline>Rent</b-form-radio>
@@ -123,26 +124,27 @@
           <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
           <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
           <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
-        </b-form-group>
+          </b-form-group>-->
 
-        <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Apply</b-button>
-      </b-form>
+          <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Apply</b-button>
+        </b-form>
       </b-col>
-    <!-- </div> -->
-    <br />
-    <div style="margin-left:auto; border-left:1px solid grey;height:inherit;"></div>
-    <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
+      <!-- </div> -->
+      <br />
+      <div style="margin-left:auto; border-left:1px solid grey;height:inherit;"></div>
+      <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
       <b-col md="8" lg="8" style="margin: auto;">
-      <Cards :houses="houses">Houses</Cards>
+        <Cards :houses="houses">Houses</Cards>
       </b-col>
-      </b-row>
+    </b-row>
     <!-- </div> -->
-  <!-- </div> -->
-</b-container>
+    <!-- </div> -->
+  </b-container>
 </template>
 
 <script>
 import { dbfs } from "../config/db";
+//import {ci} from '../variants'
 import Cards from "./Cards.vue";
 
 export default {
@@ -152,7 +154,6 @@ export default {
   data() {
     return {
       houses: [],
-      query: "",
       filters: {
         city: null,
         region: null
@@ -231,38 +232,43 @@ export default {
     };
   },
   mounted() {
+    
+    
+    this.populateLists();
     //Firestore
-    dbfs
-      .collection("houses")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
-          this.houses.push({id: doc.id, data: doc.data()});
-        });
-      });
-    var i = 0;
-    dbfs
-      .collection("cities")
-      .orderBy("name", "asc")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
-          this.cityVariants.push({ value: i, text: doc.data().name });
-          i++;
-        });
-      });
-    var j = 0;
-    dbfs
-      .collection("cities")
-      .orderBy("name", "asc")
+    //query with url
+    if (this.$route.query) {
+      //this.filters.city = ci[4].value
+      //this.filters.region = re[this.filters.city]
 
-      .get()
-      .then(querySnapshot => {
+      var query = dbfs.collection("houses");
+
+      if (this.$route.query.city != null) {
+        //this.filters.city = ci[4].value
+        query = query.where("city", "==", this.$route.query.city);
+      }
+
+      if (this.$route.query.region != "Anywhere" && this.$route.query.region != null) {
+        //this.filters.region = re[this.filters.city]
+        query = query.where("location", "==", this.$route.query.region);
+      }
+
+      query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          this.regionVariants.push({ value: j, text: doc.data().regions });
-          j++;
+          this.houses.push({ id: doc.id, data: doc.data() });
         });
       });
+    } else {
+      //fetch all houses
+      dbfs
+        .collection("houses")
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.houses.push({ id: doc.id, data: doc.data() });
+          });
+        });
+    }
   },
   methods: {
     onChange: function() {
@@ -270,7 +276,6 @@ export default {
     },
     submitFilters: function() {
       this.houses = [];
-      this.query = 'dbfs.collection("houses")';
       var query = dbfs.collection("houses");
 
       if (this.filters.city != null) {
@@ -287,9 +292,35 @@ export default {
 
       query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          this.houses.push(doc.data());
+          this.houses.push({ id: doc.id, data: doc.data() });
         });
       });
+    },
+    populateLists: function() {
+      //populate dropdown list
+      var i = 0;
+      dbfs
+        .collection("cities")
+        .orderBy("name", "asc")
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.cityVariants.push({ value: i, text: doc.data().name });
+            i++;
+          });
+        });
+      var j = 0;
+      dbfs
+        .collection("cities")
+        .orderBy("name", "asc")
+
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.regionVariants.push({ value: j, text: doc.data().regions });
+            j++;
+          });
+        });
     }
   }
 };
@@ -303,7 +334,7 @@ export default {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
   background-position: bottom center;
-  height:max-content;
+  height: max-content;
   width: max-content;
   color: black !important;
 }

@@ -7,8 +7,8 @@
     <b-row>
       <b-col class="mb-4" cols="12" sm="6" xl="3" v-for="house in houses" v-bind:key="house.id">
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
-        <router-link :to="{name: 'Details', params: { house: house }}" class="houze" exact>
-          <b-img class="card" :src="house.image"></b-img>
+        <router-link :to="{name: 'Details', query: {id: house.id}}" class="houze" exact>
+          <b-img class="card" :src="house.data.image"></b-img>
           <p>{{house.id}}</p>
           <b-list-group-item>
             {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€

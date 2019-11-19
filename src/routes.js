@@ -11,6 +11,6 @@ export default[
     { path:'/faq', component: FAQ},
     { path:'/sell', component: InputForm},
     { path: '/houses', component: Houses},
-    { path: './details', name: 'Details', component: Details, props: true}
+    { path: './details', name: 'Details', component: Details}
  
 ]
