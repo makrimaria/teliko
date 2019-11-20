@@ -31,9 +31,9 @@
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
-              name="propertyType"
+              name="Type"
               input type="radio"
-              v-model="house.propertyType"
+              v-model="house.Type"
               style="font-weight:900;"
               stacked
             >
@@ -104,8 +104,6 @@
               </template>
             </b-form-select>
             <br><br>
-            <div class="mt-3">Selected-1: <strong>{{ filters.city }}</strong></div>
-            <div class="mt-3">Selected-2: <strong>{{ filters.location }}</strong></div>
           </b-form-group>
 
         <br />
@@ -191,7 +189,7 @@ export default {
     return {
       
       house: {
-        propertyType: "",
+        Type: "",
         category: "",
         city: "",
         location: "",
@@ -249,10 +247,7 @@ export default {
   
     //Firestore
     submitHouse: function() {
-          
-          console.log("filts "+this.filters.city);
-          console.log("filts "+this.filters.location);
-     
+       
       this.house.city = this.filters.city;
       this.house.location = this.filters.location;
 
@@ -261,18 +256,21 @@ export default {
        var area = this.house.area;
        var price = this.house.price;
        var category = this.house.category;
-       var propertyType = this.house.propertyType;
-          console.log("city: "+city);
-          console.log("location: "+location);
+       var Type = this.house.Type;
 
+        
+        this.house.city = this.cityVariants[this.filters.city].text;
+        console.log(this.house.city)
+      
+          
   
        if (
-         city == "" ||
+         city == null ||
          location == "" ||
          area == "" ||
          price == "" ||
          category == "" ||
-         propertyType == ""
+         Type == ""
        ) {
          alert("Please fill all fields");
          return false;
