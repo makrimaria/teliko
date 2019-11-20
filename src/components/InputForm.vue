@@ -14,14 +14,13 @@
           <b-form-group label="Category" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
-              id="category"
+              name="category"
+              input type="radio"
               v-model="house.category"
-              name="radios-stacked"
               style="font-weight:900; "
               stacked
             >
               <b-form-radio value="residential" inline>Residential</b-form-radio>
-
               <b-form-radio value="commercial" inline>Commercial</b-form-radio>
               <b-form-radio value="land" inline>Land</b-form-radio>
               <b-form-radio value="other" inline>Other</b-form-radio>
@@ -31,9 +30,9 @@
 
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
-              name="radios-stacked"
               class="mt-lg-2"
-              id="propertyType"
+              name="propertyType"
+              input type="radio"
               v-model="house.propertyType"
               style="font-weight:900;"
               stacked
@@ -51,8 +50,9 @@
           <b-form-group label="Available for:" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
-              id="sale"
-              v-model="house.sale"
+              name="type"
+              input type="radio"
+              v-model="house.type"
               style="font-weight:900;"
             >
               <b-form-radio value="sale" inline>Sale</b-form-radio>
@@ -64,24 +64,52 @@
 
           <b-form-group
             label="City"
-            id="city"
+            name="city"
             v-model="house.city"
+            label-for="cityy"
             style="width:300px; text-align:left;"
           >
-            <b-form-select id="city" v-model="house.city" style="font-weight:900;"></b-form-select>
+            <b-form-select
+            v-model="filters.city"
+            class="mt-3"
+            v-on:change="onChange()"
+            :options="cityVariants"
+            name="cityy"
+          >
+          <template v-slot:first>
+              <option :value="null" disabled>Select city</option>
+            </template>
+          </b-form-select>
+          
           </b-form-group>
           <br />
+
           <b-form-group
-            label="Area"
-            id="area"
-            v-model="house.area"
+            label="Location"
+            name="location"
+            label-for="locationn"
             style="width:300px; text-align:left;"
           >
-            <b-form-select id="area" v-model="house.area" style="font-weight:900;"></b-form-select>
+            <b-form-select
+              v-if="filters.city!=null"
+              v-model="filters.location"
+               class="mt-3"
+              v-on:change="onChange()"
+              :options="regionVariants[filters.city].text"
+              name="locationn"
+
+            >
+              <template v-slot:first>
+                <option :value="null" disabled>Select area</option>
+              </template>
+            </b-form-select>
+            <br><br>
+            <div class="mt-3">Selected-1: <strong>{{ filters.city }}</strong></div>
+            <div class="mt-3">Selected-2: <strong>{{ filters.location }}</strong></div>
           </b-form-group>
 
-          <br />
-          <br />
+        <br />
+        <br />
         </b-form>
       </div>
 
@@ -90,16 +118,18 @@
           <tr>
             <td>
               
-              <b-form-group label="Address" style="width:300px; text-align:left;">
-                <input type="text" class="form-control search-slt" />
+              <b-form-group label="Address" style="width:285px; text-align:left;">
+                <input type="text" class="form-control search-slt" placeholder="Address the house is located" />
               </b-form-group>
             </td>
             <td>
-              <b-form-group label="n°" style="margin-left:10px; width:50px; text-align:left;">
+              <b-form-group label="Num" style="margin-left:10px; width:50px; text-align:left;">
                 <input
                   type="text"
                   class="form-contol search-slt"
-                  style="font-size:18px; font-weight:500"
+                  style="font-size:18px; font-weight:500; text-align:center"
+                  placeholder="#"
+                  
                 />
               </b-form-group>
             </td>
@@ -108,8 +138,8 @@
 
         <b-form-group label="Size" style="text-align:left;">
           <b-form-input
-            type="number"
-            id="area"
+            type="text"
+            name="area"
             v-model="house.area"
             style="font-weight:500; width:350px;"
             placeholder="Area in square meters"
@@ -119,8 +149,8 @@
 
         <b-form-group label="Price" style="text-align:left;">
           <b-form-input
-            type="number"
-            id="price"
+            type="text"
+            name="price"
             v-model="house.price"
             style="font-weight:500; width:350px;"
             placeholder="Price in €"
@@ -130,11 +160,10 @@
 
       
         
-        <ImageUploader> 
-         
+        <ImageUploader>
         </ImageUploader>
-
-         <button style="margin-top:80px; margin-left:-25px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+        <br>
+         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:300px; width:100px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
         
 
@@ -160,65 +189,103 @@ export default {
   },
   data: function() {
     return {
+      
       house: {
         propertyType: "",
         category: "",
         city: "",
         location: "",
-        area: Number,
-        price: Number
-      }
+        area: "",
+        price: ""
+        
+      },
+      filters: {
+        city: null,
+        region: null
+      },
+      cityVariants: [],
+      regionVariants: []
     };
   },
   firebase: {
     houses: housesRef
   },
-  methods: {
-    //Real Time Database
-    // submitHouse: function() {
-    //   var city = document.forms["form"]["city"].value;
-    //   var location = document.forms["form"]["location"].value;
-    //   var area = document.forms["form"]["area"].value;
-    //   var price = document.forms["form"]["price"].value;
-    //   if (city == "" || location == "" || area == "" || price == "") {
-    //     alert("Please fill all fields");
-    //     return false;
-    //   } else {
-    //     housesRef.push(this.house);
-    //     document.getElementById("form").reset();
-    //     alert("Property listed successfully");
-    //   }
-    // }
 
+  mounted() {
+    
+    var i = 0;
+    dbfs
+      .collection("cities")
+      .orderBy("name", "asc")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+          this.cityVariants.push({ value: i, text: doc.data().name });
+          i++;
+        });
+      });
+    var j = 0;
+    dbfs
+      .collection("cities")
+      .orderBy("name", "asc")
+
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+          this.regionVariants.push({ value: j, text: doc.data().regions });
+          j++;
+        });
+      });
+
+  },
+
+  methods: {
+ 
+    onChange: function() {
+      this.filters.region = null;
+      
+     },
+
+  
     //Firestore
     submitHouse: function() {
-      var city = document.forms["form"]["city"].value;
-      var location = document.forms["form"]["location"].value;
-      var area = document.forms["form"]["area"].value;
-      var price = document.forms["form"]["price"].value;
-      var category = document.forms["form"]["category"].value;
-      var propertyType = document.forms["form"]["propertyType"].value;
+          
+          console.log("filts "+this.filters.city);
+          console.log("filts "+this.filters.location);
+     
+      this.house.city = this.filters.city;
+      this.house.location = this.filters.location;
 
-      if (
-        city == "" ||
-        location == "" ||
-        area == "" ||
-        price == "" ||
-        category == "" ||
-        propertyType == ""
-      ) {
-        alert("Please fill all fields");
-        return false;
-      } else {
-        var house = housesRef.doc();
-        house.set(this.house);
-        house.update({
-          created: Firebase.firestore.FieldValue.serverTimestamp()
-        });
-        document.getElementById("form").reset();
-        alert("Property listed successfully");
-      }
-    }
+       var city = this.filters.city;
+       var location = this.filters.location;
+       var area = this.house.area;
+       var price = this.house.price;
+       var category = this.house.category;
+       var propertyType = this.house.propertyType;
+          console.log("city: "+city);
+          console.log("location: "+location);
+
+  
+       if (
+         city == "" ||
+         location == "" ||
+         area == "" ||
+         price == "" ||
+         category == "" ||
+         propertyType == ""
+       ) {
+         alert("Please fill all fields");
+         return false;
+       } else {
+         var house = housesRef.doc();
+         house.set(this.house);
+         house.update({
+           created: Firebase.firestore.FieldValue.serverTimestamp()
+         });
+         document.getElementById("form").reset();
+         alert("Property listed successfully");
+       }
+     }
   }
 };
 </script>
@@ -272,4 +339,6 @@ export default {
   width: 50%;
   /* float: left; */
 }
+
+
 </style>
