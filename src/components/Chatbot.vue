@@ -9,7 +9,8 @@
               class="bottomright"
               width="450"
               height="530"
-              src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
+              
+              src="https://skg-code-bot.firebaseapp.com/"
             ></iframe>
           </div>
 
@@ -70,6 +71,7 @@ export default {
   font-family: 'Rajdhani', sans-serif;
   align-self: right !important; 
   border-radius: 20px;
+  
 
 }
 

@@ -33,27 +33,28 @@
             </b-form-select>
           </b-form-group>
 
-
-
           <b-form-group label="Type" id="type" label-for="table-style-variant">
-            <b-form-select
-             
-              v-model="filters.type"
-              :options="typeVariants"
-              id="table-style-variant"
-            >
+            <b-form-select v-model="filters.type" :options="typeVariants" id="table-style-variant">
               <template v-slot:first>
                 <option :value="null" disabled>Select type</option>
               </template>
             </b-form-select>
           </b-form-group>
+
+
+
+          <b-form-group label="Property for">
+            <b-form-radio-group  class="mt-lg-2">
+
+
+              
+              <b-form-radio  value="Rent" v-model="filters.rent" inline>Rent</b-form-radio>
+              <b-form-radio value="Sale" v-model="filters.rent" inline>Sale</b-form-radio>
+            </b-form-radio-group>
+          </b-form-group>
+
           <!-- 
-        <b-form-group label="Property for">
-          <b-form-radio-group v-model="headVariant" class="mt-lg-2">
-            <b-form-radio value="light" inline>Rent</b-form-radio>
-            <b-form-radio value="dark" inline>Sale</b-form-radio>
-          </b-form-radio-group>
-        </b-form-group>
+        
 
         <b-form-group label="Type" label-for="table-style-variant">
           <b-form-select v-model="tableVariant" :options="typeVariants" id="table-style-variant">
@@ -174,51 +175,14 @@ export default {
       filters: {
         city: null,
         region: null,
-        type:null,
+        type: null,
         rent: null
       },
       //cityVariants: [{value: "", text: ""}],
       cityVariants: [],
-  
+
       regionVariants: [],
       typeVariants: [],
-      floorVariants: [
-        "Basement",
-        "Semi Basement",
-        "Ground floor",
-        "1st",
-        "2nd",
-        "3rd",
-        "4th",
-        "5th",
-        "6th",
-        "7th",
-        "8+"
-      ],
-      priceMin: [
-        "150",
-        "200",
-        "300",
-        "500",
-        "700",
-        "1.000",
-        "1.600",
-        "2.000",
-        "2.500",
-        "3.000+"
-      ],
-      priceMax: [
-        "150",
-        "200",
-        "300",
-        "500",
-        "700",
-        "1.000",
-        "1.600",
-        "2.000",
-        "2.500",
-        "3.000+"
-      ],
 
       furnished: false,
       storage: false,
@@ -259,15 +223,47 @@ export default {
       if (this.filters.region != "Anywhere" && this.filters.region != null) {
         query = query.where("location", "==", this.filters.region);
       }
-      console.log(this.filters.type)
+      console.log(this.filters.type);
       if (this.filters.type != null) {
         query = query.where(
           "type",
           "==",
-           this.typeVariants[this.filters.type].text
+          this.typeVariants[this.filters.type].text
+        );
+      }
+      console.log(this.filters.rent)
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////
+
+
+
+      if (this.filters.rent === 'Rent') {
+
+         if (this.filters.rent != null) {
+        query = query.where(
+          "rent",
+          "==",
+          true
         );
       }
 
+
+      } else if(this.filters.rent === 'Sale')
+       if (this.filters.rent != null) {
+        query = query.where(
+          "rent",
+          "==",
+          false
+        );
+      }
+
+
+
+
+
+
+      
 
       query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
@@ -314,7 +310,7 @@ export default {
             j++;
           });
         });
-         var z = 0;
+      var z = 0;
       dbfs
         .collection("types")
         .orderBy("type", "asc")
