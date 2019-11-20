@@ -10,7 +10,7 @@
           <b-form-group label="City" id="city" label-for="table-style-variant">
             <b-form-select
               v-model="filters.city"
-              :options="ci"
+              :options="cityVariants"
               v-on:change="onChange()"
               id="table-style-variant"
             >
@@ -22,9 +22,9 @@
 
           <b-form-group label="Region" id="region" label-for="table-style-variant">
             <b-form-select
-              v-if="filters.city!=null"
+              v-if="filters.city!=null && regionVariants[filters.city]"
               v-model="filters.region"
-              :options="re[filters.city].text"
+              :options="regionVariants[filters.city].text"
               id="table-style-variant"
             >
               <template v-slot:first>
@@ -144,7 +144,7 @@
 
 <script>
 import { dbfs } from "../config/db";
-import {ci, re} from '../variants';
+//import { ci } from "../main";
 import Cards from "./Cards.vue";
 
 export default {
@@ -153,13 +153,14 @@ export default {
   },
   data() {
     return {
-      ci: [],
+      //ci: [{ value: "", text: "" }],
       index: "",
       houses: [],
       filters: {
         city: null,
         region: null
       },
+      //cityVariants: [{value: "", text: ""}],
       cityVariants: [],
       // regionVariants: [
       //   "Pefka",
@@ -233,53 +234,11 @@ export default {
       swimmingPool: false
     };
   },
-  computed() {
-    this.index = ci.findIndex(o => o.text === this.$route.query.city);
+  created() {
+    this.populateLists();
   },
   mounted() {
-    
-    this.ci = ci
-    this.re = re
-    this.populateLists();
-    //Firestore
-    //query with url
-    if (this.$route.query) {
-      
-      console.log(ci[0].text);
-      console.log(ci)
-      //console.log(this.$route.query.city)
-      //this.filters.city = ci[index].value
-      //this.filters.region = re[this.filters.city]
-      //this.filters.region = this.$route.query.region
-
-      var query = dbfs.collection("houses");
-
-      if (this.$route.query.city != null) {
-        this.filters.city = ci[this.index].value
-        query = query.where("city", "==", this.$route.query.city);
-      }
-
-      if (this.$route.query.region != "Anywhere" && this.$route.query.region != null) {
-        this.filters.region = this.$route.query.region
-        query = query.where("location", "==", this.$route.query.region);
-      }
-
-      query.get().then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
-          this.houses.push({ id: doc.id, data: doc.data() });
-        });
-      });
-    } else {
-      //fetch all houses
-      dbfs
-        .collection("houses")
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.docs.forEach(doc => {
-            this.houses.push({ id: doc.id, data: doc.data() });
-          });
-        });
-    }
+    this.getQueries();
   },
   methods: {
     onChange: function() {
@@ -309,16 +268,30 @@ export default {
     },
     populateLists: function() {
       //populate dropdown list
+      //this.cityVariants = [];
       var i = 0;
+      var self = this;
       dbfs
         .collection("cities")
         .orderBy("name", "asc")
         .get()
         .then(querySnapshot => {
           querySnapshot.docs.forEach(doc => {
-            this.cityVariants.push({ value: i, text: doc.data().name });
+            self.cityVariants.push({ value: i, text: doc.data().name });
             i++;
           });
+        })
+        .then(function() {
+          if (self.$route.query.city != null) {
+            var index = self.cityVariants.findIndex(
+              o => o.text === self.$route.query.city
+            );
+            self.filters.city = self.cityVariants[index].value;
+          }
+
+          if (self.$route.query.region != null) {
+            self.filters.region = self.$route.query.region;
+          }
         });
       var j = 0;
       dbfs
@@ -332,6 +305,41 @@ export default {
             j++;
           });
         });
+    },
+    getQueries: function() {
+      //query with url
+      if (this.$route.query != null) {
+        var query = dbfs.collection("houses");
+
+        if (this.$route.query.city != null) {
+          //this.filters.city = 4
+          query = query.where("city", "==", this.$route.query.city);
+        }
+
+        if (
+          this.$route.query.region != "Anywhere" &&
+          this.$route.query.region != null
+        ) {
+          //this.filters.region = this.$route.query.region;
+          query = query.where("location", "==", this.$route.query.region);
+        }
+
+        query.get().then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.houses.push({ id: doc.id, data: doc.data() });
+          });
+        });
+      } else {
+        //fetch all houses
+        dbfs
+          .collection("houses")
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.docs.forEach(doc => {
+              this.houses.push({ id: doc.id, data: doc.data() });
+            });
+          });
+      }
     }
   }
 };

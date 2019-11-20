@@ -10,7 +10,7 @@
         <router-link :to="{name: 'Details', query: {id: house.id}}" class="houze" exact>
           <b-img class="card" :src="house.data.image"></b-img>
           <!-- <p>{{house.id}}</p> -->
-          <b-list-group-item>
+          <b-list-group-item class="black-link">
              {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€
           </b-list-group-item>
         </router-link>
@@ -81,7 +81,10 @@ h2 {
 .card {
   max-width: -webkit-fill-available;
   color: black;
-  
+}
+
+.black-link, :hover{
+  color: black;
 }
 </style>
 
