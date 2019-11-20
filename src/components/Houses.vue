@@ -32,6 +32,21 @@
               </template>
             </b-form-select>
           </b-form-group>
+
+
+
+          <b-form-group label="Type" id="type" label-for="table-style-variant">
+            <b-form-select
+             
+              v-model="filters.type"
+              :options="typeVariants"
+              id="table-style-variant"
+            >
+              <template v-slot:first>
+                <option :value="null" disabled>Select type</option>
+              </template>
+            </b-form-select>
+          </b-form-group>
           <!-- 
         <b-form-group label="Property for">
           <b-form-radio-group v-model="headVariant" class="mt-lg-2">
@@ -158,30 +173,15 @@ export default {
       houses: [],
       filters: {
         city: null,
-        region: null
+        region: null,
+        type:null,
+        rent: null
       },
       //cityVariants: [{value: "", text: ""}],
       cityVariants: [],
-      // regionVariants: [
-      //   "Pefka",
-      //   "Neapoli",
-      //   "Sykies",
-      //   "Agios Pavlos",
-      //   "Stavroupoli",
-      //   "Pylaia",
-      //   "Thermi",
-      //   "Kalamaria"
-      // ],
+  
       regionVariants: [],
-      typeVariants: [
-        "Apartment",
-        "Studio",
-        "Maisonette",
-        "Villa",
-        "Loft",
-        "Apartment Complex",
-        "Bungalow"
-      ],
+      typeVariants: [],
       floorVariants: [
         "Basement",
         "Semi Basement",
@@ -259,6 +259,15 @@ export default {
       if (this.filters.region != "Anywhere" && this.filters.region != null) {
         query = query.where("location", "==", this.filters.region);
       }
+      console.log(this.filters.type)
+      if (this.filters.type != null) {
+        query = query.where(
+          "type",
+          "==",
+           this.typeVariants[this.filters.type].text
+        );
+      }
+
 
       query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
@@ -303,6 +312,18 @@ export default {
           querySnapshot.docs.forEach(doc => {
             this.regionVariants.push({ value: j, text: doc.data().regions });
             j++;
+          });
+        });
+         var z = 0;
+      dbfs
+        .collection("types")
+        .orderBy("type", "asc")
+
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.typeVariants.push({ value: z, text: doc.data().type });
+            z++;
           });
         });
     },

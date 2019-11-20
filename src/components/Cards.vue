@@ -11,7 +11,7 @@
           <b-img class="card" :src="house.data.image"></b-img>
           <!-- <p>{{house.id}}</p> -->
           <b-list-group-item class="black-link">
-             {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€
+            {{house.data.type}} in {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€ 
           </b-list-group-item>
         </router-link>
       </b-col>
