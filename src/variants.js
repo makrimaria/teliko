@@ -2,6 +2,7 @@ import { dbfs } from './config/db'
 
 export var ci = []
 export var re = []
+//export var ty = []
 
 //populate dropdown list
 var i = 0;
@@ -27,4 +28,4 @@ dbfs
       j++;
     });
   });
-
+  

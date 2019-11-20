@@ -32,25 +32,32 @@
               </template>
             </b-form-select>
           </b-form-group>
-          <!-- 
-        <b-form-group label="Property for">
-          <b-form-radio-group v-model="headVariant" class="mt-lg-2">
-            <b-form-radio value="light" inline>Rent</b-form-radio>
-            <b-form-radio value="dark" inline>Sale</b-form-radio>
+
+          
+         <!-- <b-form-group label="Property for" id="rent" label-for="table-style-variant">
+          <b-form-radio-group v-model="filters.rent" 
+          :options="[filters.rent].text" class="mt-lg-2">
+             <b-form-radio value="rent" inline>Rent</b-form-radio> 
+            <b-form-radio value="sale" inline>Sale</b-form-radio> 
           </b-form-radio-group>
-        </b-form-group>
+        </b-form-group>  -->
 
-        <b-form-group label="Type" label-for="table-style-variant">
-          <b-form-select v-model="tableVariant" :options="typeVariants" id="table-style-variant">
-            <template v-slot:first>
-              <option value>Type</option>
-            </template>
+
+        <b-form-group label="Type" id="type" label-for="table-style-variant">
+          <b-form-select
+          v-model="filters.type"
+          :options="typeVariants"
+          id="table-style-variant"
+          >
+          <template v-slot:first>
+            <option :value="null" disabled>Select Type</option>
+          </template>
           </b-form-select>
-        </b-form-group>
 
-        <hr />
+           </b-form-group> 
 
-        <b-form-group label="Heating Type">
+
+        <!--b-form-group label="Heating Type">
           <b-form-radio-group v-model="headVariant" class="mt-lg-2">
             <b-form-radio value="any" inline>Any</b-form-radio>
 
@@ -105,8 +112,9 @@
           :head-variant="headVariant"
           :table-variant="tableVariant"
         ></b-table>
+        -->
 
-        <b-form-group label="Key Features">
+        <!-- <b-form-group label="Key Features">
           <b-form-checkbox v-model="furnished" inline>Furnished</b-form-checkbox>
           <b-form-checkbox v-model="storage" inline>Storage</b-form-checkbox>
           <b-form-checkbox v-model="secureDoor" inline>Secure Door</b-form-checkbox>
@@ -124,7 +132,7 @@
           <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
           <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
           <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
-          </b-form-group>-->
+          </b-form-group> -->
 
           <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Apply</b-button>
         </b-form>
@@ -158,66 +166,54 @@ export default {
       houses: [],
       filters: {
         city: null,
-        region: null
+        region: null,
+        type: null,
+        rent: null
       },
       cityVariants: [],
-      // regionVariants: [
-      //   "Pefka",
-      //   "Neapoli",
-      //   "Sykies",
-      //   "Agios Pavlos",
-      //   "Stavroupoli",
-      //   "Pylaia",
-      //   "Thermi",
-      //   "Kalamaria"
-      // ],
       regionVariants: [],
-      typeVariants: [
-        "Apartment",
-        "Studio",
-        "Maisonette",
-        "Villa",
-        "Loft",
-        "Apartment Complex",
-        "Bungalow"
-      ],
-      floorVariants: [
-        "Basement",
-        "Semi Basement",
-        "Ground floor",
-        "1st",
-        "2nd",
-        "3rd",
-        "4th",
-        "5th",
-        "6th",
-        "7th",
-        "8+"
-      ],
-      priceMin: [
-        "150",
-        "200",
-        "300",
-        "500",
-        "700",
-        "1.000",
-        "1.600",
-        "2.000",
-        "2.500",
-        "3.000+"
-      ],
-      priceMax: [
-        "150",
-        "200",
-        "300",
-        "500",
-        "700",
-        "1.000",
-        "1.600",
-        "2.000",
-        "2.500",
-        "3.000+"
-      ],
+      typeVariants:[],
+      rentVariants:[],
+      
+      // typeVariants: [
+      //   "Apartment",
+      //   "Studio",
+      //   "Villa",
+      //   "Loft",
+
+      // floorVariants: [
+      //   "Basement",
+      //   "Semi Basement",
+      //   "Ground floor",
+      //   "1st",
+      //   "2nd",
+      //   "3rd",
+      //   "4th",
+
+      // priceMin: [
+      //   "150",
+      //   "200",
+      //   "300",
+      //   "500",
+      //   "700",
+      //   "1.000",
+      //   "1.600",
+      //   "2.000",
+      //   "2.500",
+      //   "3.000+"
+      // ],
+      // priceMax: [
+      //   "150",
+      //   "200",
+      //   "300",
+      //   "500",
+      //   "700",
+      //   "1.000",
+      //   "1.600",
+      //   "2.000",
+      //   "2.500",
+      //   "3.000+"
+      // ],
 
       furnished: false,
       storage: false,
@@ -240,6 +236,8 @@ export default {
     
     this.ci = ci
     this.re = re
+    //this.ty = ty
+   
     this.populateLists();
     //Firestore
     //query with url
@@ -264,6 +262,11 @@ export default {
         query = query.where("location", "==", this.$route.query.region);
       }
 
+      //  if (this.$route.query.type != "Anywhere" && this.$route.query.type != null) {
+      //     this.filters.type = this.$route.query.type
+      //     query = query.where("type", "==", this.$route.query.type);
+      //  }
+
       query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
           this.houses.push({ id: doc.id, data: doc.data() });
@@ -284,6 +287,7 @@ export default {
   methods: {
     onChange: function() {
       this.filters.region = null;
+      this.filters.type = null;
     },
     submitFilters: function() {
       this.houses = [];
@@ -300,6 +304,10 @@ export default {
       if (this.filters.region != "Anywhere" && this.filters.region != null) {
         query = query.where("location", "==", this.filters.region);
       }
+
+      //  if (this.filters.type != "Anywhere" && this.filters.type != null) {
+      //    query = query.where("type", "==", this.filters.type);
+      //  }
 
       query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
@@ -332,6 +340,18 @@ export default {
             j++;
           });
         });
+
+      //   var z = 0;
+      // dbfs
+      //   .collection("cities")
+      //   .orderBy("name", "asc")
+      //   .get()
+      //   .then(querySnapshot => {
+      //     querySnapshot.docs.forEach(doc => {
+      //       this.typeVariants.push({ value: z, text: doc.data().type });
+      //       z++;
+      //     });
+      //   });
     }
   }
 };

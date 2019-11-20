@@ -31,7 +31,7 @@
 
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
-              name="radios-stacked"
+              name="radios-stacked2"
               class="mt-lg-2"
               id="propertyType"
               v-model="house.propertyType"

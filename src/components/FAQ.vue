@@ -26,7 +26,7 @@ export default {
         {
           title: "In which cities do you offer your services?",
           value:
-            "Our services are available in Thessaloniki, Greece.",
+            "Our services are available in Thessaloniki, Athens, Patra, Larisa, Volos, Giannena, Greece.",
           category: "About Prodigy"
         },
         {
