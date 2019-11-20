@@ -9,9 +9,9 @@
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
         <router-link :to="{name: 'Details', query: {id: house.id}}" class="houze" exact>
           <b-img class="card" :src="house.data.image"></b-img>
-          <p>{{house.id}}</p>
+          <!-- <p>{{house.id}}</p> -->
           <b-list-group-item>
-            {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€
+             {{house.data.city}} {{house.data.location}}, {{house.data.area}} <var>m<sup>2</sup></var>, {{house.data.price}}€
           </b-list-group-item>
         </router-link>
       </b-col>
@@ -74,14 +74,14 @@ h2 {
   font-family: "Rajdhani", sans-serif;
 }
 
-.houze,
-:hover {
+.houze {
   color: black;
 }
 
 .card {
   max-width: -webkit-fill-available;
   color: black;
+  
 }
 </style>
 
