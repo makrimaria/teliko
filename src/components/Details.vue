@@ -2,7 +2,7 @@
 <template>
   <div class="overlay">
 
-<div class="row" >
+<div v-if="house != ''" class="row" >
   <div class="column">
 
      <div class="container">
@@ -49,7 +49,6 @@
       <b-list-group-item v-if="house[0].rent == true">Rent</b-list-group-item>
       <b-list-group-item v-else>Sale</b-list-group-item>
     </b-list-group>
-    <Dummy></Dummy>
         <!-- <b-list-group>
           <b-img class="card" :src="house.image"></b-img>
           <b-list-group-item>City: {{ house.data.city }}</b-list-group-item>
@@ -66,6 +65,10 @@
 
   </div>
 </div>
+<div v-else>
+  <h3>Loading</h3>
+</div>
+
 
 
 
@@ -73,24 +76,11 @@
   </div>
 </template>
 
-
-
-
-
-
-
-
-
-
 <script>
-import Dummy from "./Dummy";
 import { dbfs } from "../config/db";
 
 export default {
   name: "Details",
-  components: {
-    Dummy
-  },
   data() {
     return {
       house: []
@@ -106,7 +96,6 @@ export default {
           this.house.push(doc.data());
         }
       });
-    console.log(this.house);
   }
 };
 </script>
