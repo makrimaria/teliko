@@ -38,14 +38,13 @@ export default {
           this.house.push(doc.data());
         }
       });
-      console.log(this.house)
+    console.log(this.house);
   }
 };
 </script>
 
 <style scoped>
-.card,
-:hover {
+.card {
   max-width: -webkit-fill-available;
   color: black;
 }

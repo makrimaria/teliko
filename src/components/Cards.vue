@@ -79,7 +79,7 @@ h2 {
   color: black;
 }
 
-.card, :hover {
+.card {
   max-width: -webkit-fill-available;
   color: black;
 }
