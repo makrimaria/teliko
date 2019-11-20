@@ -19,7 +19,6 @@
               </template>
             </b-form-select>
           </b-form-group>
-
           <b-form-group label="Region" id="region" label-for="table-style-variant">
             <b-form-select
               v-if="filters.city!=null && regionVariants[filters.city]"
@@ -32,7 +31,6 @@
               </template>
             </b-form-select>
           </b-form-group>
-
           <b-form-group label="Type" id="type" label-for="table-style-variant">
             <b-form-select v-model="filters.type" :options="typeVariants" id="table-style-variant">
               <template v-slot:first>
@@ -160,7 +158,6 @@
 
 <script>
 import { dbfs } from "../config/db";
-//import { ci } from "../main";
 import Cards from "./Cards.vue";
 
 export default {
@@ -169,7 +166,6 @@ export default {
   },
   data() {
     return {
-      //ci: [{ value: "", text: "" }],
       index: "",
       houses: [],
       filters: {
@@ -178,7 +174,6 @@ export default {
         type: null,
         rent: null
       },
-      //cityVariants: [{value: "", text: ""}],
       cityVariants: [],
 
       regionVariants: [],
@@ -234,7 +229,7 @@ export default {
       console.log(this.filters.rent)
 
 
-      ///////////////////////////////////////////////////////////////////////////////////////
+      
 
 
 
@@ -266,14 +261,13 @@ export default {
       
 
       query.get().then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
+              querySnapshot.docs.forEach(doc => {
           this.houses.push({ id: doc.id, data: doc.data() });
         });
       });
     },
     populateLists: function() {
-      //populate dropdown list
-      //this.cityVariants = [];
+      //populate filters
       var i = 0;
       var self = this;
       dbfs
@@ -293,8 +287,8 @@ export default {
             );
             self.filters.city = self.cityVariants[index].value;
           }
-
           if (self.$route.query.region != null) {
+            console.log(self.$route.query.region)
             self.filters.region = self.$route.query.region;
           }
         });
@@ -321,6 +315,13 @@ export default {
             this.typeVariants.push({ value: z, text: doc.data().type });
             z++;
           });
+        })
+        .then(function(){
+          if (self.$route.query.type != null) {
+            console.log(self.typeVariants)
+            var index = self.typeVariants.findIndex(o => o.text === self.$route.query.type);
+            self.filters.type = self.typeVariants[index].value
+          }
         });
     },
     getQueries: function() {
@@ -329,7 +330,6 @@ export default {
         var query = dbfs.collection("houses");
 
         if (this.$route.query.city != null) {
-          //this.filters.city = 4
           query = query.where("city", "==", this.$route.query.city);
         }
 
@@ -337,8 +337,11 @@ export default {
           this.$route.query.region != "Anywhere" &&
           this.$route.query.region != null
         ) {
-          //this.filters.region = this.$route.query.region;
           query = query.where("location", "==", this.$route.query.region);
+        }
+
+        if (this.$route.query.type != null) {
+          query = query.where("type", "==", this.$route.query.type);
         }
 
         query.get().then(querySnapshot => {
