@@ -106,7 +106,7 @@ export default {
           this.house.push(doc.data());
         }
       });
-      console.log(this.house)
+    console.log(this.house);
   }
 };
 </script>

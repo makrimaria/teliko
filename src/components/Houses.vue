@@ -10,7 +10,7 @@
           <b-form-group label="City" id="city" label-for="table-style-variant">
             <b-form-select
               v-model="filters.city"
-              :options="cityVariants"
+              :options="ci"
               v-on:change="onChange()"
               id="table-style-variant"
             >
@@ -24,7 +24,7 @@
             <b-form-select
               v-if="filters.city!=null"
               v-model="filters.region"
-              :options="regionVariants[filters.city].text"
+              :options="re[filters.city].text"
               id="table-style-variant"
             >
               <template v-slot:first>
@@ -144,7 +144,7 @@
 
 <script>
 import { dbfs } from "../config/db";
-//import {ci} from '../variants'
+import {ci, re} from '../variants';
 import Cards from "./Cards.vue";
 
 export default {
@@ -153,6 +153,8 @@ export default {
   },
   data() {
     return {
+      ci: [],
+      index: "",
       houses: [],
       filters: {
         city: null,
@@ -231,25 +233,34 @@ export default {
       swimmingPool: false
     };
   },
+  computed() {
+    this.index = ci.findIndex(o => o.text === this.$route.query.city);
+  },
   mounted() {
     
-    
+    this.ci = ci
+    this.re = re
     this.populateLists();
     //Firestore
     //query with url
     if (this.$route.query) {
-      //this.filters.city = ci[4].value
+      
+      console.log(ci[0].text);
+      console.log(ci)
+      //console.log(this.$route.query.city)
+      //this.filters.city = ci[index].value
       //this.filters.region = re[this.filters.city]
+      //this.filters.region = this.$route.query.region
 
       var query = dbfs.collection("houses");
 
       if (this.$route.query.city != null) {
-        //this.filters.city = ci[4].value
+        this.filters.city = ci[this.index].value
         query = query.where("city", "==", this.$route.query.city);
       }
 
       if (this.$route.query.region != "Anywhere" && this.$route.query.region != null) {
-        //this.filters.region = re[this.filters.city]
+        this.filters.region = this.$route.query.region
         query = query.where("location", "==", this.$route.query.region);
       }
 

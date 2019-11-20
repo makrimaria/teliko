@@ -39,9 +39,10 @@ export default {
   mounted() {
     dbfs.collection("houses").orderBy("created", "desc").limit(4).get().then(querySnapshot => {
       querySnapshot.docs.forEach((doc) => {
-          this.houses.push(doc.data())
+          this.houses.push({id: doc.id, data: doc.data()})
       });
     });
+    console.log(this.houses)
   }
 };
 </script>
