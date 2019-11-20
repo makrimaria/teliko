@@ -7,13 +7,13 @@
              style="margin-bottom:52px;"
               allow="microphone;"
               class="bottomright"
-              width="250"
-              height="330"
+              width="450"
+              height="530"
               src="https://console.dialogflow.com/api-client/demo/embedded/acd4e009-c551-4c43-a85a-a2033d5f08fe"
             ></iframe>
           </div>
 
-                <button class="btn1 bottomright" v-on:click="openBot">Open Chatbot</button>
+                <button class="btn1 bottomright" v-on:click="openBot">Ask me anything!</button>
          
 </div>
     
@@ -28,11 +28,11 @@ export default {
         openBot() {
       var label = $(".btn1").text().trim();
       $(document).ready(function() {
-        if(label == "Open Chatbot") {
+        if(label == "Ask me anything!") {
           $(".btn1").text("Close Chatbot");
           $("#chatbot").slideDown();
         }else{
-          $(".btn1").text("Open Chatbot"); 
+          $(".btn1").text("Ask me anything!"); 
           $("#chatbot").slideUp();
         }
       });
@@ -59,7 +59,7 @@ export default {
   float: right;
 
   padding: 0px;
-  width: 250px;
+  width: 450px;
   font-size: 35px;
   text-align: middle;
   cursor: pointer;
@@ -69,6 +69,7 @@ export default {
   border: none;
   font-family: 'Rajdhani', sans-serif;
   align-self: right !important; 
+  border-radius: 20px;
 
 }
 
