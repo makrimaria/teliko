@@ -10,7 +10,7 @@
           <b-form-group label="City" id="city" label-for="table-style-variant">
             <b-form-select
               v-model="filters.city"
-              :options="ci"
+              :options="cityVariants"
               v-on:change="onChange()"
               id="table-style-variant"
             >
@@ -19,16 +19,22 @@
               </template>
             </b-form-select>
           </b-form-group>
-
           <b-form-group label="Region" id="region" label-for="table-style-variant">
             <b-form-select
-              v-if="filters.city!=null"
+              v-if="filters.city!=null && regionVariants[filters.city]"
               v-model="filters.region"
-              :options="re[filters.city].text"
+              :options="regionVariants[filters.city].text"
               id="table-style-variant"
             >
               <template v-slot:first>
                 <option :value="null" disabled>Select area</option>
+              </template>
+            </b-form-select>
+          </b-form-group>
+          <b-form-group label="Type" id="type" label-for="table-style-variant">
+            <b-form-select v-model="filters.type" :options="typeVariants" id="table-style-variant">
+              <template v-slot:first>
+                <option :value="null" disabled>Select type</option>
               </template>
             </b-form-select>
           </b-form-group>
@@ -144,7 +150,6 @@
 
 <script>
 import { dbfs } from "../config/db";
-import {ci, re} from '../variants';
 import Cards from "./Cards.vue";
 
 export default {
@@ -153,34 +158,17 @@ export default {
   },
   data() {
     return {
-      ci: [],
       index: "",
       houses: [],
       filters: {
         city: null,
-        region: null
+        region: null,
+        type: null,
+        rent: null
       },
       cityVariants: [],
-      // regionVariants: [
-      //   "Pefka",
-      //   "Neapoli",
-      //   "Sykies",
-      //   "Agios Pavlos",
-      //   "Stavroupoli",
-      //   "Pylaia",
-      //   "Thermi",
-      //   "Kalamaria"
-      // ],
       regionVariants: [],
-      typeVariants: [
-        "Apartment",
-        "Studio",
-        "Maisonette",
-        "Villa",
-        "Loft",
-        "Apartment Complex",
-        "Bungalow"
-      ],
+      typeVariants: [],
       floorVariants: [
         "Basement",
         "Semi Basement",
@@ -233,53 +221,11 @@ export default {
       swimmingPool: false
     };
   },
-  computed() {
-    this.index = ci.findIndex(o => o.text === this.$route.query.city);
+  created() {
+    this.populateLists();
   },
   mounted() {
-    
-    this.ci = ci
-    this.re = re
-    this.populateLists();
-    //Firestore
-    //query with url
-    if (this.$route.query) {
-      
-      console.log(ci[0].text);
-      console.log(ci)
-      //console.log(this.$route.query.city)
-      //this.filters.city = ci[index].value
-      //this.filters.region = re[this.filters.city]
-      //this.filters.region = this.$route.query.region
-
-      var query = dbfs.collection("houses");
-
-      if (this.$route.query.city != null) {
-        this.filters.city = ci[this.index].value
-        query = query.where("city", "==", this.$route.query.city);
-      }
-
-      if (this.$route.query.region != "Anywhere" && this.$route.query.region != null) {
-        this.filters.region = this.$route.query.region
-        query = query.where("location", "==", this.$route.query.region);
-      }
-
-      query.get().then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
-          this.houses.push({ id: doc.id, data: doc.data() });
-        });
-      });
-    } else {
-      //fetch all houses
-      dbfs
-        .collection("houses")
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.docs.forEach(doc => {
-            this.houses.push({ id: doc.id, data: doc.data() });
-          });
-        });
-    }
+    this.getQueries();
   },
   methods: {
     onChange: function() {
@@ -300,6 +246,13 @@ export default {
       if (this.filters.region != "Anywhere" && this.filters.region != null) {
         query = query.where("location", "==", this.filters.region);
       }
+      if (this.filters.type != null) {
+        query = query.where(
+          "type",
+          "==",
+          this.typeVariants[this.filters.type].text
+        );
+      }
 
       query.get().then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
@@ -308,17 +261,30 @@ export default {
       });
     },
     populateLists: function() {
-      //populate dropdown list
+      //populate filters
       var i = 0;
+      var self = this;
       dbfs
         .collection("cities")
         .orderBy("name", "asc")
         .get()
         .then(querySnapshot => {
           querySnapshot.docs.forEach(doc => {
-            this.cityVariants.push({ value: i, text: doc.data().name });
+            self.cityVariants.push({ value: i, text: doc.data().name });
             i++;
           });
+        })
+        .then(function() {
+          if (self.$route.query.city != null) {
+            var index = self.cityVariants.findIndex(
+              o => o.text === self.$route.query.city
+            );
+            self.filters.city = self.cityVariants[index].value;
+          }
+          if (self.$route.query.region != null) {
+            console.log(self.$route.query.region)
+            self.filters.region = self.$route.query.region;
+          }
         });
       var j = 0;
       dbfs
@@ -332,6 +298,62 @@ export default {
             j++;
           });
         });
+      var z = 0;
+      dbfs
+        .collection("types")
+        .orderBy("type", "asc")
+
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.typeVariants.push({ value: z, text: doc.data().type });
+            z++;
+          });
+        })
+        .then(function(){
+          if (self.$route.query.type != null) {
+            console.log(self.typeVariants)
+            var index = self.typeVariants.findIndex(o => o.text === self.$route.query.type);
+            self.filters.type = self.typeVariants[index].value
+          }
+        });
+    },
+    getQueries: function() {
+      //query with url
+      if (this.$route.query != null) {
+        var query = dbfs.collection("houses");
+
+        if (this.$route.query.city != null) {
+          query = query.where("city", "==", this.$route.query.city);
+        }
+
+        if (
+          this.$route.query.region != "Anywhere" &&
+          this.$route.query.region != null
+        ) {
+          query = query.where("location", "==", this.$route.query.region);
+        }
+
+        if (this.$route.query.type != null) {
+          query = query.where("type", "==", this.$route.query.type);
+        }
+
+        query.get().then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.houses.push({ id: doc.id, data: doc.data() });
+          });
+        });
+      } else {
+        //fetch all houses
+        dbfs
+          .collection("houses")
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.docs.forEach(doc => {
+              this.houses.push({ id: doc.id, data: doc.data() });
+            });
+          });
+      }
     }
   }
 };
