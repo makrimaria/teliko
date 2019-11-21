@@ -39,9 +39,14 @@
             </b-form-select>
           </b-form-group>
 
+
+
           <b-form-group label="Property for">
-            <b-form-radio-group class="mt-lg-2">
-              <b-form-radio value="Rent" v-model="filters.rent" inline>Rent</b-form-radio>
+            <b-form-radio-group  class="mt-lg-2">
+
+
+              
+              <b-form-radio  value="Rent" v-model="filters.rent" inline>Rent</b-form-radio>
               <b-form-radio value="Sale" v-model="filters.rent" inline>Sale</b-form-radio>
             </b-form-radio-group>
           </b-form-group>
@@ -170,8 +175,10 @@ export default {
         rent: null
       },
       cityVariants: [],
+
       regionVariants: [],
       typeVariants: [],
+
       furnished: false,
       storage: false,
       secureDoor: false,
@@ -219,19 +226,42 @@ export default {
           this.typeVariants[this.filters.type].text
         );
       }
-      console.log(this.filters.rent);
+      console.log(this.filters.rent)
 
-      if (this.filters.rent === "Rent") {
-        if (this.filters.rent != null) {
-          query = query.where("rent", "==", true);
-        }
-      } else if (this.filters.rent === "Sale")
-        if (this.filters.rent != null) {
-          query = query.where("rent", "==", false);
-        }
+
+      
+
+
+
+      if (this.filters.rent === 'Rent') {
+
+         if (this.filters.rent != null) {
+        query = query.where(
+          "rent",
+          "==",
+          true
+        );
+      }
+
+
+      } else if(this.filters.rent === 'Sale')
+       if (this.filters.rent != null) {
+        query = query.where(
+          "rent",
+          "==",
+          false
+        );
+      }
+
+
+
+
+
+
+      
 
       query.get().then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
+              querySnapshot.docs.forEach(doc => {
           this.houses.push({ id: doc.id, data: doc.data() });
         });
       });
@@ -258,6 +288,7 @@ export default {
             self.filters.city = self.cityVariants[index].value;
           }
           if (self.$route.query.region != null) {
+            console.log(self.$route.query.region)
             self.filters.region = self.$route.query.region;
           }
         });
@@ -285,13 +316,11 @@ export default {
             z++;
           });
         })
-        .then(function() {
+        .then(function(){
           if (self.$route.query.type != null) {
-            console.log(self.typeVariants);
-            var index = self.typeVariants.findIndex(
-              o => o.text === self.$route.query.type
-            );
-            self.filters.type = self.typeVariants[index].value;
+            console.log(self.typeVariants)
+            var index = self.typeVariants.findIndex(o => o.text === self.$route.query.type);
+            self.filters.type = self.typeVariants[index].value
           }
         });
     },

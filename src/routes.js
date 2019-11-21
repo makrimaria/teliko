@@ -9,6 +9,6 @@ export default[
     { path:'/', component: Header},
     { path:'/faq', component: FAQ},
     { path:'/sell', component: InputForm},
-    { path: '/houses', name: 'Houses', component: Houses},
+    { path: '/houses', component: Houses},
     { path: '/details', name: 'Details', component: Details} 
 ]

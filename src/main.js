@@ -5,6 +5,13 @@ import Routes from './routes';
 import BootstrapVue from 'bootstrap-vue'
 import { firestorePlugin } from 'vuefire'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faComments } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faComments)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
