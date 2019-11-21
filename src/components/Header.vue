@@ -42,7 +42,6 @@ export default {
           this.houses.push({id: doc.id, data: doc.data()})
       });
     });
-    console.log(this.houses)
   }
 };
 </script>
