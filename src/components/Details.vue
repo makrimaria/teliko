@@ -16,7 +16,7 @@
 
  <b-list-group>
     <b-list-group-item>City: {{house[0].city}}</b-list-group-item>
-      <b-list-group-item>Region: {{house[0].region}}</b-list-group-item>
+      <b-list-group-item>Region: {{house[0].location}}</b-list-group-item>
       <b-list-group-item>Size: {{house[0].area}} <var>m<sup>2</sup></var></b-list-group-item>
       <b-list-group-item>Price: {{house[0].price}} €</b-list-group-item>
       <b-list-group-item>Type: {{house[0].type}}</b-list-group-item>
