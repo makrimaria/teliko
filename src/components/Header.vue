@@ -6,7 +6,7 @@
         <h1>
           <span>Prodigy</span> Real Estate
         </h1>
-        <h2 class="head" style="color: white">Find your dream home!</h2>
+        <h2 class="head" style="color: white; font-family: 'Rajdhani', sans-serif;">Find your dream home!</h2>
         <DropDownMenu style="margin: 150px;" />
       </div>
     </div>

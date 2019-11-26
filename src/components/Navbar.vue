@@ -2,7 +2,7 @@
   <div id="navigation">
     <ul>
       <li>
-        <router-link to="/" exact>Home</router-link>
+        <router-link to="/" exact><img class="ant" src="@/assets/hellooo.png"></router-link>
       </li>
       <li>
         <router-link to="/faq" exact>FAQ</router-link>
@@ -60,5 +60,10 @@ a:visited {
 }
 a:hover {
   color: white !important;
+}
+
+.ant {
+  width: 24px;
+  
 }
 </style>
