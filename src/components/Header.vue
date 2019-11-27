@@ -7,7 +7,7 @@
           <span>Prodigy</span> Real Estate
         </h1>
         <h2 class="head" style="color: white">Find your dream home!</h2>
-        <DropDownMenu style="margin: 150px;" />
+        <DropDownMenu/>
       </div>
     </div>
     <Intro/>
@@ -42,7 +42,6 @@ export default {
           this.houses.push({id: doc.id, data: doc.data()})
       });
     });
-    console.log(this.houses)
   }
 };
 </script>
@@ -58,10 +57,10 @@ body {
   top: -30px;
 }
 /* apo edw tha allazw poso pianei to background img */
-.header {
-  /* height: 150px; */
+/* .header {
+  height: 150px;
   height: 450px;
-}
+} */
 
 .header .header-img {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
@@ -70,6 +69,7 @@ body {
   background-position: 100%;
   background-color: #f5f5f5;
   height: 100%;
+  padding-bottom: 50px;
   /* height: 300%;  */
 }
 
