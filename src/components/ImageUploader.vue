@@ -1,55 +1,67 @@
 <template>
-
-<div class="uploader" style="margin-left:-25px;">
-    <i class="fa fa-cloud-upload " style="font-size:80px;"></i>
-    <p style="text-align:left; font-size:22px; font-weight:900;">Drag your images here</p>
-    <div>OR</div>
-    <div class="file-input">
-        <label for="file">Select a file</label>
-        <input type="file" id="file" @change="onInputChange" multiple>
-
+  <div style="margin-left:-150px;">
+    <div >
+      <p>Upload an image</p>
+      <input type="file" @change="previewImage" accept="image/*" multiple>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-</div>
-    
+    <div>
+      <p>Progress: {{uploadValue.toFixed()+"%"}}
+      <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
+    </div>
+    <div v-if="imageData!=null">
+        <img class="preview" :src="picture">
+        <br>
+      <button @click="onUpload">Upload</button>
+    </div>
+  </div>
 </template>
 
 <script>
+import firebase from 'firebase';
+import { EventBus } from "../config/event-bus.js";
+
 export default {
-    methods: {
-        onInputChange() {
-        }
+  name: 'Upload',
+ 
+  data(){
+	return{
+      imageData: null,
+      picture: null,
+      uploadValue: 0
+	}
+  },
+  methods:{
+    previewImage(event) {
+      this.uploadValue=0;
+      this.picture=null;
+      this.imageData = event.target.files[0];
+    },
+
+    onUpload(){
+      this.picture=null;
+      const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+      
+      storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, error=>{console.log(error.message)},
+      ()=>{this.uploadValue=100;
+        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+          this.picture =url;
+
+          EventBus.$emit("clicked-event", url);
+
+        });
+      }
+      );
     }
-    
+
+  }
 }
 </script>
 
-<style>
-
-.uploader {
-    width: 100%;
-    /* display: block; */
-    /* border: 0.5px solid grey; */
-    padding: 30px 25px;
-    text-align: left;
-    border-radius: 60px;
-    border: 0.7px dashed grey;
+<style scoped="">
+img.preview {
+    width: 200px;
 }
-
-
-
-
-
-
 
 </style>

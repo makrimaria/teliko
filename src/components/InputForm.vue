@@ -158,8 +158,9 @@
 
       
         
-        <ImageUploader>
-        </ImageUploader>
+        <ImageUploader>        </ImageUploader>
+
+
         <br>
          <button v-on:click="submitHouse" style="margin-top:80px; margin-left:300px; width:100px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
@@ -177,6 +178,7 @@
 import ImageUploader from "./ImageUploader";
 import { dbfs } from "../config/db";
 import Firebase from "firebase";
+import { EventBus } from "../config/event-bus.js";
 
 var housesRef = dbfs.collection("houses");
 
@@ -194,7 +196,8 @@ export default {
         city: "",
         location: "",
         area: "",
-        price: ""
+        price: "",
+        img:""
         
       },
       filters: {
@@ -211,6 +214,13 @@ export default {
 
   mounted() {
     
+   // Listen for the 'clicked-event' and its payload.  
+      EventBus.$on("clicked-event", url=> {  
+      console.log(`Received: ${url} :)`);  
+      this.img=url;
+      });  
+   
+
     var i = 0;
     dbfs
       .collection("cities")
@@ -257,12 +267,6 @@ export default {
        var price = this.house.price;
        var category = this.house.category;
        var Type = this.house.Type;
-
-        
-        this.house.city = this.cityVariants[this.filters.city].text;
-        console.log(this.house.city)
-      
-          
   
        if (
          city == null ||
@@ -271,10 +275,16 @@ export default {
          price == "" ||
          category == "" ||
          Type == ""
+         
        ) {
          alert("Please fill all fields");
          return false;
        } else {
+
+         
+         this.house.city = this.cityVariants[this.filters.city].text;
+         this.house.image=this.img;
+
          var house = housesRef.doc();
          house.set(this.house);
          house.update({
