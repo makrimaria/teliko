@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style  >
+<style scoped >
 
 #background {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
@@ -130,10 +130,12 @@ export default {
   color: black !important;
   position: relative;
   margin: auto;
-  top: 50px; 
-  width: max-content;
+  top:100px; 
+  width: 55%;
+  padding-left: 50px;
   background-color:whitesmoke;
-  padding: 50px;
+  padding: 30px;
+  border-radius: 20px;
 }
 
   p {

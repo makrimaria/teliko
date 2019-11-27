@@ -90,6 +90,8 @@ h2 {
 .card {
   max-width: -webkit-fill-available;
   color: black;
+ 
+
 }
 
 .black-link,
