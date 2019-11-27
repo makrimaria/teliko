@@ -9,7 +9,7 @@
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
         <router-link :to="{name: 'Details', query: {id: house.id}}" target="_blank" class="houze" exact>
           <b-img v-if="house.data.image" class="card" :src="house.data.image"></b-img>
-          <b-img v-else class="card" src="../@/assets/house-placeholder.jpg"></b-img>
+          <b-img v-else class="card" src="../house-placeholder.jpg"></b-img>
 
           <!-- <p>{{house.id}}</p> -->
           <b-list-group-item class="black-link">
