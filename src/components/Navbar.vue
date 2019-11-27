@@ -13,6 +13,9 @@
       <li>
         <router-link to="/houses" exact>Houses</router-link>
       </li>
+       <li>
+        <router-link to="/Maps" exact>Maps</router-link>
+      </li>
     </ul>
   </div>
 </template>

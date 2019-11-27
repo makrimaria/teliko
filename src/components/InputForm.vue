@@ -117,13 +117,14 @@
             <td>
               
               <b-form-group label="Address" style="width:285px; text-align:left;">
-                <input type="text" class="form-control search-slt" placeholder="Address the house is located" />
+                <input type="text" v-model="addr1" class="form-control search-slt" placeholder="Address the house is located" />
               </b-form-group>
             </td>
             <td>
               <b-form-group label="Num" style="margin-left:10px; width:50px; text-align:left;">
                 <input
                   type="text"
+                  v-model="addr2"
                   class="form-contol search-slt"
                   style="font-size:18px; font-weight:500; text-align:center"
                   placeholder="#"
@@ -189,15 +190,17 @@ export default {
   },
   data: function() {
     return {
-      
+        // addrStr:"",
+        // addr1:"",
+        // addr2:"",
+        // img:""
       house: {
         Type: "",
         category: "",
         city: "",
         location: "",
         area: "",
-        price: "",
-        img:""
+        price: ""      
         
       },
       filters: {
@@ -257,10 +260,13 @@ export default {
   
     //Firestore
     submitHouse: function() {
-       
+      
       this.house.city = this.filters.city;
       this.house.location = this.filters.location;
 
+       //var addrStr = this.addr1.concat(this.addr2);  
+       var addrStr = this.addr1 + ' ' + this.addr2; 
+console.log('addrStr  '+addrStr)
        var city = this.filters.city;
        var location = this.filters.location;
        var area = this.house.area;
@@ -284,7 +290,8 @@ export default {
          
          this.house.city = this.cityVariants[this.filters.city].text;
          this.house.image=this.img;
-
+         this.house.address=addrStr;
+          console.log('addrStr  '+this.house.address)
          var house = housesRef.doc();
          house.set(this.house);
          house.update({
