@@ -4,7 +4,7 @@
       <div v-if="house[0] != null" class="row12" style="margin: 0px;">
         <b-row>
           <b-col>
-            <div class="carousel" style="height:400px; overflow:hidden">
+            <div class="carousel" style="height:400px;margin-top:30px; overflow:hidden">
               <div
                 id="carouselExampleIndicators"
                 class="carousel slide"
@@ -76,8 +76,7 @@
             </div>
           </b-col>
         </b-row>
-        <hr />
-
+<br>
         <b-row>
           <b-col>
             <div>
@@ -95,29 +94,86 @@
 
             <br />
             <hr />
-            <div>
-              <p class="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                qui praesentium eligendi esse, laborum magni porro maiores
-                labore, libero exercitationem facilis laudantium officiis
-                voluptates nostrum molestias itaque temporibus, beatae
-                provident!
-              </p>
-              <hr />
-              <h3 class="dets">Details</h3>
 
-              <div class="table">
-              <b>City:</b> {{ house[0].city }} <br>
-               <b>Region:</b>  {{ house[0].location }} <br>
-               <b>Size: </b> {{ house[0].area }} m<sup>2</sup> <br>
-                <b>Price:</b> {{ house[0].price }} € <br>
-                <b>Type:</b> {{ house[0].type }} <br>
-                <div class="iff" v-if="house[0].rent == true"> 
-                  <b> Property for:</b> Rent
-                </div>
-                <div class="iff" v-else>
-                  <b>Property for: </b> Sale</div>
+            <p class="descriptionTitle" style="font-weight:900; font-size:18px; margin-bottom:1px; float:left; font-family:Rajdhani, sans-serif">Description </p><br>
+
+            <p class="description">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
+              saepe autem enim quos, non asperiores aliquam corporis modi.
+              Tempora deserunt ducimus debitis temporibus iusto aliquid est
+              magni sequi sapiente aspernatur at dignissimos rerum, fugit
+              quibusdam nemo, non nulla minus dolore rem! Nam cupiditate error
+              pariatur consequuntur rerum, officia a adipisci unde blanditiis
+              dolor velit ipsam aliquid ex quasi doloremque perspiciatis!
+            </p> 
+          </b-col> 
+        </b-row>
+<hr>
+        <b-row>
+          <b-col class="col1">
+            <h3 class="dets">- Property features</h3>
+            <div class="table">
+              <!-- <b>City:</b> {{ house[0].city }} <br /> -->
+              <b>Region:</b> {{ house[0].location }}, {{ house[0].city }} <br />
+              <b>Size: </b> {{ house[0].area }} m<sup>2</sup> <br />
+              <b>Price:</b> {{ house[0].price }} € <br />
+            </div>
+
+            <!-- <div style="border-left:1px solid rgba(0, 0, 0, 0.1); height:100%; float:center;"></div> -->
+          </b-col>
+
+          <b-col class="col2">
+            <div class="table2">
+              <b>Type:</b> {{ house[0].type }} <br />
+              <div class="iff" v-if="house[0].rent == true">
+                <b> Property for:</b> Rent
               </div>
+              <div class="iff" v-else><b>Property for: </b> Sale</div>
+              <b>Floor:</b> 7 <br />
+            </div>
+          </b-col>
+        </b-row>
+        <hr />
+
+        <b-row>
+          <b-col class="col1">
+            <h3 class="dets">- More info</h3>
+            <div class="table">
+              
+
+              <ion-icon
+                name="checkmark-circle-outline"
+                style="margin-right:15px;"
+              >
+              </ion-icon
+              ><b>Parking</b> <br />
+              <ion-icon
+                name="checkmark-circle-outline"
+                style="margin-right:15px;"
+              >
+              </ion-icon
+              ><b>Balcony </b> <br />
+              
+            </div>
+
+            <!-- <div style="border-left:1px solid rgba(0, 0, 0, 0.1); height:100%; float:center;"></div> -->
+          </b-col>
+          <b-col class="col2"> 
+            <div class="table2">
+
+              <ion-icon
+                name="checkmark-circle-outline"
+                style="margin-right:15px;"
+              >
+              </ion-icon
+              ><b>Elevator</b> <br />
+              <ion-icon
+                name="checkmark-circle-outline"
+                style="margin-right:15px;"
+              >
+              </ion-icon
+              ><b>Furnished</b> <br />
+              
             </div>
           </b-col>
         </b-row>
@@ -257,23 +313,37 @@ export default {
 .description {
   font-size: 20px;
   text-align: left;
+  float:left;
 }
 
 .dets {
-  margin-top: 60px;
-  margin-left: -1200px !important;
+  /* margin-top: 60px; */
+  float: left;
   font-family: "Rajdhani", sans-serif;
+  text-align: left;
 }
 
 .table {
+  margin-top: 50px;
   text-align: left;
   width: inherit;
   height: inherit;
   line-height: 2.6;
-  text-align: center;
   font-size: 20px;
-  
+  font-family: "Rajdhani", sans-serif;
 }
+
+.table2 {
+  margin-top: 50px;
+  text-align: left;
+  width: inherit;
+  height: inherit;
+  line-height: 2.6;
+  font-size: 20px;
+  font-family: "Rajdhani", sans-serif;
+}
+
+
 
 /*
 .table2 {

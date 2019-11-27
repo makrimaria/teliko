@@ -48,7 +48,7 @@ export default {
 </script>
 
 
-<style >
+<style  >
 html,
 body {
   margin: 0;
