@@ -2,7 +2,7 @@
   <b-container fluid>
     <!-- <div id="background"> -->
     <b-row>
-      <b-col md="3" lg="2">
+      <b-col md="3" xl="2">
         <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
         <br />
         <p>Filters</p>
@@ -45,10 +45,20 @@
             </b-form-radio-group>
           </b-form-group>
           <!-- <vue-slider v-model="price" :min="price.min" :max="price.max" :interval="1" :tooltip="'always'"></vue-slider> -->
-          <b-form-group label="Price">
-            <b-form-input v-model="filters.priceMin" type="number" placeholder="From"></b-form-input>
+          <b-form-group label="Price" id="price">
+            <b-form-input
+              v-model="filters.priceMin"
+              type="number"
+              placeholder="From"
+              id="table-style-variant"
+            ></b-form-input>
             <br />
-            <b-form-input v-model="filters.priceMax" type="number" placeholder="To"></b-form-input>
+            <b-form-input
+              v-model="filters.priceMax"
+              type="number"
+              placeholder="To"
+              id="table-style-variant"
+            ></b-form-input>
           </b-form-group>
 
           <!-- 
@@ -139,20 +149,30 @@
           <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
           <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
           </b-form-group>-->
-
-          <b-button type="submit" v-b-modal="'my-modal'" variant="outline-danger">Apply</b-button>
-          <b-button
-            @click="clearFilters()"
-            v-b-modal="'my-modal'"
-            variant="outline-danger"
-          >Clear Filters</b-button>
+          <div style="text-align: center;">
+            <b-button
+              type="submit"
+              v-b-modal="'my-modal'"
+              variant="outline-danger"
+              class="m-2"
+            >Apply</b-button>
+            <b-button
+              @click="clearFilters()"
+              v-b-modal="'my-modal'"
+              variant="outline-danger"
+              class="m-2"
+            >Clear Filters</b-button>
+          </div>
         </b-form>
       </b-col>
       <!-- </div> -->
       <br />
-      <div style="margin-left:auto; border-left:1px solid grey;height:inherit;"></div>
+      <div style="border-left:1px solid grey;height:inherit;"></div>
       <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
-      <b-col md="8" lg="8" style="margin: auto;">
+      <b-col v-if="houses == '' && loaded == true" md="8" lg="8" style="margin: auto;">
+        <h2>No properties match your criteria</h2>
+      </b-col>
+      <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
         <Cards :houses="houses">Houses</Cards>
       </b-col>
     </b-row>
@@ -174,6 +194,7 @@ export default {
   },
   data() {
     return {
+      loaded: true,
       index: "",
       houses: [],
       filters: {
@@ -220,6 +241,7 @@ export default {
       this.filters.region = null;
     },
     submitFilters: function() {
+      this.loaded = false;
       this.houses = [];
       var query = dbfs.collection("houses");
 
@@ -264,6 +286,9 @@ export default {
         querySnapshot.docs.forEach(doc => {
           this.houses.push({ id: doc.id, data: doc.data() });
         });
+      })
+      .then(() => {
+        this.loaded = true;
       });
     },
     populateLists: function() {
@@ -404,13 +429,13 @@ export default {
   color: black !important;
 }
 
-#table-style-variant {
+/* #table-style-variant {
   width: 200px;
 }
 
 #price-style-variant {
   width: 100px;
-}
+} */
 
 .container4 {
   display: block;
