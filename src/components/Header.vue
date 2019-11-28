@@ -131,13 +131,14 @@ h1 {
   font-weight: 800 !important;
   font-size: 90px !important;
   text-align: center;
-  font-family: "Archivo Black", sans-serif;
+font-family: 'Montserrat', sans-serif;
 }
 h2 .head {
   font-size: 40px !important;
   font-weight: 700 !important;
   text-align: center;
-  font-family: "Archivo Black", sans-serif;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 /* p {

@@ -312,6 +312,7 @@ export default {
   background-color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
+  border-radius: 3%;
 
   overflow: auto;
   /* opacity: 0.9; */

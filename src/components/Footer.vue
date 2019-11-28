@@ -22,10 +22,10 @@
           <div class="col-xs-6 col-md-3 col-lg-4" style="margin-left: 100px;">
             <h6 style="margin-left:-150px;">Quick Links</h6>
             <ul class="footer-links">
-              <li><a href="http://localhost:8081">Home</a></li>
-              <li><a href="http://localhost:8081/faq">FAQ</a></li>
-              <li><a href="http://localhost:8081/sell">List your property</a></li>
-              <li><a href="http://localhost:8081/houses">Houses</a></li>
+              <li><a href="http://localhost:8080">Home</a></li>
+              <li><a href="http://localhost:8080/faq">FAQ</a></li>
+              <li><a href="http://localhost:8080/sell">List your property</a></li>
+              <li><a href="http://localhost:8080/houses">Houses</a></li>
             </ul>
           </div>
         </div>
@@ -35,15 +35,19 @@
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
             <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by 
-         <a href="http://localhost:8081">Prodigy Real Estate</a>.
+         <a href="http://localhost:8080">Prodigy Real Estate</a>.
             </p>
           </div>
 
           <div class="col-md-4 col-sm-6 col-xs-12">
             <ul class="social-icons">
-              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+              <a href="https://www.facebook.com/skgcode/" target="_blank" class="fa fa-facebook" style="margin-right:10px;"></a>
+              <a href="https://www.instagram.com/skgcode/?hl=el" target="_blank" class="fa fa-instagram" style="margin-right:10px;"></a>
+              <a href="https://www.linkedin.com/company/skgcode/" target="_blank" class="fa fa-linkedin" style="margin-right:10px;"></a>
+
+              <!-- <li><a class="facebook" href="https://www.facebook.com/skgcode/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="instagram" href="https://www.instagram.com/skgcode/?hl=el" target="_blank"><i class="fa fa-instagram"></i></a></li>
+              <li><a class="linkedin" href="https://www.linkedin.com/company/skgcode/" target="_blank"><i class="fa fa-linkedin"></i></a></li>    -->
             </ul>
           </div>
         </div>
@@ -70,6 +74,7 @@ export default {
   line-height:24px;
   color:#737373;
 }
+
 .site-footer hr
 {
   border-top-color:#bbb;
@@ -87,43 +92,76 @@ export default {
   margin-top:3px;
   letter-spacing:2px
 }
-.site-footer a
+/* .site-footer a
 {
   color:#737373;
-}
-.site-footer a:hover
+} */
+/* .site-footer a:hover
 {
   color:#3366cc;
   text-decoration:none;
   
-}
+} */
 .footer-links
 {
-  padding-left:0;
-  list-style:none;
+  padding-left:10px;
+  
 }
-.footer-links li
+/* .footer-links li
 {
-  display:block
-}
-.footer-links a
+  display:none;
+} */
+/* .footer-links a
 {
   color:#737373;
+} */
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 70px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
 }
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+  
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-instagram {
+background-image: linear-gradient(-140deg, #515BD4, #8134AF , #DD2A7b, #F58529,#FEDA77);
+color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+/* .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
-  color:#3366cc;
+  color:#3366cc !important;
   text-decoration:none;
 }
 .footer-links.inline li
 {
   display:inline-block
-}
-.site-footer .social-icons
+} */
+ /* .site-footer .social-icons
 {
   text-align:right
-}
-.site-footer .social-icons a
+} */
+/* .site-footer .social-icons a
 {
   width:40px;
   height:40px;
@@ -131,12 +169,12 @@ export default {
   margin-left:6px;
   margin-right:0;
   background-color:#33353d
-}
+}  */
 .copyright-text
 {
   margin:0
 }
-@media (max-width:991px)
+/* @media (max-width:991px)
 {
   .site-footer [class^=col-]
   {
@@ -153,7 +191,7 @@ export default {
   {
     text-align:center
   }
-}
+} */
 /* .social-icons
 {
   padding-left:0;
@@ -165,15 +203,15 @@ export default {
   display:inline-block;
   margin-bottom:4px
 } */
-.social-icons li.title
+/* .social-icons li.title
 {
   margin-right:15px;
   text-transform:uppercase;
   color:#96a2b2;
   font-weight:700;
   font-size:13px
-}
-.social-icons a{
+} */
+/* .social-icons a{
   background-color:#eceeef;
   color:#818a91;
   font-size:16px;
@@ -183,24 +221,23 @@ export default {
   height:44px;
   text-align:center;
   margin-right:8px;
-  border-radius:100%;
   -webkit-transition:all .2s linear;
   -o-transition:all .2s linear;
   transition:all .2s linear
-}
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+} */
+/* .social-icons a:active,.social-icons a:focus,.social-icons a:hover
 {
   color:#fff;
   background-color:#29aafe
-}
-.social-icons.size-sm a
+} */
+/* .social-icons.size-sm a
 {
   line-height:34px;
   height:34px;
   width:34px;
   font-size:14px
-}
-.social-icons a.facebook:hover
+} */
+/* .social-icons a.facebook:hover
 {
   background-color:#3b5998
 }
@@ -224,7 +261,7 @@ export default {
     margin-right:0;
     font-weight:600
   }
-}
+} */
 
 
 

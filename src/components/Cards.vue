@@ -8,19 +8,15 @@
       <b-col class="mb-4" cols="12" sm="6" xl="3" v-for="house in houses" v-bind:key="house.id">
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
         <router-link :to="{name: 'Details', query: {id: house.id}}" target="_blank" class="houze" exact>
-          <b-img v-if="house.data.image" class="card" :src="house.data.image"></b-img>
+          <b-img v-if="house.data.image" class="card" :src="house.data.image" ></b-img>
           <b-img v-else class="card" src="../house-placeholder.jpg"></b-img>
 
           <!-- <p>{{house.id}}</p> -->
           <b-list-group-item class="black-link">
             {{house.data.type}} in {{house.data.city}} {{house.data.location}}, {{house.data.area}}
-            <var>
-              m
-              <sup>2</sup>
-            </var>
-            , {{house.data.price}}€
-            <div class="1" v-if="house.data.rent==true">for rent</div>
-            <div class="2" v-else>for sale</div>
+              m<sup>2</sup>, {{house.data.price}}€
+            <div  v-if="house.data.rent==true">for rent</div>
+            <div  v-else>for sale</div>
           </b-list-group-item>
         </router-link>
       </b-col>
@@ -90,6 +86,8 @@ h2 {
 .card {
   max-width: -webkit-fill-available;
   color: black;
+   
+  
  
 
 }
@@ -97,6 +95,9 @@ h2 {
 .black-link,
 :hover {
   color: black;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 900;
+   
 }
 </style>
 

@@ -47,9 +47,12 @@ li a {
   padding: 17px 32px;
   text-decoration: none !important;
   font-family: "Rajdhani", sans-serif;
+    border-radius:5%;
+
 }
 li:hover {
   background-color: #b34c37;
+  border-radius:5%;
 }
 
 /* a:link {
@@ -57,13 +60,18 @@ li:hover {
 } */
 a:visited {
   color: white;
+    border-radius:5%;
+
 }
 a:hover {
   color: white !important;
+    border-radius:5%;
+
 }
 
 .ant {
   width: 26px;
-  
+    border-radius:5%;
+
 }
 </style>
