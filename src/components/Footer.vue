@@ -1,49 +1,79 @@
 <template>
-
-<div>
-
-      <!-- Site footer -->
+  <div>
+    <!-- Site footer -->
     <footer class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <h6>About</h6>
-            <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                 Nisi sunt repellat quo iure illo iste optio incidunt placeat. Voluptatibus
-                  harum labore nobis, facilis aperiam aliquam veniam blanditiis eos,
-                   molestiae dolore, nostrum itaque mollitia illum amet corporis repellendus.
-                    Deleniti quia earum sequi provident aliquid,
-                 quasi minus fugiat unde doloribus aliquam perferendis repellendus ex distinctio,
-                  autem corrupti, placeat soluta vel id facilis!</p>
+            <p class="text-justify">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sunt
+              repellat quo iure illo iste optio incidunt placeat. Voluptatibus
+              harum labore nobis, facilis aperiam aliquam veniam blanditiis eos,
+              molestiae dolore, nostrum itaque mollitia illum amet corporis
+              repellendus. Deleniti quia earum sequi provident aliquid, quasi
+              minus fugiat unde doloribus aliquam perferendis repellendus ex
+              distinctio, autem corrupti, placeat soluta vel id facilis!
+            </p>
           </div>
-
-          
 
           <div class="col-xs-6 col-md-3 col-lg-4" style="margin-left: 100px;">
             <h6 style="margin-left:-150px;">Quick Links</h6>
             <ul class="footer-links">
-              <li><a href="http://localhost:8080">Home</a></li>
-              <li><a href="http://localhost:8080/faq">FAQ</a></li>
-              <li><a href="http://localhost:8080/sell">List your property</a></li>
-              <li><a href="http://localhost:8080/houses">Houses</a></li>
+              <li>
+                <router-link to="/" exact @click.native="scrollToTop()"
+                  >Home</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/faq" exact @click.native="scrollToTop()"
+                  >FAQ</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/sell" exact @click.native="scrollToTop()"
+                  >List your property</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/houses" exact @click.native="scrollToTop()"
+                  >Houses</router-link
+                >
+              </li>
             </ul>
           </div>
         </div>
-        <hr>
+        <hr />
       </div>
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by 
-         <a href="http://localhost:8080">Prodigy Real Estate</a>.
+            <p class="copyright-text">
+              Copyright &copy; 2019 All Rights Reserved by
+              <a href="http://localhost:8080">Prodigy Real Estate</a>.
             </p>
           </div>
 
           <div class="col-md-4 col-sm-6 col-xs-12">
             <ul class="social-icons">
-              <a href="https://www.facebook.com/skgcode/" target="_blank" class="fa fa-facebook" style="margin-right:10px;"></a>
-              <a href="https://www.instagram.com/skgcode/?hl=el" target="_blank" class="fa fa-instagram" style="margin-right:10px;"></a>
-              <a href="https://www.linkedin.com/company/skgcode/" target="_blank" class="fa fa-linkedin" style="margin-right:10px;"></a>
+              <a
+                href="https://www.facebook.com/skgcode/"
+                target="_blank"
+                class="fa fa-facebook"
+                style="margin-right:10px;"
+              ></a>
+              <a
+                href="https://www.instagram.com/skgcode/?hl=el"
+                target="_blank"
+                class="fa fa-instagram"
+                style="margin-right:10px;"
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/skgcode/"
+                target="_blank"
+                class="fa fa-linkedin"
+                style="margin-right:10px;"
+              ></a>
 
               <!-- <li><a class="facebook" href="https://www.facebook.com/skgcode/" target="_blank"><i class="fa fa-facebook"></i></a></li>
               <li><a class="instagram" href="https://www.instagram.com/skgcode/?hl=el" target="_blank"><i class="fa fa-instagram"></i></a></li>
@@ -52,45 +82,42 @@
           </div>
         </div>
       </div>
-</footer>
-
-</div>
-    
+    </footer>
+  </div>
 </template>
 
 <script>
 export default {
-    
-}
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    }
+  }
+};
 </script>
 
 <style scoped>
-
-.site-footer
-{
-  background-color:#333;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:24px;
-  color:#737373;
+.site-footer {
+  background-color: #333;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
 }
 
-.site-footer hr
-{
-  border-top-color:#bbb;
-  opacity:0.5
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
 }
-.site-footer hr.small
-{
-  margin:20px 0
+.site-footer hr.small {
+  margin: 20px 0;
 }
-.site-footer h6
-{
-  color:whitesmoke;
-  font-size:18px;
-  text-transform:uppercase;
-  margin-top:3px;
-  letter-spacing:2px
+.site-footer h6 {
+  color: whitesmoke;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 3px;
+  letter-spacing: 2px;
 }
 /* .site-footer a
 {
@@ -102,10 +129,8 @@ export default {
   text-decoration:none;
   
 } */
-.footer-links
-{
-  padding-left:10px;
-  
+.footer-links {
+  padding-left: 10px;
 }
 /* .footer-links li
 {
@@ -128,20 +153,26 @@ export default {
 /* Add a hover effect if you want */
 .fa:hover {
   opacity: 0.7;
-  
 }
 
 /* Set a specific color for each brand */
 
 /* Facebook */
 .fa-facebook {
-  background: #3B5998;
+  background: #3b5998;
   color: white;
 }
 
 .fa-instagram {
-background-image: linear-gradient(-140deg, #515BD4, #8134AF , #DD2A7b, #F58529,#FEDA77);
-color: white;
+  background-image: linear-gradient(
+    -140deg,
+    #515bd4,
+    #8134af,
+    #dd2a7b,
+    #f58529,
+    #feda77
+  );
+  color: white;
 }
 
 .fa-linkedin {
@@ -157,7 +188,7 @@ color: white;
 {
   display:inline-block
 } */
- /* .site-footer .social-icons
+/* .site-footer .social-icons
 {
   text-align:right
 } */
@@ -170,9 +201,8 @@ color: white;
   margin-right:0;
   background-color:#33353d
 }  */
-.copyright-text
-{
-  margin:0
+.copyright-text {
+  margin: 0;
 }
 /* @media (max-width:991px)
 {
@@ -262,7 +292,4 @@ color: white;
     font-weight:600
   }
 } */
-
-
-
 </style>

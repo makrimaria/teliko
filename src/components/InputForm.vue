@@ -162,7 +162,7 @@
 
 
         <br>
-         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:300px; width:100px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:150px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
         
 
