@@ -9,7 +9,7 @@ export default[
     { path:'/', component: Header},
     { path:'/faq', component: FAQ},
     { path:'/sell', component: InputForm},
-    { path: '/houses', component: Houses},
     { path: '/Maps', component: Maps},
+    { path: '/houses', name: 'Houses', component: Houses, alias: "/houses-city"},
     { path: '/details', name: 'Details', component: Details} 
 ]
