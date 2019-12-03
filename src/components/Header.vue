@@ -15,7 +15,8 @@
     <b-container>
     <Cards :houses="houses">Added Recently</Cards>
     </b-container>
-    
+    <br>
+    <br>
   </div>
 </template>
 

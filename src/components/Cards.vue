@@ -1,7 +1,49 @@
 <template>
   <div>
-    <!-- <b-container style="margin-top:10px;"> -->
-    <h2>
+
+
+ <b-card no-body class="overflow:hidden" style="max-width:540px;">
+    <b-row no-gutters>
+      <b-col mb="6"  v-for="house in houses" v-bind:key="house.id">
+          <router-link
+          :to="{ name: 'Details', query: { id: house.id } }"
+          target="_blank"
+          class="houze"
+          exact
+        >
+        <b-img
+            
+            v-if="house.data.image"
+            class="card"
+            :src="house.data.image"
+          ></b-img>
+          <b-img
+            
+            v-else
+            class="card"
+            src="../house-placeholder.jpg"
+          ></b-img>
+          </router-link>
+      </b-col>
+<b-col class="mb-6"  v-for="house in houses" v-bind:key="house.id">
+          
+            {{ house.data.type }} in {{ house.data.city }}
+            {{ house.data.location }}, {{ house.data.area }} m<sup>2</sup>,
+            {{ house.data.price }}€
+            <div v-if="house.data.rent == true">for rent</div>
+            <div v-else>for sale</div>
+      </b-col>
+      
+    </b-row>
+  </b-card> 
+
+
+
+
+
+
+
+    <!--h2>
       <slot></slot>
     </h2>
     <b-row>
@@ -13,7 +55,7 @@
         v-for="house in houses"
         v-bind:key="house.id"
       >
-        <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
+ 
         <router-link
           :to="{ name: 'Details', query: { id: house.id } }"
           target="_blank"
@@ -35,7 +77,7 @@
             src="../house-placeholder.jpg"
           ></b-img>
 
-          <!-- <p>{{house.id}}</p> -->
+         
           <b-list-group-item class="black-link">
             {{ house.data.type }} in {{ house.data.city }}
             {{ house.data.location }}, {{ house.data.area }} m<sup>2</sup>,
@@ -50,7 +92,7 @@
            
 
 
-    </b-row>
+    </b-row-->
   </div>
   <!-- </b-container> -->
 </template>

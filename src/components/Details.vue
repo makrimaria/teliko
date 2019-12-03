@@ -4,6 +4,8 @@
       <div v-if="house[0] != null" class="row12" style="margin: 0px;">
         <b-row>
           <b-col>
+
+            <p>balc: {{house[0].balcony}} <br> park: {{house[0].parking}}   </p>
             <div class="carousel" style="height:400px;margin-top:30px; overflow:hidden">
               <div
                 id="carouselExampleIndicators"
@@ -37,14 +39,14 @@
                     <img
                       class="d-block w-100"
                       :src="house[0].image2"
-                      alt="Second slide"
+                      alt="No image"
                     />
                   </div>
                   <div class="carousel-item">
                     <img
                       class="d-block w-100"
                       :src="house[0].image3"
-                      alt="Third slide"
+                      alt="No image"
                     />
                   </div>
                 </div>
@@ -177,6 +179,27 @@
             </div>
           </b-col>
         </b-row>
+        <br>
+        <br>
+
+
+        <div>
+  <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img src="https://picsum.photos/400/400/?image=20" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body title="Horizontal Card">
+          <b-card-text>
+            This is a wider card with supporting text as a natural lead-in to additional content.
+            This content is a little bit longer.
+          </b-card-text>
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+</div>
 
         <!-- <b-img class="card" :src="house[0].image" style="width:inherit; height:auto;"></b-img> -->
         <!-- <div class="carousel"> 

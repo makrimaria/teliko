@@ -6,7 +6,12 @@
         <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
         <br />
         <p>Filters</p>
-        <b-form id="form" ref="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
+        <b-form
+          id="form"
+          ref="form"
+          v-on:submit.prevent="submitFilters"
+          style="text-align:left;"
+        >
           <!-- <b-form-group label="City" id="city" label-for="table-style-variant">
             <b-form-select
               v-model="filters.city"
@@ -22,18 +27,18 @@
           <!-- Dropdown with search -->
           <label id="type__BV_label_" class="col-form-label pt-0">City</label>
           <div id="watcher" class="cityDropDown">
-          <model-select
-            v-model="filters.city"
-            :options="cityVariants"
-            placeholder="Select City"
-            v-on:click="onChange()"
-          ></model-select>
-          </div >
+            <model-select
+              v-model="filters.city"
+              :options="cityVariants"
+              placeholder="Select City"
+              v-on:click="onChange()"
+            ></model-select>
+          </div>
           <br />
           <label id="type__BV_label_" class="col-form-label pt-0">Region</label>
           <model-list-select
             v-if="filters.city == null && !regionVariants[filters.city]"
-            :list='[ ]'
+            :list="[]"
             :isDisabled="true"
             placeholder="Select City first"
           ></model-list-select>
@@ -41,7 +46,6 @@
             v-else-if="regionVariants[filters.city]"
             v-model="filters.region"
             :options="regionVariants[filters.city].text"
-            
             placeholder="Select Region"
           ></model-select>
 
@@ -61,7 +65,11 @@
             </b-form-select>
           </b-form-group>-->
           <b-form-group label="Type" id="type">
-            <b-form-select v-model="filters.type" :options="typeVariants" id="table-style-variant">
+            <b-form-select
+              v-model="filters.type"
+              :options="typeVariants"
+              id="table-style-variant"
+            >
               <template v-slot:first>
                 <option :value="null" disabled>Select type</option>
               </template>
@@ -69,8 +77,12 @@
           </b-form-group>
           <b-form-group label="Property for">
             <b-form-radio-group class="mt-lg-2">
-              <b-form-radio value="Rent" v-model="filters.rent" inline>Rent</b-form-radio>
-              <b-form-radio value="Sale" v-model="filters.rent" inline>Sale</b-form-radio>
+              <b-form-radio value="Rent" v-model="filters.rent" inline
+                >Rent</b-form-radio
+              >
+              <b-form-radio value="Sale" v-model="filters.rent" inline
+                >Sale</b-form-radio
+              >
             </b-form-radio-group>
           </b-form-group>
           <!-- <vue-slider v-model="price" :min="price.min" :max="price.max" :interval="1" :tooltip="'always'"></vue-slider> -->
@@ -90,107 +102,54 @@
             ></b-form-input>
           </b-form-group>
 
-          <!-- 
-        
 
-        <b-form-group label="Type" label-for="table-style-variant">
-          <b-form-select v-model="tableVariant" :options="typeVariants" id="table-style-variant">
-            <template v-slot:first>
-              <option value>Type</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
+          <b-form-group label="Additional">
+            
+             <b-form-checkbox
+              v-model="filters.balcony"
+              value="balcony"
+              
+              >Balcony</b-form-checkbox>
 
-        <hr />
+              <b-form-checkbox
+              v-model="filters.parking"
+              value="parking"
+              
+              >Parking</b-form-checkbox
+            >
 
-        <b-form-group label="Heating Type">
-          <b-form-radio-group v-model="headVariant" class="mt-lg-2">
-            <b-form-radio value="any" inline>Any</b-form-radio>
+            <b-form-checkbox
+              v-model="filters.elevator"
+              value="elevator"
+             
+              >Elevator</b-form-checkbox
+            >
 
-            <b-form-radio value="autonomous" inline>Autonomous heating System</b-form-radio>
-            <br />
-            <b-form-radio value="central" inline>Central Heating</b-form-radio>
-            <b-form-radio :value="null" inline>None</b-form-radio>
-          </b-form-radio-group>
-        </b-form-group>
+            <b-form-checkbox
+              v-model="filters.furnished"
+              value="furnished"
+              
+              >Furnished</b-form-checkbox
+            >
+            
+             </b-form-group>
 
-        <hr />
 
-        <b-form-group label="with price(€) from:" label-for="price-style-variant">
-          <b-form-select v-model="tableVariant" :options="priceMin" id="price-style-variant">
-            <template v-slot:first>
-              <option value>min</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-
-        <b-form-group label="to:" label-for="price-style-variant">
-          <b-form-select v-model="tableVariant" :options="priceMax" id="price-style-variant">
-            <template v-slot:first>
-              <option value>max</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-        <hr />
-        <b-form-group label="Floor" label-for="table-style-variant">
-          <b-form-select v-model="tableVariant" :options="floorVariants" id="table-style-variant">
-            <template v-slot:first>
-              <option value>Select floor</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-
-        <hr />
-
-        <b-table
-          :striped="striped"
-          :bordered="bordered"
-          :borderless="borderless"
-          :outlined="outlined"
-          :small="small"
-          :hover="hover"
-          :dark="dark"
-          :fixed="fixed"
-          :foot-clone="footClone"
-          :no-border-collapse="noCollapse"
-          :items="items"
-          :fields="fields"
-          :head-variant="headVariant"
-          :table-variant="tableVariant"
-        ></b-table>
-
-        <b-form-group label="Key Features">
-          <b-form-checkbox v-model="furnished" inline>Furnished</b-form-checkbox>
-          <b-form-checkbox v-model="storage" inline>Storage</b-form-checkbox>
-          <b-form-checkbox v-model="secureDoor" inline>Secure Door</b-form-checkbox>
-          <br />
-          <b-form-checkbox v-model="alarm" inline>Alarm</b-form-checkbox>
-
-          <b-form-checkbox v-model="elevator" inline>Elevator</b-form-checkbox>
-          <b-form-checkbox v-model="garden" inline>Garden</b-form-checkbox>
-          <br />
-          <b-form-checkbox v-model="petsWelcome" inline>Pets welcome</b-form-checkbox>
-
-          <b-form-checkbox v-model="parking" inline>Parking</b-form-checkbox>
-          <b-form-checkbox v-model="balcony" inline>Balcony</b-form-checkbox>
-          <br />
-          <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
-          <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
-          <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
-          </b-form-group>-->
           <div style="text-align: center;">
             <b-button
               type="submit"
               v-b-modal="'my-modal'"
               variant="outline-danger"
               class="m-2"
-            >Apply</b-button>
+              >Apply</b-button
+            >
             <b-button
               @click="clearFilters()"
               v-b-modal="'my-modal'"
               variant="outline-danger"
               class="m-2"
-            >Clear Filters</b-button>
+              >Clear Filters</b-button
+            >
           </div>
         </b-form>
       </b-col>
@@ -198,7 +157,12 @@
       <br />
       <div style="border-left:1px solid grey;height:inherit;"></div>
       <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
-      <b-col v-if="houses == '' && loaded == true" md="8" lg="8" style="margin: auto;">
+      <b-col
+        v-if="houses == '' && loaded == true"
+        md="8"
+        lg="8"
+        style="margin: auto;"
+      >
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
@@ -207,6 +171,9 @@
     </b-row>
     <!-- </div> -->
     <!-- </div> -->
+
+    <br>
+    <br>
   </b-container>
 </template>
 
@@ -236,31 +203,24 @@ export default {
         type: null,
         rent: null,
         priceMin: null,
-        priceMax: null
+        priceMax: null,
+        balcony: null,
+        parking: null,
+        elevator: null,
+        furnished: null
       },
       cityVariants: [],
       regionVariants: [],
-      typeVariants: [],
-      furnished: false,
-      storage: false,
-      secureDoor: false,
-      alarm: false,
-      elevator: false,
-      garden: false,
-      petsWelcome: false,
-      parking: false,
-      balcony: false,
-      fireplace: null,
-      view: "",
-      swimmingPool: false
+      typeVariants: []
+      
+      
     };
   },
-  watch:{
+  watch: {
     watcher: function() {
-      console.log("hi")
+      console.log("hi");
       this.filters.region = null;
     }
-
   },
   created() {
     this.populateLists();
@@ -276,9 +236,14 @@ export default {
       this.filters.rent = null;
       this.filters.priceMin = null;
       this.filters.priceMax = null;
+      this.filters.balcony = null;
+      this.filters.parking = null;
+      this.filters.elevator = null;
+      this.filters.furnished = null;
+
     },
     onChange: function() {
-      console.log("hi")
+      console.log("hi");
       this.filters.region = "";
       this.filters.region = null;
     },
@@ -315,6 +280,52 @@ export default {
           query = query.where("rent", "==", false);
         }
       }
+
+
+      // balcony
+      //   if (this.filters.balcony == "balcony") {
+        
+      //     query = query.where("balcony", "==", true);
+      //   }
+      //  else if (this.filters.balcony === null) {
+      //  {
+      //     query = query.where("balcony", "==", false);
+      //   }
+
+      // }
+
+      //parking
+      //    if (this.filters.parking === "parking") {
+        
+      //     query = query.where("parking", "==", true);
+      //   }
+      //  else if (this.filters.parking === null) {
+      //  {
+      //     query = query.where("parking", "==", false);
+      //   }
+
+      // }
+
+      // console.log(this.filters.balcony)
+      // console.log(this.filters.parking)
+
+    //elevator
+      //    if (this.filters.elevator === "elevator") {
+        
+      //     query = query.where("elevator", "==", true);
+      //   }
+      //  else if (this.filters.elevator === null) {
+      //  {
+      //     query = query.where("elevator", "==", false);
+      //   }
+
+      // }
+
+
+
+
+
+
 
       if (this.filters.priceMin != null) {
         query = query.where("price", ">=", parseInt(this.filters.priceMin));
@@ -479,8 +490,9 @@ export default {
 };
 </script>
 
+<style scoped>
 
-<style scoped >
+
 .cityDropDown:focus-within {
   background-color: black;
 }
