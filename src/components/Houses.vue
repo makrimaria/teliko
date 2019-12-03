@@ -201,7 +201,8 @@
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
-        <Cards :houses="houses"></Cards>
+        <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
+        <jw-pagination :items="houses" :pageSize="9" @changePage="onChangePage"></jw-pagination>
       </b-col>
     </b-row>
     <!-- </div> -->
@@ -218,14 +219,18 @@ import { ModelSelect } from "vue-search-select";
 import { ModelListSelect } from "vue-search-select";
 import "vue-search-select/dist/VueSearchSelect.css";
 
+import JwPagination from "jw-vue-pagination";
+
 export default {
   components: {
     Cards,
     ModelSelect,
-    ModelListSelect
+    ModelListSelect,
+    JwPagination
   },
   data() {
     return {
+      pageOfItems: [],
       loaded: true,
       index: "",
       houses: [],
@@ -254,12 +259,6 @@ export default {
       swimmingPool: false
     };
   },
-  watch: {
-    watcher: function() {
-      console.log("hi");
-      this.filters.region = null;
-    }
-  },
   created() {
     this.populateLists();
   },
@@ -267,6 +266,10 @@ export default {
     this.getQueries();
   },
   methods: {
+    onChangePage(pageOfItems) {
+      // update page of items
+      this.pageOfItems = pageOfItems;
+    },
     clearFilters: function() {
       this.filters.city = null;
       this.filters.region = null;

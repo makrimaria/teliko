@@ -8,14 +8,14 @@
         </h1>
 
         <h2 class="head" style="color: white">Find your dream home!</h2>
-        <DropDownMenu/>
+        <DropDownMenu />
       </div>
     </div>
-    <Intro/>
+    <Intro />
     <b-container>
-    <Cards :houses="houses">Added Recently</Cards>
+      <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
+      <jw-pagination style="display: none;" :items="houses" @changePage="onChangePage"></jw-pagination>
     </b-container>
-    
   </div>
 </template>
 
@@ -23,32 +23,46 @@
 import DropDownMenu from "./DropdownMenu.vue";
 import Intro from "./Intro.vue";
 import Cards from "./Cards.vue";
-import {dbfs} from '../config/db'
+import { dbfs } from "../config/db";
+import JwPagination from "jw-vue-pagination";
 
 export default {
   name: "header",
   components: {
     DropDownMenu,
     Intro,
-    Cards
+    Cards,
+    JwPagination
   },
   data() {
     return {
+      pageOfItems: [],
       houses: []
-    }
+    };
   },
   mounted() {
-    dbfs.collection("houses").orderBy("created", "desc").limit(3).get().then(querySnapshot => {
-      querySnapshot.docs.forEach((doc) => {
-          this.houses.push({id: doc.id, data: doc.data()})
+    dbfs
+      .collection("houses")
+      .orderBy("created", "desc")
+      .limit(3)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+          this.houses.push({ id: doc.id, data: doc.data() });
+        });
       });
-    });
+  },
+  methods: {
+    onChangePage(pageOfItems) {
+      // update page of items
+      this.pageOfItems = pageOfItems;
+    },
   }
 };
 </script>
 
 
-<style  >
+<style>
 html,
 body {
   margin: 0;
@@ -132,17 +146,13 @@ h1 {
   font-size: 90px !important;
   text-align: center;
   font-family: "Archivo Black", sans-serif;
-  ;
-
-
-  
 }
+
 h2 .head {
   font-size: 40px !important;
   font-weight: 700 !important;
   text-align: center;
   font-family: "Archivo Black", sans-serif;
-   
 }
 
 /* p {
@@ -152,4 +162,9 @@ h2 .head {
   text-align: center;
   font-family: 'Rajdhani', sans-serif;
 } */
+
+.hideOnHome {
+  display: none;
+}
 </style>
+

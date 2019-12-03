@@ -5,7 +5,14 @@
       <slot></slot>
     </h2>
     <b-row>
-      <b-col class="mb-3" cols="12" sm="6" xl="4" v-for="house in houses" v-bind:key="house.id">
+      <b-col
+        class="mb-3"
+        cols="12"
+        sm="6"
+        xl="4"
+        v-for="house in pageOfItems"
+        v-bind:key="house.id"
+      >
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
         <router-link
           :to="{ name: 'Details', query: { id: house.id } }"
@@ -42,16 +49,27 @@
         </router-link>
       </b-col>
     </b-row>
+    
+      
+   
   </div>
   <!-- </b-container> -->
 </template>
 
 <script>
-//import {dbfs} from '../config/db'
+//import JwPagination from "jw-vue-pagination";
 
 export default {
   props: {
-    houses: Array
+    houses: Array,
+    pageOfItems: Array
+  },
+  components: {
+    //JwPagination
+
+  },
+  methods: {
+    
   },
   // data: () =>({
   //   houses: []
