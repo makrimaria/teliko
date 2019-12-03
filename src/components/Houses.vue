@@ -7,7 +7,7 @@
         <br />
         <p>Filters</p>
         <b-form id="form" ref="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
-          <b-form-group label="City" id="city" label-for="table-style-variant">
+          <!-- <b-form-group label="City" id="city" label-for="table-style-variant">
             <b-form-select
               v-model="filters.city"
               :options="cityVariants"
@@ -18,8 +18,37 @@
                 <option :value="null" disabled>Select City</option>
               </template>
             </b-form-select>
-          </b-form-group>
-          <b-form-group label="Region" id="region" label-for="table-style-variant">
+          </b-form-group>-->
+          <!-- Dropdown with search -->
+          <label id="type__BV_label_" class="col-form-label pt-0">City</label>
+          <div id="watcher" class="cityDropDown">
+          <model-select
+            v-model="filters.city"
+            :options="cityVariants"
+            placeholder="Select City"
+            v-on:click="onChange()"
+          ></model-select>
+          </div >
+          <br />
+          <label id="type__BV_label_" class="col-form-label pt-0">Region</label>
+          <model-list-select
+            v-if="filters.city == null && !regionVariants[filters.city]"
+            :list='[ ]'
+            :isDisabled="true"
+            placeholder="Select City first"
+          ></model-list-select>
+          <model-select
+            v-else-if="regionVariants[filters.city]"
+            v-model="filters.region"
+            :options="regionVariants[filters.city].text"
+            
+            placeholder="Select Region"
+          ></model-select>
+
+          <br />
+
+          <!-- -->
+          <!-- <b-form-group label="Region" id="region" label-for="table-style-variant">
             <b-form-select
               v-if="filters.city!=null && regionVariants[filters.city]"
               v-model="filters.region"
@@ -30,8 +59,8 @@
                 <option :value="null" default="null" disabled>Select area</option>
               </template>
             </b-form-select>
-          </b-form-group>
-          <b-form-group label="Type" id="type" label-for="table-style-variant">
+          </b-form-group>-->
+          <b-form-group label="Type" id="type">
             <b-form-select v-model="filters.type" :options="typeVariants" id="table-style-variant">
               <template v-slot:first>
                 <option :value="null" disabled>Select type</option>
@@ -184,13 +213,17 @@
 <script>
 import { dbfs } from "../config/db";
 import Cards from "./Cards.vue";
-// import VueSlider from "vue-slider-component";
-// import "vue-slider-component/theme/default.css";
+
+//Dropdown with search
+import { ModelSelect } from "vue-search-select";
+import { ModelListSelect } from "vue-search-select";
+import "vue-search-select/dist/VueSearchSelect.css";
 
 export default {
   components: {
-    Cards
-    //VueSlider
+    Cards,
+    ModelSelect,
+    ModelListSelect
   },
   data() {
     return {
@@ -222,6 +255,13 @@ export default {
       swimmingPool: false
     };
   },
+  watch:{
+    watcher: function() {
+      console.log("hi")
+      this.filters.region = null;
+    }
+
+  },
   created() {
     this.populateLists();
   },
@@ -238,6 +278,8 @@ export default {
       this.filters.priceMax = null;
     },
     onChange: function() {
+      console.log("hi")
+      this.filters.region = "";
       this.filters.region = null;
     },
     submitFilters: function() {
@@ -282,17 +324,21 @@ export default {
         query = query.where("price", "<=", parseInt(this.filters.priceMax));
       }
 
-      query.get().then(querySnapshot => {
-        querySnapshot.docs.forEach(doc => {
-          this.houses.push({ id: doc.id, data: doc.data() });
+      query
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+            this.houses.push({ id: doc.id, data: doc.data() });
+          });
+        })
+        .then(() => {
+          this.loaded = true;
         });
-      })
-      .then(() => {
-        this.loaded = true;
-      });
     },
     populateLists: function() {
-      //populate filters
+      //Get data from firestore
+      /////////////////////////
+      //Get cities in the form of [{value: , text:}, {}, {}], where value is a custom id (0,1,2...) and text the name of the city
       var i = 0;
       var self = this;
       dbfs
@@ -305,6 +351,7 @@ export default {
             i++;
           });
         })
+        //Check if URL query contains city or region and set the filters value accordingly. City name is matched to its id value through findIndex()
         .then(function() {
           if (self.$route.query.city != null) {
             var index = self.cityVariants.findIndex(
@@ -316,7 +363,15 @@ export default {
             self.filters.region = self.$route.query.region;
           }
         });
+      /*
+      Get regions in the form of [{value: , text: {value: , text:}}, {}, {}].
+      The inner value-text pair corresponds to a specific region in a city (e.g. Pylaia).
+      The outer pair matches a city's id (value) with its regions.
+      This value and the value from cityVariants point to the same city
+      */
       var j = 0;
+      var jj = 0;
+      var temp = [];
       dbfs
         .collection("cities")
         .orderBy("name", "asc")
@@ -324,10 +379,20 @@ export default {
         .get()
         .then(querySnapshot => {
           querySnapshot.docs.forEach(doc => {
-            this.regionVariants.push({ value: j, text: doc.data().regions });
+            while (doc.data().regions[jj]) {
+              temp.push({
+                value: doc.data().regions[jj],
+                text: doc.data().regions[jj]
+              });
+              jj++;
+            }
+            this.regionVariants.push({ value: j, text: temp });
             j++;
+            jj = 0;
+            temp = [];
           });
         });
+      //Same logic as in cities applies
       var z = 0;
       dbfs
         .collection("types")
@@ -374,9 +439,7 @@ export default {
       //     });
       //   });
 
-      // console.log(this.min);
-
-      //query with url
+      //Check URL for each filter, build the query and fetch houses matching the filters
       if (this.$route.query != null) {
         var query = dbfs.collection("houses");
 
@@ -401,7 +464,7 @@ export default {
           });
         });
       } else {
-        //fetch all houses
+        //Fetch all houses
         dbfs
           .collection("houses")
           .get()
@@ -417,9 +480,10 @@ export default {
 </script>
 
 
-
-
 <style scoped >
+.cityDropDown:focus-within {
+  background-color: black;
+}
 #background {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;

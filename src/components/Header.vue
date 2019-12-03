@@ -6,6 +6,7 @@
         <h1>
           <span>Prodigy</span> Real Estate
         </h1>
+
         <h2 class="head" style="color: white">Find your dream home!</h2>
         <DropDownMenu/>
       </div>
@@ -37,7 +38,7 @@ export default {
     }
   },
   mounted() {
-    dbfs.collection("houses").orderBy("created", "desc").limit(4).get().then(querySnapshot => {
+    dbfs.collection("houses").orderBy("created", "desc").limit(3).get().then(querySnapshot => {
       querySnapshot.docs.forEach((doc) => {
           this.houses.push({id: doc.id, data: doc.data()})
       });
@@ -47,7 +48,7 @@ export default {
 </script>
 
 
-<style >
+<style  >
 html,
 body {
   margin: 0;
@@ -131,12 +132,17 @@ h1 {
   font-size: 90px !important;
   text-align: center;
   font-family: "Archivo Black", sans-serif;
+  ;
+
+
+  
 }
 h2 .head {
   font-size: 40px !important;
   font-weight: 700 !important;
   text-align: center;
   font-family: "Archivo Black", sans-serif;
+   
 }
 
 /* p {

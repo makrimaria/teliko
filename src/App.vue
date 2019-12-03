@@ -14,7 +14,7 @@
 
 
 
-    
+    <Footer />
 
     
   </div>
@@ -25,13 +25,15 @@
 
 import Navbar from './components/Navbar.vue';
 import Chatbot from './components/Chatbot.vue';
+import Footer from './components/Footer.vue';
 
 
 export default {
   name: 'app',
   components: {
     Navbar,
-    Chatbot
+    Chatbot,
+    Footer
   }
 }
 </script>

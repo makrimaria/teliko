@@ -2,7 +2,7 @@
   <div style="margin-left:-150px;">
     <div >
       <p>Upload an image</p>
-      <input type="file" @change="previewImage" accept="image/*" multiple>
+      <input type="file" @change="previewImage" accept="image/*">
     </div>
     <div>
       <p>Progress: {{uploadValue.toFixed()+"%"}}

@@ -11,21 +11,6 @@
 
       <div class="column left" style="font-size:20px; margin-top: 60px; margin-left:60px;">
         <b-form id="form" v-on:submit.prevent="submitHouse">
-          <b-form-group label="Category" style="text-align:left;">
-            <b-form-radio-group
-              class="mt-lg-2"
-              name="category"
-              input type="radio"
-              v-model="house.category"
-              style="font-weight:900; "
-              stacked
-            >
-              <b-form-radio value="residential" inline>Residential</b-form-radio>
-              <b-form-radio value="commercial" inline>Commercial</b-form-radio>
-              <b-form-radio value="land" inline>Land</b-form-radio>
-              <b-form-radio value="other" inline>Other</b-form-radio>
-            </b-form-radio-group>
-          </b-form-group>
           <br />
 
           <b-form-group label="Property Type" style="text-align:left;">
@@ -33,16 +18,16 @@
               class="mt-lg-2"
               name="Type"
               input type="radio"
-              v-model="house.Type"
+              v-model="house.type"
               style="font-weight:900;"
               stacked
             >
-              <b-form-radio value="apartment" inline>Apartment</b-form-radio>
+              <b-form-radio value="Apartment" inline>Apartment</b-form-radio>
 
-              <b-form-radio value="studio" inline>Studio</b-form-radio>
-              <b-form-radio value="villa" inline>Villa</b-form-radio>
-              <b-form-radio value="loft" inline>Loft</b-form-radio>
-              <b-form-radio value="other" inline>Other</b-form-radio>
+              <b-form-radio value="Studio" inline>Studio</b-form-radio>
+              <b-form-radio value="Villa" inline>Villa</b-form-radio>
+              <b-form-radio value="Loft" inline>Loft</b-form-radio>
+              <b-form-radio value="Other" inline>Other</b-form-radio>
             </b-form-radio-group>
           </b-form-group>
           <br />
@@ -52,7 +37,7 @@
               class="mt-lg-2"
               name="type"
               input type="radio"
-              v-model="house.type"
+              v-model="house.rent"
               style="font-weight:900;"
             >
               <b-form-radio value="sale" inline>Sale</b-form-radio>
@@ -61,7 +46,20 @@
             </b-form-radio-group>
           </b-form-group>
           <br />
-
+          
+           <b-form-group label="More info" style="text-align:left;">
+            <b-form-checkbox-group
+              class="mt-lg-2"
+              id="checkbox-group-1"
+              v-model="house.moreInfo"
+              :options="options"
+              name="moreInfo"
+              style="font-weight:900; "
+              stacked
+            >
+            </b-form-checkbox-group>
+          </b-form-group>
+          <br>
           <b-form-group
             label="City"
             name="city"
@@ -113,6 +111,7 @@
 
       <div class="column right" style="font-size:20px; float:right; margin-top:-830px;">
         <table>
+        floor
           <tr>
             <td>
               
@@ -123,7 +122,7 @@
             <td>
               <b-form-group label="Num" style="margin-left:10px; width:50px; text-align:left;">
                 <input
-                  type="text"
+                  type="number"
                   v-model="addr2"
                   class="form-contol search-slt"
                   style="font-size:18px; font-weight:500; text-align:center"
@@ -137,7 +136,7 @@
 
         <b-form-group label="Size" style="text-align:left;">
           <b-form-input
-            type="text"
+            type="number"
             name="area"
             v-model="house.area"
             style="font-weight:500; width:350px;"
@@ -148,7 +147,7 @@
 
         <b-form-group label="Price" style="text-align:left;">
           <b-form-input
-            type="text"
+            type="number"
             name="price"
             v-model="house.price"
             style="font-weight:500; width:350px;"
@@ -163,7 +162,7 @@
 
 
         <br>
-         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:300px; width:100px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:150px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
         
 
@@ -188,15 +187,26 @@ export default {
     ImageUploader
     
   },
-  data: function() {
+  data: 
+  
+  function() {
     return {
-        // addrStr:"",
-        // addr1:"",
-        // addr2:"",
-        // img:""
+      
+      selected: [], // Must be an array reference!
+        options: [
+          { text: 'Balcony', value: 'Balcony' },
+          { text: 'Elevator', value: 'Elevator' },
+          { text: 'Parking slot', value: 'Parking slot' },
+          { text: 'Furnished', value: 'Furnished' }
+        ],
+      addrStr:'',
+      addr1:'',
+      addr2:'',
+      img:'',
+      
       house: {
-        Type: "",
-        category: "",
+        type: "",
+        moreInfo: "",
         city: "",
         location: "",
         area: "",
@@ -264,44 +274,55 @@ export default {
       this.house.city = this.filters.city;
       this.house.location = this.filters.location;
 
-       //var addrStr = this.addr1.concat(this.addr2);  
-       var addrStr = this.addr1 + ' ' + this.addr2; 
-console.log('addrStr  '+addrStr)
-       var city = this.filters.city;
-       var location = this.filters.location;
-       var area = this.house.area;
-       var price = this.house.price;
-       var category = this.house.category;
-       var Type = this.house.Type;
-  
-       if (
-         city == null ||
-         location == "" ||
-         area == "" ||
-         price == "" ||
-         category == "" ||
-         Type == ""
-         
-       ) {
-         alert("Please fill all fields");
-         return false;
-       } else {
+      this.addr1 = this.addr1.trim(); 
 
+        if (this.addr1 == "" || isNaN(this.addr2) ) {
+          alert ("Please fill the address")   
+        }else if (this.img =='') {
+          alert ("Please upload an image") 
+        }else {
+
+          var city = this.filters.city;
+          var location = this.filters.location;
+          var area = this.house.area.toString();
+          var price = this.house.price.toString();
+          var category = this.house.category;
+          var type = this.house.type;
+        
+          
+          if (
+            city == null ||
+            location == "" ||
+            area == "" ||
+            price == "" ||
+            category == "" ||
+            type == "" 
+
+          ) {
+            alert("Please fill all fields");
+            return false;
+          } else {
+
+            if (this.house.rent == "rent" ) {
+              this.house.rent=true;
+            } else {
+              this.house.rent=false;
+            }
          
-         this.house.city = this.cityVariants[this.filters.city].text;
-         this.house.image=this.img;
-         this.house.address=addrStr;
-          console.log('addrStr  '+this.house.address)
-         var house = housesRef.doc();
-         house.set(this.house);
-         house.update({
+          this.house.city = this.cityVariants[this.filters.city].text;
+          this.house.image=this.img;
+          this.house.address=this.addr1 + ' ' + this.addr2.toString();
+          
+          var house = housesRef.doc();
+          house.set(this.house);
+          house.update({
            created: Firebase.firestore.FieldValue.serverTimestamp()
-         });
-         document.getElementById("form").reset();
-         alert("Property listed successfully");
-       }
-     }
-  }
+          });
+          document.getElementById("form").reset();
+          alert("Property listed successfully");
+          }
+        }
+    }  }
 };
 </script>
 
@@ -319,6 +340,7 @@ console.log('addrStr  '+addrStr)
   background-color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
+  border-radius: 3%;
 
   overflow: auto;
   /* opacity: 0.9; */

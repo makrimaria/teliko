@@ -137,6 +137,7 @@ export default {
 <style lang="scss">
 #searchBtn{
   background-color: #b34c37;
+
 }
 .search-sec {
   padding: 5px;

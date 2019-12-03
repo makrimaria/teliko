@@ -5,31 +5,55 @@
       <slot></slot>
     </h2>
     <b-row>
-      <b-col class="mb-4" cols="12" sm="6" xl="3" v-for="house in houses" v-bind:key="house.id">
+      <b-col
+        class="mb-3"
+        cols="12"
+        sm="6"
+        xl="4"
+        v-for="house in houses"
+        v-bind:key="house.id"
+      >
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
-        <router-link :to="{name: 'Details', query: {id: house.id}}" target="_blank" class="houze" exact>
-          <b-img v-if="house.data.image" class="card" :src="house.data.image"></b-img>
-          <b-img v-else class="card" src="../house-placeholder.jpg"></b-img>
+        <router-link
+          :to="{ name: 'Details', query: { id: house.id } }"
+          target="_blank"
+          class="houze"
+          exact
+        >
+          <br /><b-img
+            style="height:200px; width:100%; object-fit:cover;"
+            fluid-grow
+            v-if="house.data.image"
+            class="card"
+            :src="house.data.image"
+          ></b-img>
+          <b-img
+            style="height:200px; width;100%; object-fit:cover;"
+            fluid-grow
+            v-else
+            class="card"
+            src="../house-placeholder.jpg"
+          ></b-img>
 
           <!-- <p>{{house.id}}</p> -->
           <b-list-group-item class="black-link">
-            {{house.data.type}} in {{house.data.city}} {{house.data.location}}, {{house.data.area}}
-            <var>
-              m
-              <sup>2</sup>
-            </var>
-            , {{house.data.price}}€
-            <div class="1" v-if="house.data.rent==true">for rent</div>
-            <div class="2" v-else>for sale</div>
+            {{ house.data.type }} in {{ house.data.city }}
+            {{ house.data.location }}, {{ house.data.area }} m<sup>2</sup>,
+            {{ house.data.price }}€
+            <div v-if="house.data.rent == true">for rent</div>
+            <div v-else>for sale</div>
           </b-list-group-item>
         </router-link>
       </b-col>
+
+     
+           
+
+
     </b-row>
   </div>
   <!-- </b-container> -->
 </template>
-
-
 
 <script>
 //import {dbfs} from '../config/db'
@@ -65,8 +89,7 @@ export default {
 };
 </script>
 
-
-<style scoped >
+<style scoped>
 p .house {
   color: black;
   font-size: 12px !important;
@@ -77,6 +100,7 @@ p .house {
 
 h2 {
   color: black;
+  display: none;
   font-size: 40px;
   font-weight: 700;
   text-align: center;
@@ -92,11 +116,12 @@ h2 {
   color: black;
 }
 
-.black-link,
-:hover {
+.black-link {
   color: black;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 900;
+  font-size: 13px;
 }
+
+
 </style>
-
-
-
