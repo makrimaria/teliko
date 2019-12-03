@@ -22,18 +22,18 @@
           <!-- Dropdown with search -->
           <label id="type__BV_label_" class="col-form-label pt-0">City</label>
           <div id="watcher" class="cityDropDown">
-          <model-select
-            v-model="filters.city"
-            :options="cityVariants"
-            placeholder="Select City"
-            v-on:click="onChange()"
-          ></model-select>
-          </div >
+            <model-select
+              v-model="filters.city"
+              :options="cityVariants"
+              placeholder="Select City"
+              v-on:click="onChange()"
+            ></model-select>
+          </div>
           <br />
           <label id="type__BV_label_" class="col-form-label pt-0">Region</label>
           <model-list-select
             v-if="filters.city == null && !regionVariants[filters.city]"
-            :list='[ ]'
+            :list="[ ]"
             :isDisabled="true"
             placeholder="Select City first"
           ></model-list-select>
@@ -41,7 +41,6 @@
             v-else-if="regionVariants[filters.city]"
             v-model="filters.region"
             :options="regionVariants[filters.city].text"
-            
             placeholder="Select Region"
           ></model-select>
 
@@ -202,7 +201,7 @@
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
-        <Cards :houses="houses">Houses</Cards>
+        <Cards :houses="houses"></Cards>
       </b-col>
     </b-row>
     <!-- </div> -->
@@ -255,12 +254,11 @@ export default {
       swimmingPool: false
     };
   },
-  watch:{
+  watch: {
     watcher: function() {
-      console.log("hi")
+      console.log("hi");
       this.filters.region = null;
     }
-
   },
   created() {
     this.populateLists();
@@ -278,7 +276,7 @@ export default {
       this.filters.priceMax = null;
     },
     onChange: function() {
-      console.log("hi")
+      console.log("hi");
       this.filters.region = "";
       this.filters.region = null;
     },
@@ -315,7 +313,7 @@ export default {
           query = query.where("rent", "==", false);
         }
       }
-
+      /*
       if (this.filters.priceMin != null) {
         query = query.where("price", ">=", parseInt(this.filters.priceMin));
       }
@@ -323,6 +321,7 @@ export default {
       if (this.filters.priceMax != null) {
         query = query.where("price", "<=", parseInt(this.filters.priceMax));
       }
+      */
 
       query
         .get()
@@ -330,6 +329,24 @@ export default {
           querySnapshot.docs.forEach(doc => {
             this.houses.push({ id: doc.id, data: doc.data() });
           });
+        })
+        //Get houses based on price. Executes javascript after fetching data from firestore
+        .then(() => {
+          var self = this;
+          if (self.filters.priceMin != null && self.filters.priceMin != "") {
+            self.houses = self.houses.filter(function(house) {
+              return (
+                parseInt(house.data.price) >= parseInt(self.filters.priceMin)
+              );
+            });
+          }
+          if (self.filters.priceMax != null && self.filters.priceMax != "") {
+            self.houses = self.houses.filter(function(house) {
+              return (
+                parseInt(house.data.price) <= parseInt(self.filters.priceMax)
+              );
+            });
+          }
         })
         .then(() => {
           this.loaded = true;
@@ -375,7 +392,6 @@ export default {
       dbfs
         .collection("cities")
         .orderBy("name", "asc")
-
         .get()
         .then(querySnapshot => {
           querySnapshot.docs.forEach(doc => {
@@ -397,7 +413,6 @@ export default {
       dbfs
         .collection("types")
         .orderBy("type", "asc")
-
         .get()
         .then(querySnapshot => {
           querySnapshot.docs.forEach(doc => {
@@ -415,6 +430,7 @@ export default {
         });
     },
     getQueries: function() {
+      
       // dbfs
       //   .collection("houses")
       //   .orderBy("price", "desc")
