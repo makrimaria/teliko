@@ -1,5 +1,6 @@
 <template>
   <div id="navigation">
+    <div class="container">
     <ul>
       <li>
         <router-link to="/" exact
@@ -27,6 +28,7 @@
       </div>
     </ul>
   </div>
+  </div>
 </template>
 
 <script>
@@ -34,6 +36,9 @@ export default {};
 </script>
 
 <style>
+#navigation{
+  background-color: #333;
+}
 .router-link-active {
   background-color: #b34c37;
   color: #444;
