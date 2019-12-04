@@ -1,31 +1,26 @@
 <template>
   <div id="navigation">
-    <ul>
-      <li>
-        <router-link to="/" exact
-          ><img class="ant" src="@/assets/LogoMakr_0Deh1f.png"
-        /></router-link>
-      </li>
-      <!-- <li>
-        <router-link to="/faq" exact>FAQ</router-link>
-      </li> -->
-      <li>
-        <router-link to="/sell" exact>List your property</router-link>
-      </li>
-      <li>
-        <router-link to="/houses">Houses</router-link>
-      </li>
-      <div class="dropdown3">
-        <button class="dropbtn3" style="float:right; margin-right:25px;">
-          More
-          <i style="margin-left:5px;" class="fa fa-angle-double-down"></i>
-        </button>
-        <div class="dropdown3-content">
+    <div class="container">
+      <ul>
+        <li>
+          <router-link to="/" exact>
+            <img class="ant" src="@/assets/LogoMakr_0Deh1f.png" />
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/sell" exact>List your property</router-link>
+        </li>
+        <li>
+          <router-link to="/houses">Houses</router-link>
+        </li>
+        <li>
           <router-link to="/faq" exact>FAQ</router-link>
+        </li>
+        <li>
           <router-link to="/contactt" exact>Contact</router-link>
-        </div>
-      </div>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -34,6 +29,9 @@ export default {};
 </script>
 
 <style>
+#navigation {
+  background-color: #333;
+}
 .router-link-active {
   background-color: #b34c37;
   color: #444;
@@ -59,11 +57,11 @@ li a {
   padding: 17px 32px;
   text-decoration: none !important;
   font-family: "Rajdhani", sans-serif;
-  border-radius: 5%;
+  /* border-radius: 5%; */
 }
 li:hover {
   background-color: #b34c37;
-  border-radius: 5%;
+  /* border-radius: 5%; */
 }
 
 /* a:link {
