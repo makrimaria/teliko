@@ -5,13 +5,11 @@
         <br />
         <h4>Do you want to list your property?</h4>
         <h4>Just fill the form and we will take care of it :)</h4>
-        
-        <hr />
+        <hr >
       </div>
 
       <div class="column left" style="font-size:20px; margin-top: 60px; margin-left:60px;">
-        <b-form id="form" v-on:submit.prevent="submitHouse">
-          <br />
+        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
 
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
@@ -23,14 +21,12 @@
               stacked
             >
               <b-form-radio value="Apartment" inline>Apartment</b-form-radio>
-
               <b-form-radio value="Studio" inline>Studio</b-form-radio>
               <b-form-radio value="Villa" inline>Villa</b-form-radio>
               <b-form-radio value="Loft" inline>Loft</b-form-radio>
               <b-form-radio value="Other" inline>Other</b-form-radio>
             </b-form-radio-group>
-          </b-form-group>
-          <br />
+          </b-form-group> <br />
 
           <b-form-group label="Available for:" style="text-align:left;">
             <b-form-radio-group
@@ -44,22 +40,20 @@
 
               <b-form-radio value="rent" inline>Rent</b-form-radio>
             </b-form-radio-group>
-          </b-form-group>
-          <br />
+          </b-form-group> <br />
           
            <b-form-group label="More info" style="text-align:left;">
             <b-form-checkbox-group
               class="mt-lg-2"
               id="checkbox-group-1"
-              v-model="house.moreInfo"
+              v-model="selected"
               :options="options"
               name="moreInfo"
               style="font-weight:900; "
               stacked
             >
             </b-form-checkbox-group>
-          </b-form-group>
-          <br>
+          </b-form-group> <br>
           <b-form-group
             label="City"
             name="city"
@@ -68,6 +62,7 @@
             style="width:300px; text-align:left;"
           >
             <b-form-select
+            id="city"
             v-model="filters.city"
             class="mt-3"
             v-on:change="onChange()"
@@ -79,8 +74,7 @@
             </template>
           </b-form-select>
           
-          </b-form-group>
-          <br />
+          </b-form-group>   <br />
 
           <b-form-group
             label="Location"
@@ -90,6 +84,7 @@
           >
             <b-form-select
               v-if="filters.city!=null"
+              id="location"
               v-model="filters.location"
                class="mt-3"
               v-on:change="onChange()"
@@ -102,29 +97,29 @@
               </template>
             </b-form-select>
             <br><br>
-          </b-form-group>
+          </b-form-group>  <br /><br />
 
-        <br />
-        <br />
         </b-form>
       </div>
 
-      <div class="column right" style="font-size:20px; float:right; margin-top:-830px;">
+      <div class="column right" style="font-size:20px; float:right; margin-top:-890px;">
         <table>
-        floor
           <tr>
             <td>
               
-              <b-form-group label="Address" style="width:285px; text-align:left;">
-                <input type="text" v-model="addr1" class="form-control search-slt" placeholder="Address the house is located" />
+              <b-form-group label="Address" style=" text-align:left;">
+                <input type="text" v-model="addr1" 
+                class="form-control search-slt" 
+                placeholder="Address the house is located" 
+                style="font-size:18px; width:260px; font-weight:500; text-align:center" />
               </b-form-group>
             </td>
             <td>
-              <b-form-group label="Num" style="margin-left:10px; width:50px; text-align:left;">
+              <b-form-group label="Num" style="margin-left:10px; width:70px; text-align:left;">
                 <input
                   type="number"
                   v-model="addr2"
-                  class="form-contol search-slt"
+                  class="form-control search-slt"
                   style="font-size:18px; font-weight:500; text-align:center"
                   placeholder="#"
                   
@@ -134,16 +129,35 @@
           </tr>
         </table>
 
-        <b-form-group label="Size" style="text-align:left;">
-          <b-form-input
-            type="number"
-            name="area"
-            v-model="house.area"
-            style="font-weight:500; width:350px;"
-            placeholder="Area in square meters"
-          ></b-form-input>
-        </b-form-group>
-
+        <table>
+          <tr>
+            <td>
+              
+            <b-form-group label="Size" style="text-align:left;">
+              <b-form-input
+                type="number"
+                name="area"
+                class="form-control search-slt"
+                v-model="house.area"
+                style="font-weight:500; width:150px; font-size:18px; text-align:center"
+                placeholder="Area in square meters"
+              ></b-form-input>
+            </b-form-group>
+            </td>
+            <td>
+             <b-form-group label="Floor" style="margin-left:40px; width:50px; text-align:left;">
+                <input
+                  type="number"
+                  v-model="floor"
+                  class="form-control search-slt"
+                  name="floor"
+                  style="font-weight:500; width:150px; font-size:18px; text-align:center"
+                  placeholder="#"
+                />
+              </b-form-group>
+            </td>
+          </tr>
+        </table>
 
         <b-form-group label="Price" style="text-align:left;">
           <b-form-input
@@ -154,15 +168,20 @@
             placeholder="Price in €"
           ></b-form-input>
         </b-form-group>
-        <br>
-
+        <b-form-group label="Telephone" style="text-align:left;">
+          <b-form-input
+            type="number"
+            name="telephone"
+            v-model="house.tel"
+            style="font-weight:500; width:350px;"
+            placeholder="Telephone number"
+          ></b-form-input>
+        </b-form-group>
       
-        
-        <ImageUploader>        </ImageUploader>
-
-
         <br>
-         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:150px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+        <ImageUploader style="margin-left:-110px;">        </ImageUploader>
+
+        <button v-on:click="submitHouse" style="margin-top:70px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
         
 
@@ -181,11 +200,9 @@ import Firebase from "firebase";
 import { EventBus } from "../config/event-bus.js";
 
 var housesRef = dbfs.collection("houses");
-
 export default {
   components: {
-    ImageUploader
-    
+    ImageUploader 
   },
   data: 
   
@@ -193,7 +210,7 @@ export default {
     return {
       
       selected: [], // Must be an array reference!
-        options: [
+      options: [
           { text: 'Balcony', value: 'Balcony' },
           { text: 'Elevator', value: 'Elevator' },
           { text: 'Parking slot', value: 'Parking slot' },
@@ -203,6 +220,11 @@ export default {
       addr1:'',
       addr2:'',
       img:'',
+      flor:'',
+      floor:'',
+      tele:'',
+      resetImg:false,
+    
       
       house: {
         type: "",
@@ -210,7 +232,9 @@ export default {
         city: "",
         location: "",
         area: "",
-        price: ""      
+        price: "",
+        floor:"",
+        tel:""
         
       },
       filters: {
@@ -261,10 +285,19 @@ export default {
   },
 
   methods: {
- 
+    reset(){
+      this.house.area='',
+      this.house.price='',
+      this.addr1=
+      this.addr2=
+      this.floor='',
+      document.getElementById('city').selectedIndex = 0;
+      document.getElementById('location').selectedIndex = 0;
+    },
+
+    
     onChange: function() {
       this.filters.region = null;
-      
      },
 
   
@@ -288,7 +321,8 @@ export default {
           var price = this.house.price.toString();
           var category = this.house.category;
           var type = this.house.type;
-        
+          var flor=this.floor;
+          var tele=this.house.tel;
           
           if (
             city == null ||
@@ -296,7 +330,9 @@ export default {
             area == "" ||
             price == "" ||
             category == "" ||
-            type == "" 
+            type == "" ||
+            flor == "" ||
+            tele ==""
 
           ) {
             alert("Please fill all fields");
@@ -312,7 +348,9 @@ export default {
           this.house.city = this.cityVariants[this.filters.city].text;
           this.house.image=this.img;
           this.house.address=this.addr1 + ' ' + this.addr2.toString();
-          
+          this.house.moreInfo=this.selected;
+          this.house.floor=this.floor;
+       
           var house = housesRef.doc();
           house.set(this.house);
           house.update({
@@ -320,6 +358,10 @@ export default {
           });
           document.getElementById("form").reset();
           alert("Property listed successfully");
+
+          this.resetImg=true;
+          EventBus.$emit("reset", this.resetImg);
+          this.reset();
           }
         }
     }  }
@@ -328,6 +370,10 @@ export default {
 
 
 <style scoped>
+
+ .mt-lg-2{
+  align-self: auto;
+  } 
 .container {
   /* max-width: 5000px; */
   /* position: auto;   */
