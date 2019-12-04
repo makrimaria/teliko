@@ -14,6 +14,16 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import * as VueGoogleMaps from "vue2-google-maps";
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyAMbSAUUQQTUzoFpoytDVVL5kU3vROVcyE",
+    libraries: "places" // necessary for places input
+  }
+});
+
+
 Vue.use(BootstrapVue);
 Vue.use(firestorePlugin);
 Vue.use(VueRouter);

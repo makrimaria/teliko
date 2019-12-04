@@ -2,7 +2,7 @@
   <div style="margin-left:-150px;">
     <div >
       <p>Upload an image</p>
-      <input type="file" @change="previewImage" accept="image/*" multiple>
+      <input type="file" id=uploader @change="previewImage" accept="image/*">
     </div>
     <div>
       <p>Progress: {{uploadValue.toFixed()+"%"}}
@@ -22,7 +22,18 @@ import { EventBus } from "../config/event-bus.js";
 
 export default {
   name: 'Upload',
- 
+  mounted() {
+    
+   // Listen for the 'clicked-event'  
+      EventBus.$on("reset", resetImg=>{  
+        if(resetImg==true){
+          this.imageData=null;
+          this.uploadValue=0;
+          document.getElementById("uploader").value = "";
+        }
+      });
+  },
+
   data(){
 	return{
       imageData: null,

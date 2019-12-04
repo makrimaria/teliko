@@ -5,63 +5,55 @@
         <br />
         <h4>Do you want to list your property?</h4>
         <h4>Just fill the form and we will take care of it :)</h4>
-        
-        <hr />
+        <hr >
       </div>
 
       <div class="column left" style="font-size:20px; margin-top: 60px; margin-left:60px;">
-        <b-form id="form" v-on:submit.prevent="submitHouse">
-          <b-form-group label="Category" style="text-align:left;">
-            <b-form-radio-group
-              class="mt-lg-2"
-              name="category"
-              input type="radio"
-              v-model="house.category"
-              style="font-weight:900; "
-              stacked
-            >
-              <b-form-radio value="residential" inline>Residential</b-form-radio>
-              <b-form-radio value="commercial" inline>Commercial</b-form-radio>
-              <b-form-radio value="land" inline>Land</b-form-radio>
-              <b-form-radio value="other" inline>Other</b-form-radio>
-            </b-form-radio-group>
-          </b-form-group>
-          <br />
+        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
 
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
               name="Type"
               input type="radio"
-              v-model="house.Type"
+              v-model="house.type"
               style="font-weight:900;"
               stacked
             >
-              <b-form-radio value="apartment" inline>Apartment</b-form-radio>
-
-              <b-form-radio value="studio" inline>Studio</b-form-radio>
-              <b-form-radio value="villa" inline>Villa</b-form-radio>
-              <b-form-radio value="loft" inline>Loft</b-form-radio>
-              <b-form-radio value="other" inline>Other</b-form-radio>
+              <b-form-radio value="Apartment" inline>Apartment</b-form-radio>
+              <b-form-radio value="Studio" inline>Studio</b-form-radio>
+              <b-form-radio value="Villa" inline>Villa</b-form-radio>
+              <b-form-radio value="Loft" inline>Loft</b-form-radio>
+              <b-form-radio value="Other" inline>Other</b-form-radio>
             </b-form-radio-group>
-          </b-form-group>
-          <br />
+          </b-form-group> <br />
 
           <b-form-group label="Available for:" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
               name="type"
               input type="radio"
-              v-model="house.type"
+              v-model="house.rent"
               style="font-weight:900;"
             >
               <b-form-radio value="sale" inline>Sale</b-form-radio>
 
               <b-form-radio value="rent" inline>Rent</b-form-radio>
             </b-form-radio-group>
-          </b-form-group>
-          <br />
-
+          </b-form-group> <br />
+          
+           <b-form-group label="More info" style="text-align:left;">
+            <b-form-checkbox-group
+              class="mt-lg-2"
+              id="checkbox-group-1"
+              v-model="selected"
+              :options="options"
+              name="moreInfo"
+              style="font-weight:900; "
+              stacked
+            >
+            </b-form-checkbox-group>
+          </b-form-group> <br>
           <b-form-group
             label="City"
             name="city"
@@ -70,6 +62,7 @@
             style="width:300px; text-align:left;"
           >
             <b-form-select
+            id="city"
             v-model="filters.city"
             class="mt-3"
             v-on:change="onChange()"
@@ -81,8 +74,7 @@
             </template>
           </b-form-select>
           
-          </b-form-group>
-          <br />
+          </b-form-group>   <br />
 
           <b-form-group
             label="Location"
@@ -92,6 +84,7 @@
           >
             <b-form-select
               v-if="filters.city!=null"
+              id="location"
               v-model="filters.location"
                class="mt-3"
               v-on:change="onChange()"
@@ -104,27 +97,29 @@
               </template>
             </b-form-select>
             <br><br>
-          </b-form-group>
+          </b-form-group>  <br /><br />
 
-        <br />
-        <br />
         </b-form>
       </div>
 
-      <div class="column right" style="font-size:20px; float:right; margin-top:-830px;">
+      <div class="column right" style="font-size:20px; float:right; margin-top:-890px;">
         <table>
           <tr>
             <td>
               
-              <b-form-group label="Address" style="width:285px; text-align:left;">
-                <input type="text" class="form-control search-slt" placeholder="Address the house is located" />
+              <b-form-group label="Address" style=" text-align:left;">
+                <input type="text" v-model="addr1" 
+                class="form-control search-slt" 
+                placeholder="Address the house is located" 
+                style="font-size:18px; width:260px; font-weight:500; text-align:center" />
               </b-form-group>
             </td>
             <td>
-              <b-form-group label="Num" style="margin-left:10px; width:50px; text-align:left;">
+              <b-form-group label="Num" style="margin-left:10px; width:70px; text-align:left;">
                 <input
-                  type="text"
-                  class="form-contol search-slt"
+                  type="number"
+                  v-model="addr2"
+                  class="form-control search-slt"
                   style="font-size:18px; font-weight:500; text-align:center"
                   placeholder="#"
                   
@@ -134,35 +129,59 @@
           </tr>
         </table>
 
-        <b-form-group label="Size" style="text-align:left;">
-          <b-form-input
-            type="text"
-            name="area"
-            v-model="house.area"
-            style="font-weight:500; width:350px;"
-            placeholder="Area in square meters"
-          ></b-form-input>
-        </b-form-group>
-
+        <table>
+          <tr>
+            <td>
+              
+            <b-form-group label="Size" style="text-align:left;">
+              <b-form-input
+                type="number"
+                name="area"
+                class="form-control search-slt"
+                v-model="house.area"
+                style="font-weight:500; width:150px; font-size:18px; text-align:center"
+                placeholder="Area in square meters"
+              ></b-form-input>
+            </b-form-group>
+            </td>
+            <td>
+             <b-form-group label="Floor" style="margin-left:40px; width:50px; text-align:left;">
+                <input
+                  type="number"
+                  v-model="floor"
+                  class="form-control search-slt"
+                  name="floor"
+                  style="font-weight:500; width:150px; font-size:18px; text-align:center"
+                  placeholder="#"
+                />
+              </b-form-group>
+            </td>
+          </tr>
+        </table>
 
         <b-form-group label="Price" style="text-align:left;">
           <b-form-input
-            type="text"
+            type="number"
             name="price"
             v-model="house.price"
             style="font-weight:500; width:350px;"
             placeholder="Price in €"
           ></b-form-input>
         </b-form-group>
-        <br>
-
+        <b-form-group label="Telephone" style="text-align:left;">
+          <b-form-input
+            type="number"
+            name="telephone"
+            v-model="house.tel"
+            style="font-weight:500; width:350px;"
+            placeholder="Telephone number"
+          ></b-form-input>
+        </b-form-group>
       
-        
-        <ImageUploader>        </ImageUploader>
-
-
         <br>
-         <button v-on:click="submitHouse" style="margin-top:80px; margin-left:150px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+        <ImageUploader style="margin-left:-110px;">        </ImageUploader>
+
+        <button v-on:click="submitHouse" style="margin-top:70px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
         
 
@@ -181,23 +200,41 @@ import Firebase from "firebase";
 import { EventBus } from "../config/event-bus.js";
 
 var housesRef = dbfs.collection("houses");
-
 export default {
   components: {
-    ImageUploader
-    
+    ImageUploader 
   },
-  data: function() {
+  data: 
+  
+  function() {
     return {
       
+      selected: [], // Must be an array reference!
+      options: [
+          { text: 'Balcony', value: 'Balcony' },
+          { text: 'Elevator', value: 'Elevator' },
+          { text: 'Parking slot', value: 'Parking slot' },
+          { text: 'Furnished', value: 'Furnished' }
+        ],
+      addrStr:'',
+      addr1:'',
+      addr2:'',
+      img:'',
+      flor:'',
+      floor:'',
+      tele:'',
+      resetImg:false,
+    
+      
       house: {
-        Type: "",
-        category: "",
+        type: "",
+        moreInfo: "",
         city: "",
         location: "",
         area: "",
         price: "",
-        img:""
+        floor:"",
+        tel:""
         
       },
       filters: {
@@ -248,58 +285,95 @@ export default {
   },
 
   methods: {
- 
+    reset(){
+      this.house.area='',
+      this.house.price='',
+      this.addr1=
+      this.addr2=
+      this.floor='',
+      document.getElementById('city').selectedIndex = 0;
+      document.getElementById('location').selectedIndex = 0;
+    },
+
+    
     onChange: function() {
       this.filters.region = null;
-      
      },
 
   
     //Firestore
     submitHouse: function() {
-       
+      
       this.house.city = this.filters.city;
       this.house.location = this.filters.location;
 
-       var city = this.filters.city;
-       var location = this.filters.location;
-       var area = this.house.area;
-       var price = this.house.price;
-       var category = this.house.category;
-       var Type = this.house.Type;
-  
-       if (
-         city == null ||
-         location == "" ||
-         area == "" ||
-         price == "" ||
-         category == "" ||
-         Type == ""
-         
-       ) {
-         alert("Please fill all fields");
-         return false;
-       } else {
+      this.addr1 = this.addr1.trim(); 
 
-         
-         this.house.city = this.cityVariants[this.filters.city].text;
-         this.house.image=this.img;
+        if (this.addr1 == "" || isNaN(this.addr2) ) {
+          alert ("Please fill the address")   
+        }else if (this.img =='') {
+          alert ("Please upload an image") 
+        }else {
 
-         var house = housesRef.doc();
-         house.set(this.house);
-         house.update({
+          var city = this.filters.city;
+          var location = this.filters.location;
+          var area = this.house.area.toString();
+          var price = this.house.price.toString();
+          var category = this.house.category;
+          var type = this.house.type;
+          var flor=this.floor;
+          var tele=this.house.tel;
+          
+          if (
+            city == null ||
+            location == "" ||
+            area == "" ||
+            price == "" ||
+            category == "" ||
+            type == "" ||
+            flor == "" ||
+            tele ==""
+
+          ) {
+            alert("Please fill all fields");
+            return false;
+          } else {
+
+            if (this.house.rent == "rent" ) {
+              this.house.rent=true;
+            } else {
+              this.house.rent=false;
+            }
+         
+          this.house.city = this.cityVariants[this.filters.city].text;
+          this.house.image=this.img;
+          this.house.address=this.addr1 + ' ' + this.addr2.toString();
+          this.house.moreInfo=this.selected;
+          this.house.floor=this.floor;
+       
+          var house = housesRef.doc();
+          house.set(this.house);
+          house.update({
            created: Firebase.firestore.FieldValue.serverTimestamp()
-         });
-         document.getElementById("form").reset();
-         alert("Property listed successfully");
-       }
-     }
-  }
+          });
+          document.getElementById("form").reset();
+          alert("Property listed successfully");
+
+          this.resetImg=true;
+          EventBus.$emit("reset", this.resetImg);
+          this.reset();
+          }
+        }
+    }  }
 };
 </script>
 
 
 <style scoped>
+
+ .mt-lg-2{
+  align-self: auto;
+  } 
 .container {
   /* max-width: 5000px; */
   /* position: auto;   */
