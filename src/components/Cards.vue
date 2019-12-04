@@ -10,7 +10,7 @@
         cols="12"
         sm="6"
         xl="4"
-        v-for="house in houses"
+        v-for="house in pageOfItems"
         v-bind:key="house.id"
       >
         <!-- <b-card title v-bind:img-src="house.image" img-alt="Image" img-top> -->
@@ -20,7 +20,8 @@
           class="houze"
           exact
         >
-          <br /><b-img
+          <br />
+          <b-img
             style="height:200px; width:100%; object-fit:cover;"
             fluid-grow
             v-if="house.data.image"
@@ -38,29 +39,37 @@
           <!-- <p>{{house.id}}</p> -->
           <b-list-group-item class="black-link">
             {{ house.data.type }} in {{ house.data.city }}
-            {{ house.data.location }}, {{ house.data.area }} m<sup>2</sup>,
+            {{ house.data.location }}, {{ house.data.area }} m
+            <sup>2</sup>
+            ,
             {{ house.data.price }}€
-            <div v-if="house.data.rent == true">for rent</div>
-            <div v-else>for sale</div>
+            <div style="display: inline;" v-if="house.data.rent == true">for rent</div>
+            <div style="display: inline;" v-else>for sale</div>
           </b-list-group-item>
         </router-link>
       </b-col>
-
-     
-           
-
-
     </b-row>
+    
+      
+   
   </div>
   <!-- </b-container> -->
 </template>
 
 <script>
-//import {dbfs} from '../config/db'
+//import JwPagination from "jw-vue-pagination";
 
 export default {
   props: {
-    houses: Array
+    houses: Array,
+    pageOfItems: Array
+  },
+  components: {
+    //JwPagination
+
+  },
+  methods: {
+    
   },
   // data: () =>({
   //   houses: []
@@ -100,7 +109,7 @@ p .house {
 
 h2 {
   color: black;
-  display: none;
+  /* display: none; */
   font-size: 40px;
   font-weight: 700;
   text-align: center;
@@ -109,6 +118,8 @@ h2 {
 
 .houze {
   color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 .card {
@@ -121,7 +132,10 @@ h2 {
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
   font-size: 13px;
+  flex: 1 0 auto;
 }
 
-
+.mb-3 {
+  display: flex;
+}
 </style>

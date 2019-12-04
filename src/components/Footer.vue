@@ -21,24 +21,16 @@
             <h6 style="margin-left:-150px;">Quick Links</h6>
             <ul class="footer-links">
               <li>
-                <router-link to="/" exact @click.native="scrollToTop()"
-                  >Home</router-link
-                >
+                <router-link to="/" exact @click.native="scrollToTop()">Home</router-link>
               </li>
               <li>
-                <router-link to="/faq" exact @click.native="scrollToTop()"
-                  >FAQ</router-link
-                >
+                <router-link to="/faq" exact @click.native="scrollToTop()">FAQ</router-link>
               </li>
               <li>
-                <router-link to="/sell" exact @click.native="scrollToTop()"
-                  >List your property</router-link
-                >
+                <router-link to="/sell" exact @click.native="scrollToTop()">List your property</router-link>
               </li>
               <li>
-                <router-link to="/houses" exact @click.native="scrollToTop()"
-                  >Houses</router-link
-                >
+                <router-link to="/houses" exact @click.native="scrollToTop()">Houses</router-link>
               </li>
             </ul>
           </div>
@@ -50,7 +42,9 @@
           <div class="col-md-8 col-sm-6 col-xs-12">
             <p class="copyright-text">
               Copyright &copy; 2019 All Rights Reserved by
-              <a href="http://localhost:8080">Prodigy Real Estate</a>.
+              <a
+                href="http://localhost:8080"
+              >Prodigy Real Estate</a>.
             </p>
           </div>
 
@@ -77,7 +71,7 @@
 
               <!-- <li><a class="facebook" href="https://www.facebook.com/skgcode/" target="_blank"><i class="fa fa-facebook"></i></a></li>
               <li><a class="instagram" href="https://www.instagram.com/skgcode/?hl=el" target="_blank"><i class="fa fa-instagram"></i></a></li>
-              <li><a class="linkedin" href="https://www.linkedin.com/company/skgcode/" target="_blank"><i class="fa fa-linkedin"></i></a></li>    -->
+              <li><a class="linkedin" href="https://www.linkedin.com/company/skgcode/" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
             </ul>
           </div>
         </div>
