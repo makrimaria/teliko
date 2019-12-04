@@ -1,8 +1,8 @@
 <template>
-  <b-container fluid>
+  <b-container >
     <!-- <div id="background"> -->
     <b-row>
-      <b-col md="3" xl="2">
+      <b-col md="3" xl="2" >
         <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
         <br />
         <p>Filters</p>
@@ -177,14 +177,14 @@
           <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
           <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
           </b-form-group>-->
-          <div style="text-align: center;">
-            <b-button
+          <div style="text-align: center; ">
+            <b-button style="float:left;"
               type="submit"
               v-b-modal="'my-modal'"
               variant="outline-danger"
               class="m-2"
             >Apply</b-button>
-            <b-button
+            <b-button style="float:left;"
               @click="clearFilters()"
               v-b-modal="'my-modal'"
               variant="outline-danger"
@@ -195,14 +195,14 @@
       </b-col>
       <!-- </div> -->
       <br />
-      <div style="border-left:1px solid grey;height:inherit;"></div>
+      <div style="border-left:1px solid grey;height:inherit; margin-left:80px;"></div>
       <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
       <b-col v-if="houses == '' && loaded == true" md="8" lg="8" style="margin: auto;">
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
         <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
-        <jw-pagination :items="houses" :pageSize="9" @changePage="onChangePage"></jw-pagination>
+        <br><jw-pagination  :items="houses" :pageSize="8" @changePage="onChangePage"></jw-pagination>
       </b-col>
     </b-row>
     <!-- </div> -->
@@ -510,6 +510,13 @@ export default {
   height: max-content;
   width: max-content;
   color: black !important;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #b34c37 !important;
+    border-color: #b34c37 !important;
 }
 
 /* #table-style-variant {

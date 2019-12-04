@@ -6,10 +6,10 @@
     </h2>
     <b-row>
       <b-col
-        class="mb-3"
+        class="mb-2"
         cols="12"
         sm="6"
-        xl="4"
+        xl="6"
         v-for="house in pageOfItems"
         v-bind:key="house.id"
       >
@@ -38,13 +38,45 @@
 
           <!-- <p>{{house.id}}</p> -->
           <b-list-group-item class="black-link">
-            {{ house.data.type }} in {{ house.data.city }}
-            {{ house.data.location }}, {{ house.data.area }} m
-            <sup>2</sup>
-            ,
-            {{ house.data.price }}€
-            <div style="display: inline;" v-if="house.data.rent == true">for rent</div>
-            <div style="display: inline;" v-else>for sale</div>
+            <b-row>
+              <b-col>
+                <div id="price"> {{ house.data.price }}€ <div id="month" v-if="house.data.rent == true" style="display:inline;"> /month </div></div>
+                <div id="for" style="display:inline; font-size:16px; float:right;"> {{ house.data.city }}, {{ house.data.location }}  </div>
+
+              </b-col>
+            </b-row>
+            <b-row id="lefty"  style="float:right; display:inline;">
+
+
+             
+ 
+
+        
+
+                   {{house.data.type}} 
+                               
+<div class="vl"
+                   style="display:inline; border-left:1px solid #444; height:inherit; margin-right:3px;"> </div> 
+                   
+          <div v-if="house.data.rent == true" style="display:inline; ">for rent</div>
+            <div  v-else style="display:inline;"> for sale</div>
+
+
+      
+
+                 
+                   <div class="vl"
+                   style="display:inline; border-left:1px solid #444; height:inherit; margin-left:3px;"> </div>
+                    {{house.data.area}} m<sup>2</sup> 
+                  <!-- <div v-if="house.data.rent == true" style="display:inline;">for rent</div>
+            <div  v-else style="display:inline;"> for sale</div> -->
+            
+        
+            
+             
+
+            </b-row>
+            
           </b-list-group-item>
         </router-link>
       </b-col>
@@ -99,6 +131,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 p .house {
   color: black;
   font-size: 12px !important;
@@ -116,6 +150,7 @@ h2 {
   font-family: "Rajdhani", sans-serif;
 }
 
+
 .houze {
   color: black;
   display: flex;
@@ -131,11 +166,26 @@ h2 {
   color: black;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
-  font-size: 13px;
+  font-size: 16px;
   flex: 1 0 auto;
+  
 }
 
 .mb-3 {
   display: flex;
+}
+
+#price {
+  font-size: 20px;
+  color: #328ca8;
+  
+  float: left;
+}
+
+#month {
+  font-size: 16px;
+  color: #3279a8;
+
+
 }
 </style>

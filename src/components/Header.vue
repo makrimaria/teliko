@@ -13,9 +13,9 @@
     </div>
     <Intro />
     <b-container>
-      <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
+      <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards> 
       <jw-pagination style="display: none;" :items="houses" @changePage="onChangePage"></jw-pagination>
-    </b-container>
+     </b-container>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
     dbfs
       .collection("houses")
       .orderBy("created", "desc")
-      .limit(3)
+      .limit(2)
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {

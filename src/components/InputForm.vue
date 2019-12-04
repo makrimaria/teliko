@@ -312,7 +312,7 @@ export default {
   background-color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
-  border-radius: 3%;
+  border-radius: 5px;
 
   overflow: auto;
   /* opacity: 0.9; */
@@ -331,10 +331,17 @@ export default {
 #background {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
+  /* background-color: whitesmoke; */
   background-position: bottom center;
   height: 1200px;
   width: 100%;
   color: black !important;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #b34c37;
+    border-color: #b34c37;
 }
 
 /* .blockForm {

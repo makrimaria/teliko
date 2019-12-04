@@ -1,7 +1,7 @@
 <template>
   <div id="navigation">
     <div class="container">
-      <ul>
+      <ul >
         <li>
           <router-link to="/" exact>
             <img class="ant" src="@/assets/LogoMakr_0Deh1f.png" />
@@ -16,9 +16,9 @@
         <li>
           <router-link to="/faq" exact>FAQ</router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/contactt" exact>Contact</router-link>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

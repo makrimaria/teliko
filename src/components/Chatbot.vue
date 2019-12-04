@@ -58,6 +58,9 @@ export default {
   color: white;
   background-color: #b34c37;
   border-color: #b34c37;
+  width: 100px;
+  height: 80px;
+  margin: 25px 25px;
 }
 
 #toggleButton:focus {

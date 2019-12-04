@@ -4,7 +4,7 @@
       <div v-if="house[0] != null" class="row12" style="margin: 0px;">
         <b-row>
           <b-col>
-            <div class="carousel" style="height:400px;margin-top:30px; overflow:hidden">
+            <div v-if="house[0].image != null && house[0].image2 != null && house[0].image3 != null" class="carousel" style="height:400px;margin-top:30px; overflow:hidden">
               <div
                 id="carouselExampleIndicators"
                 class="carousel slide"
@@ -74,7 +74,9 @@
                 </a>
               </div>
             </div>
-          </b-col>
+              <div  v-else  style="height:400px;margin-top:30px; overflow:hidden">
+               <img class="d-block w-100" :src="house[0].image">    </div>
+                                  </b-col>
         </b-row>
 <br>
         <b-row>
@@ -88,7 +90,7 @@
             <div style="float:right">
               <button class="telephone" @click="toggle()">Telephone</button
               ><span class="number" v-show="isOpen" style="margin-left:10px;"
-                >2310 767 948</span
+              > {{house[0].tel}} </span
               >
             </div>
 
@@ -98,13 +100,8 @@
             <p class="descriptionTitle" style="font-weight:900; font-size:18px; margin-bottom:1px; float:left; font-family:Rajdhani, sans-serif">Description </p><br>
 
             <p class="description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
-              saepe autem enim quos, non asperiores aliquam corporis modi.
-              Tempora deserunt ducimus debitis temporibus iusto aliquid est
-              magni sequi sapiente aspernatur at dignissimos rerum, fugit
-              quibusdam nemo, non nulla minus dolore rem! Nam cupiditate error
-              pariatur consequuntur rerum, officia a adipisci unde blanditiis
-              dolor velit ipsam aliquid ex quasi doloremque perspiciatis!
+              {{house[0].desc}}
+              
             </p> 
           </b-col> 
         </b-row>

@@ -117,6 +117,7 @@ export default {
   height: 1200px;
   width: 100%;
   color: black !important;
+  /* background-color: whitesmoke; */
   
 }
 
@@ -135,7 +136,7 @@ export default {
   padding-left: 50px;
   background-color:whitesmoke;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
   p {
