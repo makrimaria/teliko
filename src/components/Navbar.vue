@@ -24,7 +24,6 @@
       </div>
       <div class="mobile">
         <Slide>
-          
           <b-nav class="unblur mobile-menu">
             <b-nav-item>
               <img style="width: 70%;" src="@/assets/LogoMakr_0Deh1f.png" />
@@ -62,12 +61,11 @@ export default {
     $(".bm-burger-button").click(function() {
       $("#wrapper").addClass("blur");
     });
-    $(".bm-cross-button").click(function() {
-      $("#wrapper").removeClass("blur");
-    });
-    $(".nav.unblur").click(function() {
-      $("#wrapper").removeClass("blur");
-    });
+    $(".bm-cross-button, .nav.unblur, #wrapper, #toggleButton").click(
+      function() {
+        $("#wrapper").removeClass("blur");
+      }
+    );
   }
 };
 </script>
@@ -179,8 +177,8 @@ a:hover {
   }
 
   li:hover {
-  background-color: transparent;
-}
+    background-color: transparent;
+  }
 }
 
 @media (min-width: 767px) {
@@ -196,6 +194,7 @@ a:hover {
   border: 5px solid #b34c37;
   border-left: 22px solid #b34c38;
   width: 50px;
+  border-radius: 0 15% 15% 0;
 }
 
 .bm-burger-bars {
@@ -203,7 +202,7 @@ a:hover {
 }
 
 .bm-item-list {
-  margin-left: 0; 
+  margin-left: 0;
 }
 
 .blur {
