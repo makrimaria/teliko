@@ -1,31 +1,73 @@
 <template>
   <div id="navigation">
     <div class="container">
-      <ul>
-        <li>
-          <router-link to="/" exact>
-            <img class="ant" src="@/assets/LogoMakr_0Deh1f.png" />
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/sell" exact>List your property</router-link>
-        </li>
-        <li>
-          <router-link to="/houses">Houses</router-link>
-        </li>
-        <li>
-          <router-link to="/faq" exact>FAQ</router-link>
-        </li>
-        <li>
-          <router-link to="/contactt" exact>Contact</router-link>
-        </li>
-      </ul>
+      <div class="desktop">
+        <ul>
+          <li>
+            <router-link to="/" exact>
+              <img class="ant" src="@/assets/LogoMakr_0Deh1f.png" />
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/sell" exact>List your property</router-link>
+          </li>
+          <li>
+            <router-link to="/houses">Houses</router-link>
+          </li>
+          <li>
+            <router-link to="/faq" exact>FAQ</router-link>
+          </li>
+          <li>
+            <router-link to="/contactt" exact>Contact</router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="mobile">
+        <Slide>
+          <b-nav class="unblur mobile-menu">
+            <b-nav-item>
+              <img style="width: 70%;" src="@/assets/LogoMakr_0Deh1f.png" />
+            </b-nav-item>
+            <b-nav-item>
+              <router-link to="/" exact>Home</router-link>
+            </b-nav-item>
+            <b-nav-item>
+              <router-link to="/sell" exact>List your property</router-link>
+            </b-nav-item>
+            <b-nav-item>
+              <router-link to="/houses">Houses</router-link>
+            </b-nav-item>
+            <b-nav-item>
+              <router-link to="/faq" exact>FAQ</router-link>
+            </b-nav-item>
+            <b-nav-item>
+              <router-link to="/contactt" exact>Contact</router-link>
+            </b-nav-item>
+          </b-nav>
+        </Slide>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { Slide } from "vue-burger-menu";
+import $ from "jquery";
+export default {
+  components: {
+    Slide
+  },
+  mounted() {
+    $(".bm-burger-button").click(function() {
+      $("#wrapper").addClass("blur");
+    });
+    $(".bm-cross-button, .nav.unblur, #wrapper, #toggleButton").click(
+      function() {
+        $("#wrapper").removeClass("blur");
+      }
+    );
+  }
+};
 </script>
 
 <style>
@@ -121,5 +163,49 @@ a:hover {
 
 .dropdown3:hover .dropdown3-content {
   display: block;
+}
+
+@media (max-width: 767px) {
+  .desktop {
+    display: none;
+  }
+
+  .nav.mobile-menu {
+    background-color: transparent;
+    display: grid;
+    padding: 0;
+  }
+
+  li:hover {
+    background-color: transparent;
+  }
+}
+
+@media (min-width: 767px) {
+  .mobile {
+    display: none;
+  }
+}
+.bm-burger-button {
+  z-index: 999;
+  top: 5px;
+  left: 0;
+  background-color: #b34c37;
+  border: 5px solid #b34c37;
+  border-left: 22px solid #b34c38;
+  width: 50px;
+  border-radius: 0 15% 15% 0;
+}
+
+.bm-burger-bars {
+  background-color: white;
+}
+
+.bm-item-list {
+  margin-left: 0;
+}
+
+.blur {
+  filter: blur(2px) brightness(0.5);
 }
 </style>

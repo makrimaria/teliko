@@ -21,7 +21,7 @@
           </b-form-group>-->
           <!-- Dropdown with search -->
           <label id="type__BV_label_" class="col-form-label pt-0">City</label>
-          <div id="watcher" class="cityDropDown">
+          <div class="cityDropDown">
             <model-select
               v-model="filters.city"
               :options="cityVariants"
