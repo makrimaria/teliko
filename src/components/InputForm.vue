@@ -9,8 +9,10 @@
       </div>
 
       <div class="column left" style="font-size:20px; margin-top: 60px; margin-left:60px;">
-        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
+          
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
@@ -370,6 +372,7 @@ export default {
 
 
 <style scoped>
+
 
  .mt-lg-2{
   align-self: auto;

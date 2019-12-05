@@ -178,6 +178,9 @@
           </b-col>
         </b-row>
 
+
+  <Maps></Maps>
+  <br>
         <!-- <b-img class="card" :src="house[0].image" style="width:inherit; height:auto;"></b-img> -->
         <!-- <div class="carousel"> 
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -230,10 +233,11 @@
 </template>
 
 <script>
+import Maps from "./Maps";
 import { dbfs } from "../config/db";
 export default {
   name: "Details",
-  components: {},
+  components: {Maps},
   data() {
     return {
       house: [],
@@ -255,6 +259,19 @@ export default {
   methods: {
     toggle: function() {
       this.isOpen = !this.isOpen;
+
+
+    console.log("MoreIndo array in db ::  "+this.house[0].moreInfo)
+  
+    var elev = this.house[0].moreInfo.indexOf("Elevator");
+    var prk = this.house[0].moreInfo.indexOf("Parking slot");
+    var balc = this.house[0].moreInfo.indexOf("Balcony");
+    var furn = this.house[0].moreInfo.indexOf("Furnished");
+        console.log("elev ::  "+elev)
+        console.log("prk  ::  "+prk)
+        console.log("balc ::  "+balc)
+        console.log("furn ::  "+furn)
+    if (elev!=-1){console.log("Elevator is !=1, so it exists in the array")}
     }
   }
 };
