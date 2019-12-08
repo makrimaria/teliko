@@ -9,7 +9,7 @@
         class="mb-3"
         cols="12"
         sm="6"
-        xl="4"
+        xl="6"
         v-for="house in pageOfItems"
         v-bind:key="house.id"
       >

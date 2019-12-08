@@ -27,7 +27,7 @@ import { dbfs } from "../config/db";
 import JwPagination from "jw-vue-pagination";
 
 export default {
-  name: "header",
+  name: "home",
   components: {
     DropDownMenu,
     Intro,

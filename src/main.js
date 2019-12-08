@@ -9,12 +9,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faComments } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
-import { faClipboardList } from '@fortawesome/free-solid-svg-icons'
+import { faList } from '@fortawesome/free-solid-svg-icons'
+import { faTh } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faComments)
 library.add(faBars)
 library.add(faHome)
-library.add(faClipboardList)
+library.add(faList)
+library.add(faTh)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 import 'bootstrap/dist/css/bootstrap.css'
