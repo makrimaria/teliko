@@ -1,20 +1,20 @@
 <template>
   <div id="background">
-    <div class="faqq">
-        <VueFaqAccordion :items="myItems" />
-    </div>   
-  </div>  
+    <div class="faqq container">
+      <VueFaqAccordion :items="myItems" />
+    </div>
+  </div>
 </template>
 
 <script>
 import VueFaqAccordion from "vue-faq-accordion";
 
 export default {
-    name: "FAQ",
-    components: {
-        VueFaqAccordion
-    },
-    data() {
+  name: "FAQ",
+  components: {
+    VueFaqAccordion
+  },
+  data() {
     return {
       myItems: [
         {
@@ -36,15 +36,15 @@ export default {
           category: "About Prodigy"
         },
         {
-          title: "How soon would I receive a call from you after placing my requirement?",
+          title:
+            "How soon would I receive a call from you after placing my requirement?",
           value:
             "You would receive a call back from us within 10-15 minutes of placing your enquiry with us, provided you have posted your requirements between 9:00 am and 6:00 pm. Otherwise, we would be reaching you the next day.",
           category: "About Prodigy"
         },
         {
           title: "How many properties can I own?",
-          value:
-            "You can own as many properties as you want.",
+          value: "You can own as many properties as you want.",
           category: "Buyers Corner"
         },
         {
@@ -54,7 +54,8 @@ export default {
           category: "Buyers Corner"
         },
         {
-          title: "Can I authorize someone else to register my property by granting him Power of Attorney?",
+          title:
+            "Can I authorize someone else to register my property by granting him Power of Attorney?",
           value:
             "Yes, you can execute Special Power Of Attorney to get your property registered by someone else.",
           category: "Buyers Corner"
@@ -77,75 +78,83 @@ export default {
           category: "Seller Corner"
         },
         {
-          title: "I want to sell my property. What are the documents a buyer would need from me?",
+          title:
+            "I want to sell my property. What are the documents a buyer would need from me?",
           value:
             "A buyer could ask you for the original Sale Deed, Title Deed, relevant tax receipts and Encumbrance Certificate.",
           category: "Seller Corner"
         },
         {
-          title: "Is it mandatory to register documents for the sale of property?",
-          value: "Yes. You can get it done at the sub-registrar's office of the concerned district.",
+          title:
+            "Is it mandatory to register documents for the sale of property?",
+          value:
+            "Yes. You can get it done at the sub-registrar's office of the concerned district.",
           category: "Seller Corner"
         },
         {
           title: "When is the sale of a residential property formalized?",
-          value: "The sale of a residential property is said to have been formalized if the seller has received the entire consideration amount, registration of the documents has been carried out and actual possession of the property has been granted to the buyer.",
+          value:
+            "The sale of a residential property is said to have been formalized if the seller has received the entire consideration amount, registration of the documents has been carried out and actual possession of the property has been granted to the buyer.",
           category: "Seller Corner"
         },
         {
-          title: "How soon would I receive a call from you after posting my property for sale?",
-          value: "You would receive a call back from us within 10-15 minutes of placing your enquiry with us, provided you have posted your requirements between 9:00 am and 6:00 pm. Otherwise, we would be reaching you the next day.",
+          title:
+            "How soon would I receive a call from you after posting my property for sale?",
+          value:
+            "You would receive a call back from us within 10-15 minutes of placing your enquiry with us, provided you have posted your requirements between 9:00 am and 6:00 pm. Otherwise, we would be reaching you the next day.",
           category: "Seller Corner"
         },
         {
           title: "I want to sell my property. How can Prodigy help me?",
-          value: "For selling your property, you need to fill an enquiry form, which is available on the home page of our website.",
+          value:
+            "For selling your property, you need to fill an enquiry form, which is available on the home page of our website.",
           category: "Seller Corner"
         }
       ]
-    }
-  }  
-}
+    };
+  }
+};
 </script>
 
 <style scoped >
-
 #background {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
   background-position: bottom center;
-  height: 1200px;
+  /* height: 1200px; */
   width: 100%;
   color: black !important;
-  
+  padding: 100px 0;
 }
 
 #background .faqq {
   display: block;
-   font-family: 'Rajdhani', sans-serif;
-   font-weight: 1100;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 1100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black !important;
   position: relative;
   margin: auto;
-  top:100px; 
-  width: 55%;
-  padding-left: 50px;
-  background-color:whitesmoke;
+  /* top: 100px; */
+  /* width: 55%; */
+  /* padding-left: 50px; */
+  background-color: whitesmoke;
   padding: 30px;
   border-radius: 20px;
 }
 
-  p {
-  color:black;
+.faq-wrapper[data-v-36e025b4] {
+  max-width: 1000px;
+  color: black;
+}
+
+p {
+  color: black;
   font-size: 25px;
   font-weight: 500;
   text-align: center;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
-
-
-
 </style>

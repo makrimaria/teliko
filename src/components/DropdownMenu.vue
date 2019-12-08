@@ -11,65 +11,25 @@
       <b-row align-h="center">
         <!-- <div class="row" style="margin-left: 250px;"> -->
         <div class="col-lg-3 col-md-3 col-sm-12 p-2 tp-bg">
-          <!-- <select class="form-control search-slt" id="exampleFormControlSelect1">
-                    <option>City</option>
-                    
-          </select>-->
-
-          <!-- <b-form-group id="city" label-for="table-style-variant">
-            <b-form-select
-              v-model="city"
-              :options="cityVariants"
-              v-on:change="onChange()"
-              id="table-style-variant"
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select City</option>
-              </template>
-            </b-form-select>
-          </b-form-group> -->
           <model-select
-              v-model="city"
-              :options="cityVariants"
-              placeholder="Select City"
-              v-on:click="onChange()"
-            ></model-select>
+            v-model="city"
+            :options="cityVariants"
+            placeholder="Select City"
+            v-on:click="onChange()"
+          ></model-select>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12 p-2 tp-bg">
-          <!-- <b-form-group id="region" label-for="table-style-variant">
-            <b-form-select
-              v-if="city==null && !regionVariants[city]"
-              v-model="region"
-              :options="regionVariants"
-              disabled
-              id="table-style-variant"
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select city first</option>
-              </template>
-            </b-form-select>
-            <b-form-select
-              v-else
-              v-model="region"
-              :options="regionVariants[city].text"
-              id="table-style-variant"
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select area</option>
-              </template>
-            </b-form-select>
-          </b-form-group> -->
-           <model-list-select
+          <model-list-select
             v-if="city == null && !regionVariants[city]"
             :list="[ ]"
             :isDisabled="true"
-            placeholder="Select City first"
+            placeholder="Select city first"
           ></model-list-select>
           <model-select
             v-else-if="regionVariants[city]"
             v-model="region"
             :options="regionVariants[city].text"
-            placeholder="Select Region"
+            placeholder="Select region"
           ></model-select>
         </div>
         <div class="col-lg-2 col-md-3 col-sm-12 p-2 tp-bg">
@@ -96,7 +56,7 @@ import "vue-search-select/dist/VueSearchSelect.css";
 
 export default {
   components: {
-     ModelSelect,
+    ModelSelect,
     ModelListSelect
   },
   data() {
@@ -121,15 +81,25 @@ export default {
         });
       });
     var j = 0;
+    var jj = 0;
+    var temp = [];
     dbfs
       .collection("cities")
       .orderBy("name", "asc")
-
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          this.regionVariants.push({ value: j, text: doc.data().regions });
+          while (doc.data().regions[jj]) {
+            temp.push({
+              value: doc.data().regions[jj],
+              text: doc.data().regions[jj]
+            });
+            jj++;
+          }
+          this.regionVariants.push({ value: j, text: temp });
           j++;
+          jj = 0;
+          temp = [];
         });
       });
   },
@@ -209,7 +179,6 @@ export default {
 .tp-bg {
   background-color: rgba(0, 0, 0, 0.6);
   border: 10px solid rgba(0, 0, 0, 0);
-  
 }
 </style>
 
