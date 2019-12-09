@@ -7,13 +7,13 @@
           <div class="col-sm-12 col-md-5">
             <h6>About</h6>
             <p class="text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sunt
-              repellat quo iure illo iste optio incidunt placeat. Voluptatibus
-              harum labore nobis, facilis aperiam aliquam veniam blanditiis eos,
-              molestiae dolore, nostrum itaque mollitia illum amet corporis
-              repellendus. Deleniti quia earum sequi provident aliquid, quasi
-              minus fugiat unde doloribus aliquam perferendis repellendus ex
-              distinctio, autem corrupti, placeat soluta vel id facilis!
+               Prodigy Real Estate is an online ad house. It hosts properties all over Greece
+               and invites users to search and find their dream home!
+              Users can search for real estate, post their own ad, and easily 
+              contact real estate brokers and professionals for removals or renovations.
+              The modern and easy-to-navigate design
+               helps the user to quickly begin their search and explore properties through
+                a highly-anticipated and real-estate ad grid, according to their location.
             </p>
           </div>
 
@@ -93,12 +93,12 @@ export default {
 
 <style scoped>
 .site-footer {
-  background-color: #333;
+  background-color: #161716;
   padding: 45px 0 20px;
   font-size: 15px;
   line-height: 24px;
   color: #737373;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .site-footer hr {

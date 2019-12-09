@@ -118,7 +118,7 @@ export default {
 
 <style scoped >
 #background {
-  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
+  background-image: url(https://images.unsplash.com/photo-1510568192-5cd6e7a47edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80);
   background-size: cover;
   background-position: bottom center;
   /* height: 1200px; */
@@ -142,7 +142,7 @@ export default {
   /* padding-left: 50px; */
   background-color: whitesmoke;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .faq-wrapper[data-v-36e025b4] {

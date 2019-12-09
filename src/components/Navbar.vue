@@ -72,7 +72,7 @@ export default {
 
 <style>
 #navigation {
-  background-color: #333;
+  background-color: #161716;
 }
 .router-link-active {
   background-color: #b34c37;
@@ -85,7 +85,7 @@ ul {
   margin-top: 0 !important;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #161716;
 }
 li {
   float: left;

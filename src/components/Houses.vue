@@ -47,6 +47,38 @@
             <b-form-input v-model="filters.areaMax" type="number" placeholder="To"></b-form-input>
           </b-form-group>
 
+           <b-form-group label="Additional">
+            
+             <b-form-checkbox
+              v-model="filters.balcony"
+              value="balcony"
+              
+              >Balcony</b-form-checkbox>
+
+              <b-form-checkbox
+              v-model="filters.parking"
+              value="parking"
+              
+              >Parking</b-form-checkbox
+            >
+
+            <b-form-checkbox
+              v-model="filters.elevator"
+              value="elevator"
+             
+              >Elevator</b-form-checkbox
+            >
+
+            <b-form-checkbox
+              v-model="filters.furnished"
+              value="furnished"
+              
+              >Furnished</b-form-checkbox
+            >
+            
+             </b-form-group>
+    
+
           <!-- 
         <hr />
 
@@ -210,23 +242,19 @@ export default {
         priceMin: null,
         priceMax: null,
         areaMin: null,
-        areaMax: null
+        areaMax: null,
+        balcony: null,
+        parking: null,
+        elevator:null,
+        furnished:null
       },
       cityVariants: [],
       regionVariants: [],
       typeVariants: [],
       furnished: false,
-      storage: false,
-      secureDoor: false,
-      alarm: false,
-      elevator: false,
-      garden: false,
-      petsWelcome: false,
+      elevator: false,    
       parking: false,
-      balcony: false,
-      fireplace: null,
-      view: "",
-      swimmingPool: false
+      balcony: false
     };
   },
   created() {
@@ -249,6 +277,11 @@ export default {
       this.filters.priceMax = null;
       this.filters.areaMin = null;
       this.filters.areaMax = null;
+      this.filters.balcony = null;
+      this.filters.parking = null;
+      this.filters.elevator = null;
+      this.filters.furnished = null;
+
     },
     onChange: function() {
       var temp = [];
@@ -289,6 +322,65 @@ export default {
           query = query.where("rent", "==", false);
         }
       }
+
+
+
+            // balcony
+        if (this.filters.balcony == "balcony") {
+        
+           query = query.where("balcony", "==", true);
+         }
+        else if (this.filters.balcony === null) {
+        {
+           query = query.where("balcony", "==", false);
+         }
+      }
+
+
+      //parking
+
+
+         if (this.filters.parking === "parking") {
+        
+          query = query.where("parking", "==", true);
+         }
+       else if (this.filters.parking === null) {
+        {
+           query = query.where("parking", "==", false);
+         }
+      }
+      console.log(this.filters.balcony)
+      console.log(this.filters.parking)
+
+
+    //elevator
+    
+         if (this.filters.elevator === "elevator") {
+        
+        query = query.where("elevator", "==", true);
+         }
+      else if (this.filters.elevator === null) {
+       {
+          query = query.where("elevator", "==", false);
+        }
+    }
+
+    //furnished
+
+        if (this.filters.furnished === "elevator") {
+        
+        query = query.where("furnished", "==", true);
+         }
+      else if (this.filters.furnished === null) {
+       {
+          query = query.where("furnished", "==", false);
+        }
+    }
+
+
+
+
+
       query
         .get()
         .then(querySnapshot => {
@@ -671,4 +763,15 @@ div.text.default {
   color: white;
   font-size: 1rem;
 }
+
+.btn-outline-danger {
+    color: #b34c37;
+    border-color: #b34c37;
+}
+
+.btn-outline-danger:hover {
+    color: white;
+    background-color: #b34c37;
+}
+
 </style>
