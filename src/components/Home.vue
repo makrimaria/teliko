@@ -7,7 +7,7 @@
           <span>Prodigy</span> Real Estate
         </h1>
 
-        <h2 class="head" style="color: white">Find your dream home!</h2>
+        <h2 class="head" style="color: white; ">Find your dream home!</h2>
         <DropDownMenu />
       </div>
     </div>
@@ -27,7 +27,7 @@ import { dbfs } from "../config/db";
 import JwPagination from "jw-vue-pagination";
 
 export default {
-  name: "header",
+  name: "home",
   components: {
     DropDownMenu,
     Intro,
@@ -78,7 +78,7 @@ body {
 } */
 
 .header .header-img {
-  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
+  background-image: url(https://images.unsplash.com/photo-1510568192-5cd6e7a47edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80);
   background-repeat: no-repeat !important;
   background-size: cover;
   background-position: 100%;
@@ -145,14 +145,14 @@ h1 {
   font-weight: 800 !important;
   font-size: 90px !important;
   text-align: center;
-  font-family: "Archivo Black", sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
-h2 .head {
-  font-size: 40px !important;
+.head {
+  font-size: 30px !important;
   font-weight: 700 !important;
   text-align: center;
-  font-family: "Archivo Black", sans-serif;
+  font-family: "Rajdhani", sans-serif ;
 }
 
 /* p {

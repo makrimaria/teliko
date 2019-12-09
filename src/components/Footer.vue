@@ -3,77 +3,78 @@
     <!-- Site footer -->
     <footer class="site-footer">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
+        <div class="row justify-content-around">
+          <div class="col-sm-12 col-md-5">
             <h6>About</h6>
             <p class="text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sunt
-              repellat quo iure illo iste optio incidunt placeat. Voluptatibus
-              harum labore nobis, facilis aperiam aliquam veniam blanditiis eos,
-              molestiae dolore, nostrum itaque mollitia illum amet corporis
-              repellendus. Deleniti quia earum sequi provident aliquid, quasi
-              minus fugiat unde doloribus aliquam perferendis repellendus ex
-              distinctio, autem corrupti, placeat soluta vel id facilis!
+               Prodigy Real Estate is an online ad house. It hosts properties all over Greece
+               and invites users to search and find their dream home!
+              Users can search for real estate, post their own ad, and easily 
+              contact real estate brokers and professionals for removals or renovations.
+              The modern and easy-to-navigate design
+               helps the user to quickly begin their search and explore properties through
+                a highly-anticipated and real-estate ad grid, according to their location.
             </p>
           </div>
 
-          <div class="col-xs-6 col-md-3 col-lg-4" style="margin-left: 100px;">
-            <h6 style="margin-left:-150px;">Quick Links</h6>
+          <!-- <div class="col-xs-6 col-md-3 col-lg-4" style="margin-left: 100px;"> -->
+          <div class="col-sm-12 col-md-5">
+            <h6>Quick Links</h6>
             <ul class="footer-links">
-              <li>
+              <li class="quick-link">
                 <router-link to="/" exact @click.native="scrollToTop()">Home</router-link>
               </li>
-              <li>
+
+              <li class="quick-link">
                 <router-link to="/faq" exact @click.native="scrollToTop()">FAQ</router-link>
               </li>
-              <li>
+
+              <li class="quick-link">
                 <router-link to="/sell" exact @click.native="scrollToTop()">List your property</router-link>
               </li>
-              <li>
+
+              <li class="quick-link">
                 <router-link to="/houses" exact @click.native="scrollToTop()">Houses</router-link>
               </li>
             </ul>
           </div>
         </div>
         <hr />
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">
-              Copyright &copy; 2019 All Rights Reserved by
-              <a
-                href="http://localhost:8080"
-              >Prodigy Real Estate</a>.
-            </p>
-          </div>
+        <div class="col-12">
+          <ul class="social-icons">
+            <a
+              href="https://www.facebook.com/skgcode/"
+              target="_blank"
+              class="fa fa-facebook"
+              style="margin-right:10px;"
+            ></a>
+            <a
+              href="https://www.instagram.com/skgcode/?hl=el"
+              target="_blank"
+              class="fa fa-instagram"
+              style="margin-right:10px;"
+            ></a>
+            <a
+              href="https://www.linkedin.com/company/skgcode/"
+              target="_blank"
+              class="fa fa-linkedin"
+              style="margin-right:10px;"
+            ></a>
 
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <ul class="social-icons">
-              <a
-                href="https://www.facebook.com/skgcode/"
-                target="_blank"
-                class="fa fa-facebook"
-                style="margin-right:10px;"
-              ></a>
-              <a
-                href="https://www.instagram.com/skgcode/?hl=el"
-                target="_blank"
-                class="fa fa-instagram"
-                style="margin-right:10px;"
-              ></a>
-              <a
-                href="https://www.linkedin.com/company/skgcode/"
-                target="_blank"
-                class="fa fa-linkedin"
-                style="margin-right:10px;"
-              ></a>
-
-              <!-- <li><a class="facebook" href="https://www.facebook.com/skgcode/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <!-- <li><a class="facebook" href="https://www.facebook.com/skgcode/" target="_blank"><i class="fa fa-facebook"></i></a></li>
               <li><a class="instagram" href="https://www.instagram.com/skgcode/?hl=el" target="_blank"><i class="fa fa-instagram"></i></a></li>
-              <li><a class="linkedin" href="https://www.linkedin.com/company/skgcode/" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            </ul>
-          </div>
+            <li><a class="linkedin" href="https://www.linkedin.com/company/skgcode/" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+          </ul>
+        </div>
+        <hr />
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <p class="copyright-text">
+            Copyright &copy; 2019 All Rights Reserved by
+            <a href="/#">Prodigy Real Estate</a>.
+          </p>
         </div>
       </div>
     </footer>
@@ -92,11 +93,12 @@ export default {
 
 <style scoped>
 .site-footer {
-  background-color: #333;
+  background-color: #161716;
   padding: 45px 0 20px;
   font-size: 15px;
   line-height: 24px;
   color: #737373;
+  /* margin-top: 50px; */
 }
 
 .site-footer hr {
@@ -123,8 +125,22 @@ export default {
   text-decoration:none;
   
 } */
-.footer-links {
-  padding-left: 10px;
+.footer-links,
+:active {
+  background-color: none;
+  /* padding-left: 10px; */
+}
+
+.router-link-active {
+  background-color: transparent;
+}
+
+.quick-link:hover {
+  background-color: transparent;
+}
+
+a:hover {
+  color: #b34c37 !important;
 }
 /* .footer-links li
 {

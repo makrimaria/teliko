@@ -1,41 +1,24 @@
 <template>
-  <b-container fluid>
-    <!-- <div id="background"> -->
+  <b-container class="mt-2">
     <b-row>
-      <b-col md="3" xl="2">
-        <!-- <div class="container4" style="width:300px; height:auto; float:left;"> -->
+      <b-col md="3" xl="3">
         <br />
         <p>Filters</p>
         <b-form id="form" ref="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
-          <!-- <b-form-group label="City" id="city" label-for="table-style-variant">
-            <b-form-select
-              v-model="filters.city"
-              :options="cityVariants"
-              v-on:change="onChange()"
-              id="table-style-variant"
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select City</option>
-              </template>
-            </b-form-select>
-          </b-form-group>-->
-          <!-- Dropdown with search -->
           <label id="type__BV_label_" class="col-form-label pt-0">City</label>
-          <div id="watcher" class="cityDropDown">
-            <model-select
-              v-model="filters.city"
-              :options="cityVariants"
-              placeholder="Select City"
-              v-on:click="onChange()"
-            ></model-select>
-          </div>
+          <model-select
+            v-model="filters.city"
+            :options="cityVariants"
+            placeholder="Select city"
+            v-on:click="onChange()"
+          ></model-select>
           <br />
           <label id="type__BV_label_" class="col-form-label pt-0">Region</label>
           <model-list-select
             v-if="filters.city == null && !regionVariants[filters.city]"
             :list="[ ]"
             :isDisabled="true"
-            placeholder="Select City first"
+            placeholder="Select city first"
           ></model-list-select>
           <model-select
             v-else-if="regionVariants[filters.city]"
@@ -43,63 +26,60 @@
             :options="regionVariants[filters.city].text"
             placeholder="Select Region"
           ></model-select>
-
           <br />
-
-          <!-- -->
-          <!-- <b-form-group label="Region" id="region" label-for="table-style-variant">
-            <b-form-select
-              v-if="filters.city!=null && regionVariants[filters.city]"
-              v-model="filters.region"
-              :options="regionVariants[filters.city].text"
-              id="table-style-variant"
-            >
-              <template v-slot:first>
-                <option :value="null" default="null" disabled>Select area</option>
-              </template>
-            </b-form-select>
-          </b-form-group>-->
-          <b-form-group label="Type" id="type">
-            <b-form-select v-model="filters.type" :options="typeVariants" id="table-style-variant">
-              <template v-slot:first>
-                <option :value="null" disabled>Select type</option>
-              </template>
-            </b-form-select>
-          </b-form-group>
+          <label id="type__BV_label_" class="col-form-label pt-0">Type</label>
+          <model-select v-model="filters.type" :options="typeVariants" placeholder="Select type"></model-select>
+          <br />
           <b-form-group label="Property for">
             <b-form-radio-group class="mt-lg-2">
               <b-form-radio value="Rent" v-model="filters.rent" inline>Rent</b-form-radio>
               <b-form-radio value="Sale" v-model="filters.rent" inline>Sale</b-form-radio>
             </b-form-radio-group>
           </b-form-group>
-          <!-- <vue-slider v-model="price" :min="price.min" :max="price.max" :interval="1" :tooltip="'always'"></vue-slider> -->
-          <b-form-group label="Price" id="price">
-            <b-form-input
-              v-model="filters.priceMin"
-              type="number"
-              placeholder="From"
-              id="table-style-variant"
-            ></b-form-input>
+          <b-form-group label="Price (€)" id="price">
+            <b-form-input v-model="filters.priceMin" type="number" placeholder="From"></b-form-input>
             <br />
-            <b-form-input
-              v-model="filters.priceMax"
-              type="number"
-              placeholder="To"
-              id="table-style-variant"
-            ></b-form-input>
+            <b-form-input v-model="filters.priceMax" type="number" placeholder="To"></b-form-input>
+          </b-form-group>
+          <b-form-group label="Area (m²)" id="area">
+            <b-form-input v-model="filters.areaMin" type="number" placeholder="From"></b-form-input>
+            <br />
+            <b-form-input v-model="filters.areaMax" type="number" placeholder="To"></b-form-input>
           </b-form-group>
 
+           <b-form-group label="Additional">
+            
+             <b-form-checkbox
+              v-model="filters.balcony"
+              value="balcony"
+              
+              >Balcony</b-form-checkbox>
+
+              <b-form-checkbox
+              v-model="filters.parking"
+              value="parking"
+              
+              >Parking</b-form-checkbox
+            >
+
+            <b-form-checkbox
+              v-model="filters.elevator"
+              value="elevator"
+             
+              >Elevator</b-form-checkbox
+            >
+
+            <b-form-checkbox
+              v-model="filters.furnished"
+              value="furnished"
+              
+              >Furnished</b-form-checkbox
+            >
+            
+             </b-form-group>
+    
+
           <!-- 
-        
-
-        <b-form-group label="Type" label-for="table-style-variant">
-          <b-form-select v-model="tableVariant" :options="typeVariants" id="table-style-variant">
-            <template v-slot:first>
-              <option value>Type</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-
         <hr />
 
         <b-form-group label="Heating Type">
@@ -193,20 +173,30 @@
           </div>
         </b-form>
       </b-col>
-      <!-- </div> -->
+
       <br />
       <div style="border-left:1px solid grey;height:inherit;"></div>
-      <!-- <div class="containerHouses" style="margin-left:300px; width:auto; height:100%;"> -->
       <b-col v-if="houses == '' && loaded == true" md="8" lg="8" style="margin: auto;">
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
+        <b-button squared variant="outline-secondary">
+          <font-awesome-icon style="font-size: 1.1rem;" icon="list" />
+        </b-button>
+        <b-button squared variant="outline-secondary">
+          <font-awesome-icon style="font-size: 1.1rem;" icon="th" />
+        </b-button>
+        <b-form-select v-model="perPage" :options="itemsPerPage" @change="onChange()"></b-form-select>
         <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
-        <jw-pagination :items="houses" :pageSize="9" @changePage="onChangePage"></jw-pagination>
+        <jw-pagination
+          :items="houses"
+          :pageSize="perPage"
+          @changePage="onChangePage"
+          :labels="CustomLabels"
+          :key="perPage"
+        ></jw-pagination>
       </b-col>
     </b-row>
-    <!-- </div> -->
-    <!-- </div> -->
   </b-container>
 </template>
 
@@ -221,6 +211,13 @@ import "vue-search-select/dist/VueSearchSelect.css";
 
 import JwPagination from "jw-vue-pagination";
 
+const CustomLabels = {
+  first: "<<",
+  last: ">>",
+  previous: "<",
+  next: ">"
+};
+
 export default {
   components: {
     Cards,
@@ -230,6 +227,9 @@ export default {
   },
   data() {
     return {
+      itemsPerPage: [10, 20, 50],
+      perPage: 10,
+      CustomLabels,
       pageOfItems: [],
       loaded: true,
       index: "",
@@ -240,23 +240,21 @@ export default {
         type: null,
         rent: null,
         priceMin: null,
-        priceMax: null
+        priceMax: null,
+        areaMin: null,
+        areaMax: null,
+        balcony: null,
+        parking: null,
+        elevator:null,
+        furnished:null
       },
       cityVariants: [],
       regionVariants: [],
       typeVariants: [],
       furnished: false,
-      storage: false,
-      secureDoor: false,
-      alarm: false,
-      elevator: false,
-      garden: false,
-      petsWelcome: false,
+      elevator: false,    
       parking: false,
-      balcony: false,
-      fireplace: null,
-      view: "",
-      swimmingPool: false
+      balcony: false
     };
   },
   created() {
@@ -277,11 +275,19 @@ export default {
       this.filters.rent = null;
       this.filters.priceMin = null;
       this.filters.priceMax = null;
+      this.filters.areaMin = null;
+      this.filters.areaMax = null;
+      this.filters.balcony = null;
+      this.filters.parking = null;
+      this.filters.elevator = null;
+      this.filters.furnished = null;
+
     },
     onChange: function() {
-      console.log("hi");
-      this.filters.region = "";
-      this.filters.region = null;
+      var temp = [];
+      temp = this.houses;
+      this.houses = [];
+      setTimeout(() => this.houses = temp, 1);      
     },
     submitFilters: function() {
       this.loaded = false;
@@ -316,15 +322,64 @@ export default {
           query = query.where("rent", "==", false);
         }
       }
-      /*
-      if (this.filters.priceMin != null) {
-        query = query.where("price", ">=", parseInt(this.filters.priceMin));
+
+
+
+            // balcony
+        if (this.filters.balcony == "balcony") {
+        
+           query = query.where("balcony", "==", true);
+         }
+        else if (this.filters.balcony === null) {
+        {
+           query = query.where("balcony", "==", false);
+         }
       }
 
-      if (this.filters.priceMax != null) {
-        query = query.where("price", "<=", parseInt(this.filters.priceMax));
+
+      //parking
+
+
+         if (this.filters.parking === "parking") {
+        
+          query = query.where("parking", "==", true);
+         }
+       else if (this.filters.parking === null) {
+        {
+           query = query.where("parking", "==", false);
+         }
       }
-      */
+      console.log(this.filters.balcony)
+      console.log(this.filters.parking)
+
+
+    //elevator
+    
+         if (this.filters.elevator === "elevator") {
+        
+        query = query.where("elevator", "==", true);
+         }
+      else if (this.filters.elevator === null) {
+       {
+          query = query.where("elevator", "==", false);
+        }
+    }
+
+    //furnished
+
+        if (this.filters.furnished === "elevator") {
+        
+        query = query.where("furnished", "==", true);
+         }
+      else if (this.filters.furnished === null) {
+       {
+          query = query.where("furnished", "==", false);
+        }
+    }
+
+
+
+
 
       query
         .get()
@@ -347,6 +402,24 @@ export default {
             self.houses = self.houses.filter(function(house) {
               return (
                 parseInt(house.data.price) <= parseInt(self.filters.priceMax)
+              );
+            });
+          }
+        })
+        //Get houses based on area. Executes javascript after fetching data from firestore
+        .then(() => {
+          var self = this;
+          if (self.filters.areaMin != null && self.filters.areaMin != "") {
+            self.houses = self.houses.filter(function(house) {
+              return (
+                parseInt(house.data.area) >= parseInt(self.filters.areaMin)
+              );
+            });
+          }
+          if (self.filters.areaMax != null && self.filters.areaMax != "") {
+            self.houses = self.houses.filter(function(house) {
+              return (
+                parseInt(house.data.area) <= parseInt(self.filters.areaMax)
               );
             });
           }
@@ -430,10 +503,38 @@ export default {
             );
             self.filters.type = self.typeVariants[index].value;
           }
+        })
+        //Check rest fields for queries values
+        .then(function() {
+          //For rent/sale
+          if (self.$route.query.rent != null) {
+            if (JSON.parse(self.$route.query.rent) == true) {
+              self.filters.rent = "Rent";
+              console.log(self.filters.rent);
+            }
+            if (JSON.parse(self.$route.query.rent) == false) {
+              self.filters.rent = "Sale";
+            }
+          }
+          //Price range
+          if (self.$route.query.priceMin != null) {
+            console.log(self.$route.query.priceMin);
+            self.filters.priceMin = self.$route.query.priceMin;
+          }
+          if (self.$route.query.priceMax != null) {
+            self.filters.priceMax = self.$route.query.priceMax;
+          }
+          //Area range
+          if (self.$route.query.areaMin != null) {
+            console.log(self.$route.query.areaeMin);
+            self.filters.areaMin = self.$route.query.areaMin;
+          }
+          if (self.$route.query.areaMax != null) {
+            self.filters.areaMax = self.$route.query.areaMax;
+          }
         });
     },
     getQueries: function() {
-      
       // dbfs
       //   .collection("houses")
       //   .orderBy("price", "desc")
@@ -477,11 +578,61 @@ export default {
           query = query.where("type", "==", this.$route.query.type);
         }
 
-        query.get().then(querySnapshot => {
-          querySnapshot.docs.forEach(doc => {
-            this.houses.push({ id: doc.id, data: doc.data() });
+        if (this.$route.query.rent != null) {
+          if (JSON.parse(this.$route.query.rent) == true) {
+            query = query.where("rent", "==", true);
+          }
+          if (JSON.parse(this.$route.query.rent) == false) {
+            query = query.where("rent", "==", false);
+          }
+        }
+
+        query
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.docs.forEach(doc => {
+              this.houses.push({ id: doc.id, data: doc.data() });
+            });
+          })
+          .then(() => {
+            var self = this;
+            if (self.$route.query.priceMin != null) {
+              self.houses = self.houses.filter(function(house) {
+                return (
+                  parseInt(house.data.price) >=
+                  parseInt(self.$route.query.priceMin)
+                );
+              });
+            }
+            if (self.$route.query.priceMax != null) {
+              self.houses = self.houses.filter(function(house) {
+                return (
+                  parseInt(house.data.price) <=
+                  parseInt(self.$route.query.priceMax)
+                );
+              });
+            }
+          })
+          //Get houses based on area. Executes javascript after fetching data from firestore
+          .then(() => {
+            var self = this;
+            if (self.$route.query.areaMin != null) {
+              self.houses = self.houses.filter(function(house) {
+                return (
+                  parseInt(house.data.area) >=
+                  parseInt(self.$route.query.areaMin)
+                );
+              });
+            }
+            if (self.$route.query.areaMax != null) {
+              self.houses = self.houses.filter(function(house) {
+                return (
+                  parseInt(house.data.area) <=
+                  parseInt(self.$route.query.areaMax)
+                );
+              });
+            }
           });
-        });
       } else {
         //Fetch all houses
         dbfs
@@ -500,9 +651,6 @@ export default {
 
 
 <style scoped >
-.cityDropDown:focus-within {
-  background-color: black;
-}
 #background {
   background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
   background-size: cover;
@@ -610,4 +758,20 @@ p {
   opacity: 0.85;
   padding: 50px;
 }
+
+div.text.default {
+  color: white;
+  font-size: 1rem;
+}
+
+.btn-outline-danger {
+    color: #b34c37;
+    border-color: #b34c37;
+}
+
+.btn-outline-danger:hover {
+    color: white;
+    background-color: #b34c37;
+}
+
 </style>

@@ -150,7 +150,7 @@
              <b-form-group label="Floor" style="margin-left:40px; width:50px; text-align:left;">
                 <input
                   type="number"
-                  v-model="floor"
+                  v-model="house.floor"
                   class="form-control search-slt"
                   name="floor"
                   style="font-weight:500; width:150px; font-size:18px; text-align:center"
@@ -179,8 +179,18 @@
             placeholder="Telephone number"
           ></b-form-input>
         </b-form-group>
+
+<b-form-group label="Description" style="text-align:left;">
+        <b-form-textarea
+    id="textarea-rows"
+    placeholder="Describe your property"
+    rows="5"
+    v-model="house.desc"
+  ></b-form-textarea> </b-form-group>
       
-        <br>
+
+
+        
         <ImageUploader style="margin-left:-110px;">        </ImageUploader>
 
         <button v-on:click="submitHouse" style="margin-top:70px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
@@ -389,7 +399,7 @@ export default {
   background-color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
-  border-radius: 3%;
+  border-radius: 5px;
 
   overflow: auto;
   /* opacity: 0.9; */
@@ -406,7 +416,7 @@ export default {
 } */
 
 #background {
-  background-image: url(https://images.unsplash.com/photo-1572240979568-6ddb008a1128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80);
+  background-image: url(https://images.unsplash.com/photo-1510568192-5cd6e7a47edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80);
   background-size: cover;
   background-position: bottom center;
   height: 1200px;
@@ -424,6 +434,12 @@ export default {
 .column {
   width: 50%;
   /* float: left; */
+}
+
+.btn-danger {
+    color: #fff;
+    background-color:#b34c37;
+    border-color: #b34c37;
 }
 
 

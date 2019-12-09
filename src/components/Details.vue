@@ -4,7 +4,7 @@
       <div v-if="house[0] != null" class="row12" style="margin: 0px;">
         <b-row>
           <b-col>
-            <div class="carousel" style="height:400px;margin-top:30px; overflow:hidden">
+            <div v-if="house[0].image != null && house[0].image2 != null && house[0].image3 != null" class="carousel" style="height:400px;margin-top:30px; overflow:hidden">
               <div
                 id="carouselExampleIndicators"
                 class="carousel slide"
@@ -74,6 +74,8 @@
                 </a>
               </div>
             </div>
+                         <div  v-else  style="height:400px;margin-top:30px; overflow:hidden">
+               <img class="d-block w-100" :src="house[0].image">    </div>
           </b-col>
         </b-row>
 <br>
@@ -88,7 +90,7 @@
             <div style="float:right">
               <button class="telephone" @click="toggle()">Telephone</button
               ><span class="number" v-show="isOpen" style="margin-left:10px;"
-                >2310 767 948</span
+                > {{house[0].tel}} </span
               >
             </div>
 
@@ -98,13 +100,7 @@
             <p class="descriptionTitle" style="font-weight:900; font-size:18px; margin-bottom:1px; float:left; font-family:Rajdhani, sans-serif">Description </p><br>
 
             <p class="description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
-              saepe autem enim quos, non asperiores aliquam corporis modi.
-              Tempora deserunt ducimus debitis temporibus iusto aliquid est
-              magni sequi sapiente aspernatur at dignissimos rerum, fugit
-              quibusdam nemo, non nulla minus dolore rem! Nam cupiditate error
-              pariatur consequuntur rerum, officia a adipisci unde blanditiis
-              dolor velit ipsam aliquid ex quasi doloremque perspiciatis!
+             {{house[0].desc}}
             </p> 
           </b-col> 
         </b-row>
@@ -129,7 +125,7 @@
                 <b> Property for:</b> Rent
               </div>
               <div class="iff" v-else><b>Property for: </b> Sale</div>
-              <b>Floor:</b> 7 <br />
+              <b>Floor:</b> {{ house[0].floor }} <br />
             </div>
           </b-col>
         </b-row>
@@ -139,20 +135,41 @@
           <b-col class="col1">
             <h3 class="dets">- More info</h3>
             <div class="table">
-              
 
-              <ion-icon
-                name="checkmark-circle-outline"
+              <div v-if="house[0].parking == true" > 
+                 <ion-icon
+                name="checkmark"
                 style="margin-right:15px;"
               >
               </ion-icon
               ><b>Parking</b> <br />
-              <ion-icon
-                name="checkmark-circle-outline"
+              </div>
+              <div v-else> 
+                <ion-icon name="close" style="margin-right:15px;">
+
+                </ion-icon>
+
+                <b>Parking</b> <br />
+
+              </div>
+              
+
+              <div v-if="house[0].balcony == true" > 
+                 <ion-icon
+                name="checkmark"
                 style="margin-right:15px;"
               >
               </ion-icon
-              ><b>Balcony </b> <br />
+              ><b>Balcony</b> <br />
+              </div>
+              <div v-else> 
+                <ion-icon name="close" style="margin-right:15px;">
+
+                </ion-icon>
+
+                <b>Balcony</b> <br />
+
+              </div>
               
             </div>
 
@@ -161,18 +178,39 @@
           <b-col class="col2"> 
             <div class="table2">
 
-              <ion-icon
-                name="checkmark-circle-outline"
+               <div v-if="house[0].elevator == true" > 
+                 <ion-icon
+                name="checkmark"
                 style="margin-right:15px;"
               >
               </ion-icon
               ><b>Elevator</b> <br />
-              <ion-icon
-                name="checkmark-circle-outline"
+              </div>
+              <div v-else> 
+                <ion-icon name="close" style="margin-right:15px;">
+
+                </ion-icon>
+
+                <b>Elevator</b> <br />
+
+              </div>
+
+               <div v-if="house[0].furnished == true" > 
+                 <ion-icon
+                name="checkmark"
                 style="margin-right:15px;"
               >
               </ion-icon
               ><b>Furnished</b> <br />
+              </div>
+              <div v-else> 
+                <ion-icon name="close" style="margin-right:15px;">
+
+                </ion-icon>
+
+                <b>Furnished</b> <br />
+
+              </div>
               
             </div>
           </b-col>

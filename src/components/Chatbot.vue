@@ -2,7 +2,7 @@
   <div>
     <div id="chatbot" style="display:none;">
       <iframe
-        style="margin-bottom:52px;"
+        style="margin-bottom:75px;"
         allow="microphone;"
         class="bottomright"
         width="450"
@@ -50,14 +50,16 @@ export default {
 <style>
 .bottomright {
   position: fixed;
-  bottom: 5px;
-  right: 5px;
+  bottom: 15px;
+  right: 15px;
   z-index: 9;
 }
 #toggleButton {
   color: white;
   background-color: #b34c37;
   border-color: #b34c37;
+  width: 80px;
+  height: 80px;
 }
 
 #toggleButton:focus {
@@ -98,4 +100,6 @@ button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+
 </style>
