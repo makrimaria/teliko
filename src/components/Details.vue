@@ -90,7 +90,7 @@
             <div style="float:right">
               <button class="telephone" @click="toggle()">Telephone</button
               ><span class="number" v-show="isOpen" style="margin-left:10px;"
-                >2310 767 948</span
+                > {{house[0].tel}} </span
               >
             </div>
 
