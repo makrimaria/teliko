@@ -136,7 +136,7 @@
             <h3 class="dets">- More info</h3>
             <div class="table">
 
-              <div v-if="house[0].parking == true" > 
+              <div v-if="house[0].moreInfo == true" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -195,7 +195,7 @@
 
               </div>
 
-               <div v-if="house[0].furnished == true" > 
+               <div v-if="this.prk != -1" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -284,6 +284,7 @@ export default {
   },
 
   mounted() {
+    
     dbfs
       .collection("houses")
       .doc(this.$route.query.id)

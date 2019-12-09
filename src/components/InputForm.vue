@@ -183,6 +183,7 @@
 <b-form-group label="Description" style="text-align:left;">
         <b-form-textarea
     id="textarea-rows"
+    type="text"
     placeholder="Describe your property"
     rows="5"
     v-model="house.desc"
@@ -246,7 +247,8 @@ export default {
         area: "",
         price: "",
         floor:"",
-        tel:""
+        tel:"",
+        desc:""
         
       },
       filters: {
@@ -300,6 +302,8 @@ export default {
     reset(){
       this.house.area='',
       this.house.price='',
+      this.house.tele='',
+      this.house.desc='',
       this.addr1=
       this.addr2=
       this.floor='',
@@ -333,7 +337,7 @@ export default {
           var price = this.house.price.toString();
           var category = this.house.category;
           var type = this.house.type;
-          var flor=this.floor;
+          var flor=this.house.floor;
           var tele=this.house.tel;
           
           if (
@@ -361,7 +365,8 @@ export default {
           this.house.image=this.img;
           this.house.address=this.addr1 + ' ' + this.addr2.toString();
           this.house.moreInfo=this.selected;
-          this.house.floor=this.floor;
+          this.house.floor=this.house.floor;
+          console.log("desc:  "+this.house.desc)
        
           var house = housesRef.doc();
           house.set(this.house);
