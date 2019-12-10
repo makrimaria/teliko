@@ -15,7 +15,7 @@
     <gmap-map
       :center="center"
       :zoom="12"
-      style="width:40%;  height: 400px; align:'center';"
+      style="width:100%;  height: 400px; align:'center';"
     >
       <gmap-marker
         :key="index"
@@ -34,10 +34,10 @@ export default {
     return {
       // default to Montreal to keep it simple
       // change this to whatever makes sense
-      center: { lat: 45.508, lng: -73.587 },
-      markers: []
-      //places: [],
-      //currentPlace: null
+      center: { lat: 39.362372, lng: 22.951689 },
+      markers: [],
+      places: [],
+      currentPlace: null
     };
   },
 
@@ -46,22 +46,22 @@ export default {
   },
 
   methods: {
-    // receives a place object via the autocomplete component
-    // setPlace(place) {
-    //   this.currentPlace = place;
-    // },
-    // addMarker() {
-    //   if (this.currentPlace) {
-    //     const marker = {
-    //       lat: this.currentPlace.geometry.location.lat(),
-    //       lng: this.currentPlace.geometry.location.lng()
-    //     };
-    //     this.markers.push({ position: marker });
-    //     this.places.push(this.currentPlace);
-    //     this.center = marker;
-    //     this.currentPlace = null;
-    //   }
-    // },
+     //receives a place object via the autocomplete component
+     setPlace(place) {
+     this.currentPlace = place;
+    },
+    addMarker() {
+      if (this.currentPlace) {
+        const marker = {
+          lat: this.currentPlace.geometry.location.lat(),
+          lng: this.currentPlace.geometry.location.lng()
+        };
+        this.markers.push({ position: marker });
+        this.places.push(this.currentPlace);
+        this.center = marker;
+        this.currentPlace = null;
+      }
+    },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {

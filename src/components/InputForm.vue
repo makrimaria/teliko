@@ -9,8 +9,10 @@
       </div>
 
       <div class="column left" style="font-size:20px; margin-top: 60px; margin-left:60px;">
-        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
+          
           <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
@@ -181,6 +183,7 @@
 <b-form-group label="Description" style="text-align:left;">
         <b-form-textarea
     id="textarea-rows"
+    type="text"
     placeholder="Describe your property"
     rows="5"
     v-model="house.desc"
@@ -244,7 +247,8 @@ export default {
         area: "",
         price: "",
         floor:"",
-        tel:""
+        tel:"",
+        desc:""
         
       },
       filters: {
@@ -298,6 +302,8 @@ export default {
     reset(){
       this.house.area='',
       this.house.price='',
+      this.house.tele='',
+      this.house.desc='',
       this.addr1=
       this.addr2=
       this.floor='',
@@ -331,7 +337,7 @@ export default {
           var price = this.house.price.toString();
           var category = this.house.category;
           var type = this.house.type;
-          var flor=this.floor;
+          var flor=this.house.floor;
           var tele=this.house.tel;
           
           if (
@@ -359,7 +365,8 @@ export default {
           this.house.image=this.img;
           this.house.address=this.addr1 + ' ' + this.addr2.toString();
           this.house.moreInfo=this.selected;
-          this.house.floor=this.floor;
+          this.house.floor=this.house.floor;
+          console.log("desc:  "+this.house.desc)
        
           var house = housesRef.doc();
           house.set(this.house);
@@ -380,6 +387,7 @@ export default {
 
 
 <style scoped>
+
 
  .mt-lg-2{
   align-self: auto;

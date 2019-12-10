@@ -136,7 +136,7 @@
             <h3 class="dets">- More info</h3>
             <div class="table">
 
-              <div v-if="house[0].parking == true" > 
+              <div v-if="house[0].moreInfo == true" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -195,7 +195,7 @@
 
               </div>
 
-               <div v-if="house[0].furnished == true" > 
+               <div v-if="this.prk != -1" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -216,6 +216,9 @@
           </b-col>
         </b-row>
 
+
+  <Maps></Maps>
+  <br>
         <!-- <b-img class="card" :src="house[0].image" style="width:inherit; height:auto;"></b-img> -->
         <!-- <div class="carousel"> 
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -268,10 +271,11 @@
 </template>
 
 <script>
+import Maps from "./Maps";
 import { dbfs } from "../config/db";
 export default {
   name: "Details",
-  components: {},
+  components: {Maps},
   data() {
     return {
       house: [],
@@ -280,6 +284,7 @@ export default {
   },
 
   mounted() {
+    
     dbfs
       .collection("houses")
       .doc(this.$route.query.id)
@@ -294,18 +299,18 @@ export default {
     toggle: function() {
       this.isOpen = !this.isOpen;
 
-        // Minor help
-        console.log("MoreIndo array in db ::  "+this.house[0].moreInfo)
-        var elev = this.house[0].moreInfo.indexOf("Elevator");
-        var prk = this.house[0].moreInfo.indexOf("Parking slot");
-        var balc = this.house[0].moreInfo.indexOf("Balcony");
-        var furn = this.house[0].moreInfo.indexOf("Furnished");
+
+    console.log("MoreIndo array in db ::  "+this.house[0].moreInfo)
+  
+    var elev = this.house[0].moreInfo.indexOf("Elevator");
+    var prk = this.house[0].moreInfo.indexOf("Parking slot");
+    var balc = this.house[0].moreInfo.indexOf("Balcony");
+    var furn = this.house[0].moreInfo.indexOf("Furnished");
         console.log("elev ::  "+elev)
         console.log("prk  ::  "+prk)
         console.log("balc ::  "+balc)
         console.log("furn ::  "+furn)
-          if (elev!=-1){console.log("Elevator is !=1, so it exists in the array")}
-        // Over
+    if (elev!=-1){console.log("Elevator is !=1, so it exists in the array")}
     }
   }
 };
