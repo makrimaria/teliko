@@ -82,6 +82,15 @@ h2 {
   text-align: center;
   font-family: "Rajdhani", sans-serif;
 }
+
+
+h4 {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 900;
+    margin-top:10px;
+    margin-bottom:0px;
+
+}
 </style>
 
 

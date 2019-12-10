@@ -17,9 +17,7 @@
           <li>
             <router-link to="/faq" exact>FAQ</router-link>
           </li>
-          <li>
-            <router-link to="/contactt" exact>Contact</router-link>
-          </li>
+         
         </ul>
       </div>
       <div class="mobile">

@@ -1,19 +1,19 @@
 <template>
   <div id="background">
-    <div class="container" style="padding:20px;">
-      <div>
+    <div class="container" >
+    <div>
         <br />
         <h4>Do you want to list your property?</h4>
         <h4>Just fill the form and we will take care of it :)</h4>
         <hr >
       </div>
 
-      <div class="column left" style="font-size:20px; margin-top: 60px; margin-left:60px;">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <b-form id="form" v-on:submit.prevent="submitHouse"> </b-form><br />
 
-        <b-form id="form" v-on:submit.prevent="submitHouse"> <br />
-          
-          <b-form-group label="Property Type" style="text-align:left;">
+    <b-row>
+      <b-col >
+
+        <b-form-group label="Property Type" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
               name="Type"
@@ -30,7 +30,9 @@
             </b-form-radio-group>
           </b-form-group> <br />
 
-          <b-form-group label="Available for:" style="text-align:left;">
+         
+
+                   <b-form-group label="Available for:" style="text-align:left;">
             <b-form-radio-group
               class="mt-lg-2"
               name="type"
@@ -43,68 +45,11 @@
               <b-form-radio value="rent" inline>Rent</b-form-radio>
             </b-form-radio-group>
           </b-form-group> <br />
-          
-           <b-form-group label="More info" style="text-align:left;">
-            <b-form-checkbox-group
-              class="mt-lg-2"
-              id="checkbox-group-1"
-              v-model="selected"
-              :options="options"
-              name="moreInfo"
-              style="font-weight:900; "
-              stacked
-            >
-            </b-form-checkbox-group>
-          </b-form-group> <br>
-          <b-form-group
-            label="City"
-            name="city"
-            v-model="house.city"
-            label-for="cityy"
-            style="width:300px; text-align:left;"
-          >
-            <b-form-select
-            id="city"
-            v-model="filters.city"
-            class="mt-3"
-            v-on:change="onChange()"
-            :options="cityVariants"
-            name="cityy"
-          >
-          <template v-slot:first>
-              <option :value="null" disabled>Select city</option>
-            </template>
-          </b-form-select>
-          
-          </b-form-group>   <br />
 
-          <b-form-group
-            label="Location"
-            name="location"
-            label-for="locationn"
-            style="width:300px; text-align:left;"
-          >
-            <b-form-select
-              v-if="filters.city!=null"
-              id="location"
-              v-model="filters.location"
-               class="mt-3"
-              v-on:change="onChange()"
-              :options="regionVariants[filters.city].text"
-              name="locationn"
 
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select area</option>
-              </template>
-            </b-form-select>
-            <br><br>
-          </b-form-group>  <br /><br />
+      </b-col>
+      <b-col>
 
-        </b-form>
-      </div>
-
-      <div class="column right" style="font-size:20px; float:right; margin-top:-890px;">
         <table>
           <tr>
             <td>
@@ -116,7 +61,7 @@
                 style="font-size:18px; width:260px; font-weight:500; text-align:center" />
               </b-form-group>
             </td>
-            <td>
+                 <td>
               <b-form-group label="Num" style="margin-left:10px; width:70px; text-align:left;">
                 <input
                   type="number"
@@ -170,6 +115,104 @@
             placeholder="Price in €"
           ></b-form-input>
         </b-form-group>
+
+
+     </b-col>
+    </b-row>
+
+
+
+
+    <b-row>
+      <b-col >
+
+        <b-form-group label="Additional" style="text-align:left;">
+            
+             <b-form-checkbox
+              v-model="house.balcony"
+              value="balcony"
+              
+              >Balcony</b-form-checkbox>
+
+              <b-form-checkbox
+              v-model="house.parking"
+              value="parking"
+              
+              >Parking</b-form-checkbox
+            >
+
+            <b-form-checkbox
+              v-model="house.elevator"
+              value="elevator"
+             
+              >Elevator</b-form-checkbox
+            >
+
+            <b-form-checkbox
+              v-model="house.furnished"
+              value="furnished"
+              
+              >Furnished</b-form-checkbox
+            >
+            
+             </b-form-group>
+
+             <b-form-group
+            label="City"
+            name="city"
+            v-model="house.city"
+            label-for="cityy"
+            style="width:300px; text-align:left;"
+          >
+            <b-form-select
+            id="city"
+            v-model="filters.city"
+            class="mt-3"
+            v-on:change="onChange()"
+            :options="cityVariants"
+            name="cityy"
+          >
+          <template v-slot:first>
+              <option :value="null" disabled>Select city</option>
+            </template>
+          </b-form-select>
+          
+          </b-form-group>   <br />
+
+          <b-form-group
+            label="Location"
+            name="location"
+            label-for="locationn"
+            style="width:300px; text-align:left;"
+          >
+            <b-form-select
+              v-if="filters.city!=null"
+              id="location"
+              v-model="filters.location"
+               class="mt-3"
+              v-on:change="onChange()"
+              :options="regionVariants[filters.city].text"
+              name="locationn"
+
+            >
+              <template v-slot:first>
+                <option :value="null" disabled>Select area</option>
+              </template>
+            </b-form-select>
+            <br><br>
+          </b-form-group>  <br /><br />
+
+
+
+
+
+
+
+
+
+      </b-col>
+      <b-col>
+
         <b-form-group label="Telephone" style="text-align:left;">
           <b-form-input
             type="number"
@@ -180,7 +223,7 @@
           ></b-form-input>
         </b-form-group>
 
-<b-form-group label="Description" style="text-align:left;">
+        <b-form-group label="Description" style="text-align:left;">
         <b-form-textarea
     id="textarea-rows"
     type="text"
@@ -188,20 +231,20 @@
     rows="5"
     v-model="house.desc"
   ></b-form-textarea> </b-form-group>
+
+  <ImageUploader style="margin-left:-110px;">        </ImageUploader>
+
+        <button v-on:click="submitHouse" style="margin-bottom:15px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+
+
+
+
+      </b-col>
+     </b-row>
+         
       
 
-
-        
-        <ImageUploader style="margin-left:-110px;">        </ImageUploader>
-
-        <button v-on:click="submitHouse" style="margin-top:70px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
-
-        
-
-      </div>
     </div>
-
- 
   </div>
 </template>
 
@@ -215,20 +258,14 @@ import { EventBus } from "../config/event-bus.js";
 var housesRef = dbfs.collection("houses");
 export default {
   components: {
-    ImageUploader 
+   ImageUploader 
   },
   data: 
   
   function() {
     return {
       
-      selected: [], // Must be an array reference!
-      options: [
-          { text: 'Balcony', value: 'Balcony' },
-          { text: 'Elevator', value: 'Elevator' },
-          { text: 'Parking slot', value: 'Parking slot' },
-          { text: 'Furnished', value: 'Furnished' }
-        ],
+      
       addrStr:'',
       addr1:'',
       addr2:'',
@@ -241,14 +278,17 @@ export default {
       
       house: {
         type: "",
-        moreInfo: "",
         city: "",
         location: "",
         area: "",
         price: "",
         floor:"",
         tel:"",
-        desc:""
+        desc:"",
+        balcony:"",
+        parking: "",
+        elevator:"",
+        furnished:""
         
       },
       filters: {
@@ -304,6 +344,10 @@ export default {
       this.house.price='',
       this.house.tele='',
       this.house.desc='',
+      this.house.balcony='',
+      this.house.parking='',
+      this.house.elevator='',
+      this.house.furnished='',
       this.addr1=
       this.addr2=
       this.floor='',
@@ -322,6 +366,7 @@ export default {
       
       this.house.city = this.filters.city;
       this.house.location = this.filters.location;
+    
 
       this.addr1 = this.addr1.trim(); 
 
@@ -339,6 +384,7 @@ export default {
           var type = this.house.type;
           var flor=this.house.floor;
           var tele=this.house.tel;
+          
           
           if (
             city == null ||
@@ -360,11 +406,37 @@ export default {
             } else {
               this.house.rent=false;
             }
+
+            if (this.house.balcony =="balcony") {
+              this.house.balcony=true;
+            } else {
+              this.house.balcony=false;
+            }
+
+               if (this.house.parking =="parking") {
+              this.house.parking=true;
+            } else {
+              this.house.parking=false;
+            }
+
+               if (this.house.elevator =="elevator") {
+              this.house.elevator=true;
+            } else {
+              this.house.elevator=false;
+            }
+
+               if (this.house.furnished =="furnished") {
+              this.house.furnished=true;
+            } else {
+              this.house.furnished=false;
+            }
+
+
          
           this.house.city = this.cityVariants[this.filters.city].text;
           this.house.image=this.img;
           this.house.address=this.addr1 + ' ' + this.addr2.toString();
-          this.house.moreInfo=this.selected;
+          //this.house.moreInfo=this.selected;
           this.house.floor=this.house.floor;
           console.log("desc:  "+this.house.desc)
        
@@ -396,17 +468,17 @@ export default {
   /* max-width: 5000px; */
   /* position: auto;   */
 
-  display: block;
-  position: relative;
+  /* display: block;
+  position: relative; */
   /* margin:auto; */
-  top: 50px;
-  width: 1000px;
+  /* top: 50px;
+  width: 1000px; */
   background-color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 900;
   border-radius: 5px;
 
-  overflow: auto;
+  /* overflow: auto; */
   /* opacity: 0.9; */
 }
 
@@ -421,10 +493,11 @@ export default {
 } */
 
 #background {
+  padding: 20px;
   background-image: url(https://images.unsplash.com/photo-1510568192-5cd6e7a47edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80);
   background-size: cover;
   background-position: bottom center;
-  height: 1200px;
+  height: 100%;
   width: 100%;
   color: black !important;
 }

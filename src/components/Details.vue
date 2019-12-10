@@ -195,7 +195,7 @@
 
               </div>
 
-               <div v-if="this.prk != -1" > 
+               <div v-if="house[0].furnished == true" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -211,6 +211,9 @@
                 <b>Furnished</b> <br />
 
               </div>
+
+              
+             
               
             </div>
           </b-col>
@@ -300,17 +303,6 @@ export default {
       this.isOpen = !this.isOpen;
 
 
-    console.log("MoreIndo array in db ::  "+this.house[0].moreInfo)
-  
-    var elev = this.house[0].moreInfo.indexOf("Elevator");
-    var prk = this.house[0].moreInfo.indexOf("Parking slot");
-    var balc = this.house[0].moreInfo.indexOf("Balcony");
-    var furn = this.house[0].moreInfo.indexOf("Furnished");
-        console.log("elev ::  "+elev)
-        console.log("prk  ::  "+prk)
-        console.log("balc ::  "+balc)
-        console.log("furn ::  "+furn)
-    if (elev!=-1){console.log("Elevator is !=1, so it exists in the array")}
     }
   }
 };
