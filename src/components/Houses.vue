@@ -452,7 +452,7 @@ export default {
             );
             self.filters.city = self.cityVariants[index].value;
           }
-          if (self.$route.query.region != null) {
+          if (self.$route.query.region != null ) {
             self.filters.region = self.$route.query.region;
           }
         });
@@ -521,7 +521,7 @@ export default {
             console.log(self.$route.query.priceMin);
             self.filters.priceMin = self.$route.query.priceMin;
           }
-          if (self.$route.query.priceMax != null) {
+          if (self.$route.query.priceMax != null && self.$route.query.priceMax != 0) {
             self.filters.priceMax = self.$route.query.priceMax;
           }
           //Area range
@@ -604,7 +604,7 @@ export default {
                 );
               });
             }
-            if (self.$route.query.priceMax != null) {
+            if (self.$route.query.priceMax != null && self.$route.query.priceMax != 0) {
               self.houses = self.houses.filter(function(house) {
                 return (
                   parseInt(house.data.price) <=
