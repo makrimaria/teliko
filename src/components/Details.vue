@@ -136,7 +136,7 @@
             <h3 class="dets">- More info</h3>
             <div class="table">
 
-              <div v-if="house[0].moreInfo == true" > 
+              <div v-if="house[0].parking == true" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -195,7 +195,7 @@
 
               </div>
 
-               <div v-if="this.prk != -1" > 
+               <div v-if="this.parking != -1" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -219,6 +219,8 @@
 
   <Maps></Maps>
   <br>
+
+  
         <!-- <b-img class="card" :src="house[0].image" style="width:inherit; height:auto;"></b-img> -->
         <!-- <div class="carousel"> 
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -278,6 +280,7 @@ export default {
   components: {Maps},
   data() {
     return {
+      info: null,
       house: [],
       isOpen: false
     };
@@ -293,24 +296,21 @@ export default {
         if (doc && doc.exists) {
           this.house.push(doc.data());
         }
+
+    this.$axios
+       .get('https://maps.googleapis.com/maps/api/geocode/json?address='+this.house[0].address+'&key=AIzaSyAMbSAUUQQTUzoFpoytDVVL5kU3vROVcyE')
+       .then(response => (this.info = response))
+       .catch(error => console.log(error))
+      
       });
   },
   methods: {
     toggle: function() {
       this.isOpen = !this.isOpen;
 
-
-    console.log("MoreIndo array in db ::  "+this.house[0].moreInfo)
-  
-    var elev = this.house[0].moreInfo.indexOf("Elevator");
-    var prk = this.house[0].moreInfo.indexOf("Parking slot");
-    var balc = this.house[0].moreInfo.indexOf("Balcony");
-    var furn = this.house[0].moreInfo.indexOf("Furnished");
-        console.log("elev ::  "+elev)
-        console.log("prk  ::  "+prk)
-        console.log("balc ::  "+balc)
-        console.log("furn ::  "+furn)
-    if (elev!=-1){console.log("Elevator is !=1, so it exists in the array")}
+var a=JSON.stringify(this.info)
+      console.log("info :: "+a)
+      console.log('add:: '+this.house[0].address)
     }
   }
 };
