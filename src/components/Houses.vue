@@ -49,7 +49,7 @@
           </b-form-group>
 <b-form-group label="Floor" id="floor">
 
-                           <b-form-input v-model="filters.floor" type="number" placeholder="0,1,.."></b-form-input>
+                           <b-form-input value="floor" v-model="filters.floor" id="floor" type="number" placeholder="0,1,.."></b-form-input>
 
 
 </b-form-group>
@@ -111,12 +111,12 @@
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
-        <b-button squared variant="outline-secondary">
+        <!-- <b-button squared variant="outline-secondary">
           <font-awesome-icon style="font-size: 1.1rem;" icon="list" />
         </b-button>
         <b-button squared variant="outline-secondary">
           <font-awesome-icon style="font-size: 1.1rem;" icon="th" />
-        </b-button>
+        </b-button> -->
         <b-form-select v-model="perPage" :options="itemsPerPage" @change="onChange()"></b-form-select>
         <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
         <jw-pagination
@@ -186,7 +186,8 @@ export default {
       furnished: false,
       elevator: false,    
       parking: false,
-      balcony: false
+      balcony: false,
+      floor:'',
     };
   },
   created() {
@@ -311,13 +312,22 @@ export default {
     // }
 
 
-     if (this.filters.floor != null) {
-        query = query.where(
-          "floor",
-          "==",
-         this.filters.floor
-        );
-      }
+        if (this.filters.floor != null){
+         query = query.where("floor", "==", parseInt(this.filters.floor));
+        }
+
+        
+     
+
+
+
+    //  if (this.filters.floor != null) {
+    //     query = query.where(
+    //       "floor",
+    //       "==",
+    //      this.filters.floor
+    //     );
+    //   }
 
 
 
@@ -458,6 +468,15 @@ export default {
               self.filters.rent = "Sale";
             }
           }
+
+
+
+
+     
+
+
+
+
           //Price range
           if (self.$route.query.priceMin != null) {
             console.log(self.$route.query.priceMin);
@@ -520,6 +539,9 @@ export default {
           query = query.where("type", "==", this.$route.query.type);
         }
 
+
+       
+
         if (this.$route.query.rent != null) {
           if (JSON.parse(this.$route.query.rent) == true) {
             query = query.where("rent", "==", true);
@@ -557,7 +579,10 @@ export default {
           })
           //Get houses based on area. Executes javascript after fetching data from firestore
           .then(() => {
-            var self = this;
+         
+            
+
+
             if (self.$route.query.areaMin != null) {
               self.houses = self.houses.filter(function(house) {
                 return (
@@ -574,6 +599,7 @@ export default {
                 );
               });
             }
+            
           });
       } else {
         //Fetch all houses
@@ -586,6 +612,9 @@ export default {
             });
           });
       }
+
+    
+    
     }
   }
 };

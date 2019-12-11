@@ -136,7 +136,7 @@
             <h3 class="dets">- More info</h3>
             <div class="table">
 
-              <div v-if="house[0].moreInfo == true" > 
+              <div v-if="house[0].parking == true" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
