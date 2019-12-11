@@ -183,10 +183,10 @@ export default {
       cityVariants: [],
       regionVariants: [],
       typeVariants: [],
-      furnished: false,
-      elevator: false,    
-      parking: false,
-      balcony: false
+      // furnished: false,
+      // elevator: false,    
+      // parking: false,
+      // balcony: false
     };
   },
   created() {
@@ -273,7 +273,7 @@ export default {
       //parking
 
 
-         if (this.filters.parking === "parking") {
+         if (this.filters.parking == "parking") {
         
           query = query.where("parking", "==", true);
          }
@@ -288,7 +288,7 @@ export default {
 
     //elevator
     
-         if (this.filters.elevator === "elevator") {
+         if (this.filters.elevator == "elevator") {
         
         query = query.where("elevator", "==", true);
          }
@@ -300,7 +300,7 @@ export default {
 
     //furnished
 
-        if (this.filters.furnished === "elevator") {
+        if (this.filters.furnished == "furnished") {
         
         query = query.where("furnished", "==", true);
          }

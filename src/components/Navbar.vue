@@ -43,6 +43,7 @@
             </b-nav-item>
           </b-nav>
         </Slide>
+        <!-- <div id="toggleButton" class="sidemenu-right"><font-awesome-icon style="font-size: 30px;" icon="comments" /></div> -->
       </div>
     </div>
   </div>
@@ -64,6 +65,12 @@ export default {
         $("#wrapper").removeClass("blur");
       }
     );
+
+    $("#toggleButton").click(function() {
+      $(document).ready(function() {
+        $("#chatbot").slideToggle();
+      });
+    });
   }
 };
 </script>
@@ -205,5 +212,17 @@ a:hover {
 
 .blur {
   filter: blur(2px) brightness(0.5);
+}
+
+.sidemenu-right {
+  z-index: 999;
+  top: 5px;
+  right: 0;
+  background-color: #b34c37;
+  border: 5px solid #b34c37;
+  border-right: 22px solid #b34c38;
+  width: 50px;
+  border-radius: 15% 0 0 15%;
+  position: fixed
 }
 </style>
