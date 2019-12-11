@@ -7,7 +7,7 @@
         class="bottomright"
         width="25%"
         height="60%"
-        src="https://skg-code-bot.firebaseapp.com/"
+        src="https://botfinal-44ef0.firebaseapp.com/"
       ></iframe>
     </div>
 
