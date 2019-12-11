@@ -160,7 +160,7 @@
 
              
         <!-- <div class="row" style="margin-left: 250px;"> -->
-        <div > <br>
+        <!-- <div > <br>
           <model-select  style="width:300px; text-align:left;  margin-left:150px;"
             v-model="city"
             :options="cityVariants"
@@ -181,7 +181,53 @@
             :options="regionVariants[city].text"
             placeholder="Select region"
           ></model-select>
-        </div>
+        </div> -->
+
+         <b-form-group
+            label="City"
+            name="city"
+            v-model="house.city"
+            label-for="cityy"
+            style="width:300px; text-align:left;  margin-left:150px;"
+          >
+            <b-form-select
+            v-model="filters.city"
+            class="mt-3"
+            v-on:change="onChange()"
+            :options="cityVariants"
+            name="cityy"
+          >
+          <template v-slot:first>
+              <option :value="null" disabled>Select city</option>
+            </template>
+          </b-form-select>
+          
+          </b-form-group>
+
+          <b-form-group
+            label="Location"
+            name="location"
+            label-for="locationn"
+            style="width:300px; text-align:left;  margin-left:150px;"
+          >
+            <b-form-select
+              v-if="filters.city!=null"
+              v-model="filters.location"
+               class="mt-3"
+              v-on:change="onChange()"
+              :options="regionVariants[filters.city].text"
+              name="locationn"
+
+            >
+              <template v-slot:first>
+                <option :value="null" disabled>Select area</option>
+              </template>
+            </b-form-select>
+            <br><br>
+          </b-form-group>
+
+        <br />
+        <br />
       
         <!-- </div> -->
 
@@ -286,16 +332,12 @@ import ImageUploader from "./ImageUploader";
 import Firebase from "firebase";
 import { EventBus } from "../config/event-bus.js";
 import { dbfs } from "../config/db";
-import { ModelSelect } from "vue-search-select";
-import { ModelListSelect } from "vue-search-select";
-import "vue-search-select/dist/VueSearchSelect.css";
+
 
 var housesRef = dbfs.collection("houses");
 export default {
   components: {
-   ImageUploader,
-   ModelSelect,
-   ModelListSelect
+   ImageUploader
   },
   data: 
   
@@ -317,7 +359,7 @@ export default {
       house: {
         type: "",
         city: "",
-        region: "",
+        location: "",
         area: "",
         price: "",
         floor:"",
@@ -333,8 +375,7 @@ export default {
          city:null,
          region: null
       },
-      city:null,
-      region: null,
+     
       cityVariants: [],
       regionVariants: []
     };
@@ -353,20 +394,17 @@ export default {
    
 
     var i = 0;
-    var self = this;
     dbfs
       .collection("cities")
       .orderBy("name", "asc")
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          self.cityVariants.push({ value: i, text: doc.data().name });
+          this.cityVariants.push({ value: i, text: doc.data().name });
           i++;
         });
       });
     var j = 0;
-    var jj = 0;
-    var temp = [];
     dbfs
       .collection("cities")
       .orderBy("name", "asc")
@@ -374,17 +412,9 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-          while (doc.data().regions[jj]) {
-            temp.push({
-              value: doc.data().regions[jj],
-              text: doc.data().regions[jj]
-            });
-            jj++;
-          }
-          this.regionVariants.push({ value: j, text: temp });
+        
+          this.regionVariants.push({ value: j, text: doc.data().regions });
           j++;
-          jj = 0;
-          temp = [];
         });
       });
 
@@ -404,12 +434,12 @@ export default {
       this.addr2=
       this.floor='',
       document.getElementById('city').selectedIndex = 0;
-      document.getElementById('region').selectedIndex = 0;
+      document.getElementById('location').selectedIndex = 0;
     },
 
     
     onChange: function() {
-      this.region = null;
+      this.filters.region = null;
      },
 
   
@@ -417,7 +447,7 @@ export default {
     submitHouse: function() {
       
       this.house.city = this.filters.city;
-      this.house.region = this.filters.region;
+      this.house.location = this.filters.location;
     
 
     // if (this.city != null && this.region != null) {
@@ -448,7 +478,7 @@ export default {
         }else {
 
           var city = this.filters.city;
-          var region = this.filters.region;
+          var location = this.filters.location;
           var area = this.house.area.toString();
           var price = this.house.price.toString();
           var type = this.house.type;
@@ -458,7 +488,7 @@ export default {
           
           if (
             city == null ||
-            region == "" ||
+            location == "" ||
             area == "" ||
             price == "" ||
             type == "" ||
