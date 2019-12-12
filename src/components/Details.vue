@@ -121,10 +121,15 @@
           <b-col class="col1">
             <h3 class="dets">- More info</h3>
             <div class="table">
-              <div v-if="house[0].parking == true">
-                <ion-icon name="checkmark" style="margin-right:15px;"></ion-icon>
-                <b>Parking</b>
-                <br />
+
+
+              <div v-if="house[0].parking == true" > 
+                 <ion-icon
+                name="checkmark"
+                style="margin-right:15px;"
+              >
+              </ion-icon
+              ><b>Parking</b> <br />
               </div>
               <div v-else>
                 <ion-icon name="close" style="margin-right:15px;"></ion-icon>
@@ -177,8 +182,12 @@
           </b-col>
         </b-row>
 
-        <Maps></Maps>
-        <br />
+  <br>
+  <button class="ref" @click="refresh()">Click twice for Map</button>
+  <Maps  v-show="isOpenMap"></Maps>
+  <br>
+  <br>
+
         <!-- <b-img class="card" :src="house[0].image" style="width:inherit; height:auto;"></b-img> -->
         <!-- <div class="carousel"> 
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -233,13 +242,17 @@
 <script>
 import Maps from "./Maps";
 import { dbfs } from "../config/db";
+import { EventBus } from "../config/event-bus.js";
 export default {
   name: "Details",
   components: { Maps },
   data() {
     return {
+      info: null,
       house: [],
-      isOpen: false
+      isOpen: false,
+      isOpenMap:false,
+      clicked:0
     };
   },
 
@@ -252,13 +265,33 @@ export default {
         if (doc && doc.exists) {
           this.house.push(doc.data());
         }
-      });
+      
+      
+      //EventBus.$emit("lon", this.info.data[0].lon);
+       
+      })
+      
   },
+
+
   methods: {
+    refresh: function() {
+      //request for map api 
+        var str1=this.house[0].address+" "+this.house[0].city+" "+this.house[0].location;
+        //var EncURL = encodeURIComponent(str1);
+        EventBus.$emit("EencURL", str1); 
+        this.clicked++;
+        console.log("clicked: "+this.clicked)
+        if(this.clicked==2){
+          this.isOpenMap = !this.isOpenMap;
+        }
+    },
+
     toggle: function() {
       this.isOpen = !this.isOpen;
     }
   }
+  
 };
 </script>
 
@@ -278,6 +311,22 @@ export default {
   font-family: "Rajdhani", sans-serif;
   float: left;
 }
+.ref {
+  margin: 0px;
+  padding: 10px 30px;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  line-height: 1.3;
+  box-shadow: 1px 1px 7px;
+  color: #202129;
+  background-color: whitesmoke;
+  font-size: 20px;
+  font-family: "Rajdhani", sans-serif;
+} 
 
 .telephone {
   margin: 0px;

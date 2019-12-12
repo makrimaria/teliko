@@ -33,7 +33,9 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
+import VueAxios from './config/axios'
 
+Vue.use(VueAxios)
 Vue.use(BootstrapVue);
 Vue.use(firestorePlugin);
 Vue.use(VueRouter);

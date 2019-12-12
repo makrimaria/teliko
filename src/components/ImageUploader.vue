@@ -11,7 +11,7 @@
     <div v-if="imageData!=null"> 
         <!-- <img class="preview" :src="picture"> -->
         <br>
-      <button @click="onUpload">Upload</button>
+      <button class="buttonImg" @click="onUpload">Upload</button>
     </div>
   </div>
 </template>
@@ -75,4 +75,14 @@ img.preview {
     width: 200px;
 }
 
+.buttonImg:hover{
+background-color:#DDDDDD;
+
+}
+
+.buttonImg {
+  border-radius: 4px;
+  margin-top:-3px;
+  margin-bottom:5px;
+}
 </style>
