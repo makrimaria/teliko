@@ -59,18 +59,14 @@ export default {
   mounted() {
     $(".bm-burger-button").click(function() {
       $("#wrapper").addClass("blur");
+      $("#openButton-mobile").hide(500);
     });
-    $(".bm-cross-button, .nav.unblur, #wrapper, #toggleButton").click(
+    $(".bm-cross-button, .nav.unblur, #wrapper").click(
       function() {
         $("#wrapper").removeClass("blur");
+        $("#openButton-mobile").show(500);
       }
     );
-
-    $("#toggleButton").click(function() {
-      $(document).ready(function() {
-        $("#chatbot").slideToggle();
-      });
-    });
   }
 };
 </script>
@@ -192,7 +188,7 @@ a:hover {
   }
 }
 .bm-burger-button {
-  z-index: 999;
+  z-index: 998;
   top: 5px;
   left: 0;
   background-color: #b34c37;
@@ -212,17 +208,5 @@ a:hover {
 
 .blur {
   filter: blur(2px) brightness(0.5);
-}
-
-.sidemenu-right {
-  z-index: 999;
-  top: 5px;
-  right: 0;
-  background-color: #b34c37;
-  border: 5px solid #b34c37;
-  border-right: 22px solid #b34c38;
-  width: 50px;
-  border-radius: 15% 0 0 15%;
-  position: fixed
 }
 </style>

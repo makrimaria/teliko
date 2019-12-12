@@ -1,21 +1,24 @@
 <template>
   <div>
-    <div id="chatbot" style="display:none;">
+    <div id="chatbot" style="display: none;">
       <iframe
         style="margin-bottom:81px;"
         allow="microphone;"
         class="bottomright"
         width="25%"
         height="60%"
-        src="https://botfinal-44ef0.firebaseapp.com/"
+        src="http://botfinal-44ef0.firebaseapp.com/"
       ></iframe>
     </div>
 
     <b-button pill id="toggleButton" class="bottomright btn1">
       <font-awesome-icon style="font-size: 30px;" icon="comments" />
     </b-button>
-    <div id="toggleButton-mobile">
-      <font-awesome-icon style="font-size: 30px;" icon="comments" />
+    <div id="openButton-mobile">
+      <font-awesome-icon style="font-size: 30px; color: white;" icon="comments" />
+    </div>
+    <div id="closeButton-mobile">
+      <font-awesome-icon style="font-size: 30px; color: white;" icon="times" />
     </div>
   </div>
 </template>
@@ -26,29 +29,38 @@ import $ from "jquery";
 export default {
   // methods: {
   //   openBot() {
-  //     // var label = $(".btn1")
-  //     //   .text()
-  //     //   .trim();
+  //     var label = $(".btn1")
+  //       .text()
+  //       .trim();
   //     $(document).ready(function() {
-  //       // if (label == "Ask me anything!") {
-  //       //   $(".btn1").text("Close Chatbot");
-  //       //   $("#chatbot").slideDown();
-  //       // } else {
-  //       //   $(".btn1").text("Ask me anything!");
-  //       //   $("#chatbot").slideUp();
-  //       // }
+  //       if (label == "Ask me anything!") {
+  //         $(".btn1").text("Close Chatbot");
+  //         $("#chatbot").slideDown();
+  //       } else {
+  //         $(".btn1").text("Ask me anything!");
+  //         $("#chatbot").slideUp();
+  //       }
   //     });
   //   }
-  // },
+  // }
   mounted() {
     $("#toggleButton").click(function() {
       $(document).ready(function() {
-        $("#chatbot").slideToggle();
+        $("#chatbot").slideToggle("slow");
       });
     });
-    $("#toggleButton-mobile").click(function() {
+    $("#openButton-mobile").click(function() {
       $(document).ready(function() {
         $("#chatbot").slideToggle();
+        $("#openButton-mobile").hide();
+        $("#closeButton-mobile").show(500);
+      });
+    });
+    $("#closeButton-mobile").click(function() {
+      $(document).ready(function() {
+        $("#chatbot").slideToggle();
+        $("#closeButton-mobile").hide();
+        $("#openButton-mobile").show(500);
       });
     });
   }
@@ -108,35 +120,50 @@ button:active {
   transform: translateY(4px);
 }
 @media (min-width: 768px) {
-  #toggleButton-mobile {
+  #openButton-mobile, #closeButton-mobile {
     display: none;
   }
 }
 
-
 @media (max-width: 767px) {
   iframe.bottomright {
     width: 100%;
-    height: 88.5%;
+    height: 94%;
     right: 0;
     top: 0;
+    margin-bottom: 10px;
     border: 1px solid #484848;
+    z-index: 999;
   }
 
   #toggleButton {
     display: none;
   }
 
-  #toggleButton-mobile {
+  #openButton-mobile {
     display: block;
     z-index: 999;
-    bottom: 5px;
+    top: 5px;
     right: 0;
     background-color: #b34c37;
     border: 5px solid #b34c37;
-    border-right: 22px solid #b34c38;
-    width: 50px;
+    border-right: 15px solid #b34c38;
+    width: auto;
     border-radius: 15% 0 0 15%;
+    position: fixed;
+  }
+
+  #closeButton-mobile {
+    display: none;
+    z-index: 999;
+    bottom: 0px;
+    
+    background-color: #b34c37;
+    border: 5px solid #b34c37;
+    border-right: 22px solid #b34c38;
+    width: 100%;
+    height: 6%;
+    
     position: fixed;
   }
 }

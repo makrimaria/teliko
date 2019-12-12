@@ -7,7 +7,7 @@
             <div
               v-if="house[0].image != null && house[0].image2 != null && house[0].image3 != null"
               class="carousel"
-              style="height:400px;margin-top:30px; overflow:hidden"
+              style="margin-top:30px; overflow:hidden"
             >
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -46,7 +46,7 @@
                 </a>
               </div>
             </div>
-            <div v-else style="height:400px;margin-top:30px; overflow:hidden">
+            <div v-else style="margin-top:30px; overflow:hidden">
               <img class="d-block w-100" :src="house[0].image" />
             </div>
           </b-col>
