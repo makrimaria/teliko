@@ -222,6 +222,8 @@
 
   <Maps></Maps>
   <br>
+
+  
         <!-- <b-img class="card" :src="house[0].image" style="width:inherit; height:auto;"></b-img> -->
         <!-- <div class="carousel"> 
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -276,11 +278,13 @@
 <script>
 import Maps from "./Maps";
 import { dbfs } from "../config/db";
+import { EventBus } from "../config/event-bus.js";
 export default {
   name: "Details",
   components: {Maps},
   data() {
     return {
+      info: null,
       house: [],
       isOpen: false
     };
@@ -296,15 +300,27 @@ export default {
         if (doc && doc.exists) {
           this.house.push(doc.data());
         }
-      });
+      
+      
+      //EventBus.$emit("lon", this.info.data[0].lon);
+       
+      })
+      
   },
+
+
   methods: {
     toggle: function() {
       this.isOpen = !this.isOpen;
-
-
+      //request for map api 
+        var str1=this.house[0].address+" "+this.house[0].city+" "+this.house[0].location;
+        console.log("str: "+str1)
+        var EncURL = encodeURIComponent(str1);
+        console.log("URL: "+EncURL)
+      EventBus.$emit("EencURL", str1); //TODO EncURL
     }
   }
+  
 };
 </script>
 
