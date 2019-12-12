@@ -3,7 +3,7 @@
     <b-row>
       <b-col md="3" xl="3">
         <br />
-        <p>Filters</p>
+        <h3>Filters</h3>
         <b-form id="form" ref="form" v-on:submit.prevent="submitFilters" style="text-align:left;">
           <label id="type__BV_label_" class="col-form-label pt-0">City</label>
           <model-select
@@ -45,8 +45,21 @@
             <b-form-input v-model="filters.areaMin" type="number" placeholder="From"></b-form-input>
             <br />
             <b-form-input v-model="filters.areaMax" type="number" placeholder="To"></b-form-input>
-
           </b-form-group>
+          <b-form-group label="Floor" id="floor">
+            <b-form-input v-model="filters.floor" type="number" placeholder="0,1,.."></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="Additional">
+            <b-form-checkbox v-model="filters.balcony" value="balcony">Balcony</b-form-checkbox>
+
+            <b-form-checkbox v-model="filters.parking" value="parking">Parking</b-form-checkbox>
+
+            <b-form-checkbox v-model="filters.elevator" value="elevator">Elevator</b-form-checkbox>
+
+            <b-form-checkbox v-model="filters.furnished" value="furnished">Furnished</b-form-checkbox>
+          </b-form-group>
+
 <b-form-group label="Floor" id="floor">
 
                            <b-form-input value="floor" v-model="filters.floor" id="floor" type="number" placeholder="0,1,.."></b-form-input>
@@ -88,6 +101,7 @@
     
 
           
+
           <div style="text-align: center;">
             <b-button
               type="submit"
@@ -107,11 +121,14 @@
 
       <br />
       <div style="border-left:1px solid grey;height:inherit;"></div>
-      <b-col v-if="houses == '' && loaded == true" md="8" lg="8" style="margin: auto;">
+      <b-col v-if="houses == '' && loaded == true" md="8" lg="8" style="margin-top: 20px;">
         <h2>No properties match your criteria</h2>
       </b-col>
-      <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
-        <!-- <b-button squared variant="outline-secondary">
+
+      <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: 0 auto;">
+        <!--<b-button squared variant="outline-secondary">-->
+
+
           <font-awesome-icon style="font-size: 1.1rem;" icon="list" />
         </b-button>
         <b-button squared variant="outline-secondary">
@@ -176,18 +193,20 @@ export default {
         areaMax: null,
         balcony: null,
         parking: null,
-        elevator:null,
-        furnished:null,
-        floor:null
+        elevator: null,
+        furnished: null,
+        floor: null
       },
       cityVariants: [],
       regionVariants: [],
+
       typeVariants: [],
       furnished: false,
       elevator: false,    
       parking: false,
       balcony: false,
       floor:'',
+
     };
   },
   created() {
@@ -200,6 +219,7 @@ export default {
     onChangePage(pageOfItems) {
       // update page of items
       this.pageOfItems = pageOfItems;
+      window.scrollTo(0, 0);
     },
     clearFilters: function() {
       this.filters.city = null;
@@ -215,13 +235,12 @@ export default {
       this.filters.elevator = null;
       this.filters.furnished = null;
       this.filters.floor = null;
-
     },
     onChange: function() {
       var temp = [];
       temp = this.houses;
       this.houses = [];
-      setTimeout(() => this.houses = temp, 1);      
+      setTimeout(() => (this.houses = temp), 1);
     },
     submitFilters: function() {
       this.loaded = false;
@@ -257,27 +276,21 @@ export default {
         }
       }
 
-
-
-            // balcony
-        if (this.filters.balcony == "balcony") {
-        
-           query = query.where("balcony", "==", true);
-         }
+      // balcony
+      if (this.filters.balcony == "balcony") {
+        query = query.where("balcony", "==", true);
+      }
       //   else if (this.filters.balcony === null) {
       //   {
       //      query = query.where("balcony", "==", false);
       //    }
       // }
 
-
       //parking
 
-
-         if (this.filters.parking === "parking") {
-        
-          query = query.where("parking", "==", true);
-         }
+      if (this.filters.parking == "parking") {
+        query = query.where("parking", "==", true);
+      }
       //  else if (this.filters.parking === null) {
       //   {
       //      query = query.where("parking", "==", false);
@@ -286,52 +299,34 @@ export default {
       // console.log(this.filters.balcony)
       // console.log(this.filters.parking)
 
+      //elevator
 
-    //elevator
-    
-         if (this.filters.elevator === "elevator") {
-        
+      if (this.filters.elevator == "elevator") {
         query = query.where("elevator", "==", true);
-         }
-    //   else if (this.filters.elevator === null) {
-    //    {
-    //       query = query.where("elevator", "==", false);
-    //     }
-    // }
+      }
+      //   else if (this.filters.elevator === null) {
+      //    {
+      //       query = query.where("elevator", "==", false);
+      //     }
+      // }
 
-    //furnished
+      //furnished
 
-        if (this.filters.furnished === "elevator") {
-        
+      if (this.filters.furnished == "furnished") {
         query = query.where("furnished", "==", true);
-         }
-    //   else if (this.filters.furnished === null) {
-    //    {
-    //       query = query.where("furnished", "==", false);
-    //     }
-    // }
+
+
 
 
         if (this.filters.floor != null){
          query = query.where("floor", "==", parseInt(this.filters.floor));
         }
 
-        
-     
 
 
-
-    //  if (this.filters.floor != null) {
-    //     query = query.where(
-    //       "floor",
-    //       "==",
-    //      this.filters.floor
-    //     );
-    //   }
-
-
-
-
+      if (this.filters.floor != null) {
+        query = query.where("floor", "==", parseInt(this.filters.floor));
+      }
 
       query
         .get()
@@ -378,6 +373,7 @@ export default {
         })
         .then(() => {
           this.loaded = true;
+          window.scrollTo(0, 0);
         });
     },
     populateLists: function() {
@@ -404,7 +400,7 @@ export default {
             );
             self.filters.city = self.cityVariants[index].value;
           }
-          if (self.$route.query.region != null ) {
+          if (self.$route.query.region != null) {
             self.filters.region = self.$route.query.region;
           }
         });
@@ -462,7 +458,6 @@ export default {
           if (self.$route.query.rent != null) {
             if (JSON.parse(self.$route.query.rent) == true) {
               self.filters.rent = "Rent";
-              console.log(self.filters.rent);
             }
             if (JSON.parse(self.$route.query.rent) == false) {
               self.filters.rent = "Sale";
@@ -479,15 +474,16 @@ export default {
 
           //Price range
           if (self.$route.query.priceMin != null) {
-            console.log(self.$route.query.priceMin);
             self.filters.priceMin = self.$route.query.priceMin;
           }
-          if (self.$route.query.priceMax != null && self.$route.query.priceMax != 0) {
+          if (
+            self.$route.query.priceMax != null &&
+            self.$route.query.priceMax != 0
+          ) {
             self.filters.priceMax = self.$route.query.priceMax;
           }
           //Area range
           if (self.$route.query.areaMin != null) {
-            console.log(self.$route.query.areaeMin);
             self.filters.areaMin = self.$route.query.areaMin;
           }
           if (self.$route.query.areaMax != null) {
@@ -568,7 +564,10 @@ export default {
                 );
               });
             }
-            if (self.$route.query.priceMax != null && self.$route.query.priceMax != 0) {
+            if (
+              self.$route.query.priceMax != null &&
+              self.$route.query.priceMax != 0
+            ) {
               self.houses = self.houses.filter(function(house) {
                 return (
                   parseInt(house.data.price) <=
@@ -736,13 +735,12 @@ div.text.default {
 }
 
 .btn-outline-danger {
-    color: #b34c37;
-    border-color: #b34c37;
+  color: #b34c37;
+  border-color: #b34c37;
 }
 
 .btn-outline-danger:hover {
-    color: white;
-    background-color: #b34c37;
+  color: white;
+  background-color: #b34c37;
 }
-
 </style>

@@ -1,23 +1,27 @@
 <template>
   <div id="background">
-    <div class="container" >
-    <div>
+    <div class="container">
+      <div>
         <br />
         <h4>Do you want to list your property?</h4>
         <h4>Just fill the form and we will take care of it :)</h4>
-        <hr >
+        <hr />
       </div>
 
-      <b-form id="form" v-on:submit.prevent="submitHouse"> </b-form><br />
+      <b-form id="form" v-on:submit.prevent="submitHouse"></b-form>
+      <br />
+
 
     <b-row>
       <b-col class="heelloo">
 
         <b-form-group label="Property Type" style="text-align:left; margin-left:150px;">
+
             <b-form-radio-group
               class="mt-lg-2"
               name="Type"
-              input type="radio"
+              input
+              type="radio"
               v-model="house.type"
               style="font-weight:900;"
               stacked
@@ -28,15 +32,17 @@
               <b-form-radio value="Loft" inline>Loft</b-form-radio>
               <b-form-radio value="Other" inline>Other</b-form-radio>
             </b-form-radio-group>
-          </b-form-group> <br />
+          </b-form-group>
+          <br />
 
-         
 
                    <b-form-group label="Available for:" style="text-align:left;  margin-left:150px;">
+
             <b-form-radio-group
               class="mt-lg-2"
               name="type"
-              input type="radio"
+              input
+              type="radio"
               v-model="house.rent"
               style="font-weight:900;"
             >
@@ -44,6 +50,7 @@
 
               <b-form-radio value="rent" inline>Rent</b-form-radio>
             </b-form-radio-group>
+
           </b-form-group> <br />
 
 
@@ -158,131 +165,56 @@
              </b-form-group>
 
 
-             
-        <!-- <div class="row" style="margin-left: 250px;"> -->
-        <!-- <div > <br>
-          <model-select  style="width:300px; text-align:left;  margin-left:150px;"
-            v-model="city"
-            :options="cityVariants"
-            placeholder="Select City"
-            v-on:click="onChange()"
-          ></model-select> <br>
-        </div>
-        <div >
-          <model-list-select class="regionz" style="width:300px; text-align:left; margin-left:150px;"
-            v-if="city == null && !regionVariants[city]"
-            :list="[ ]"
-            :isDisabled="true"
-            placeholder="Select city first"
-          ></model-list-select>
-          <model-select class="regionz"
-            v-else-if="regionVariants[city]"
-            v-model="region"
-            :options="regionVariants[city].text"
-            placeholder="Select region"
-          ></model-select>
-        </div> -->
-
-         <b-form-group
-            label="City"
-            name="city"
-            v-model="house.city"
-            label-for="cityy"
-            style="width:300px; text-align:left;  margin-left:150px;"
-          >
-            <b-form-select
-            v-model="filters.city"
-            class="mt-3"
-            v-on:change="onChange()"
-            :options="cityVariants"
-            name="cityy"
-          >
-          <template v-slot:first>
-              <option :value="null" disabled>Select city</option>
-            </template>
-          </b-form-select>
-          
-          </b-form-group>
-
-          <b-form-group
-            label="Location"
-            name="location"
-            label-for="locationn"
-            style="width:300px; text-align:left;  margin-left:150px;"
-          >
-            <b-form-select
-              v-if="filters.city!=null"
-              v-model="filters.location"
-               class="mt-3"
-              v-on:change="onChange()"
-              :options="regionVariants[filters.city].text"
-              name="locationn"
-
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select area</option>
-              </template>
-            </b-form-select>
-            <br><br>
-          </b-form-group>
-
+       
         <br />
         <br />
       
         <!-- </div> -->
 
-             <!-- <b-form-group
-            label="City"
-            name="city"
+             
+
+         
+
+           <legend
+            tabindex="-1"
+            class="col-form-label pt-0"
+            id="__BVID__117__BV_label_"
+            style="text-align:left;"
+          >City</legend>
+          <model-select
             v-model="house.city"
-            label-for="cityy"
-            style="width:300px; text-align:left;  margin-left:150px;"
-          >
-            <b-form-select
-            id="city"
-            v-model="filters.city"
-            class="mt-3"
-            v-on:change="onChange()"
             :options="cityVariants"
-            name="cityy"
-          >
-          <template v-slot:first>
-              <option :value="null" disabled>Select city</option>
-            </template>
-          </b-form-select>
-          
-          </b-form-group>   <br />
+            placeholder="Select City"
+            style="max-width: 350px;"
+          ></model-select>
+          <br />
+          <legend
+            tabindex="-1"
+            class="col-form-label pt-0"
+            id="__BVID__117__BV_label_"
+            style="text-align:left;"
+          >Region</legend>
+          <model-list-select
+            v-if="house.city == null && !regionVariants[house.city]"
+            :list="[ ]"
+            :isDisabled="true"
+            placeholder="Select city first"
+            style="max-width: 350px;"
+          ></model-list-select>
+          <model-select
+            v-else-if="regionVariants[house.city]"
+            v-model="house.location"
+            :options="regionVariants[house.city].text"
+            placeholder="Select region"
+            style="max-width: 350px;"
+          ></model-select>
 
-          <b-form-group
-            label="Location"
-            name="location"
-            label-for="locationn"
-            style="width:300px; text-align:left;  margin-left:150px;"
-          >
-            <b-form-select
-              v-if="filters.city!=null"
-              id="location"
-              v-model="filters.location"
-               class="mt-3"
-              v-on:change="onChange()"
-              :options="regionVariants[filters.city].text"
-              name="locationn"
+          <br />
+          <br />
+        </b-col>     
 
-            >
-              <template v-slot:first>
-                <option :value="null" disabled>Select area</option>
-              </template>
-            </b-form-select>
             <br><br>
           </b-form-group>  <br /><br />
-
-
- -->
-
-
-
-
-
 
       </b-col>
       <b-col class="hiii">
@@ -310,38 +242,47 @@
   ></b-form-textarea> </b-form-group>
 
 
-  <ImageUploader style="margin-left:-80px;" >        </ImageUploader>
+  <ImageUploader></ImageUploader>
 <br>
-        <button v-on:click="submitHouse" style="margin-bottom:15px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
-
-
-
 
       </b-col>
      </b-row>
+     <b-row>
+        <b-col>
+          <button
+            v-on:click="submitHouse"
+            style="margin: 20px auto; width:200px;"
+            type="button"
+            class="btn btn-danger btn-lg btn-block"
+          >Submit</button>
+        </b-col>
+      </b-row>
          
       
+
 
     </div>
   </div>
 </template>
 
 <script>
-
 import ImageUploader from "./ImageUploader";
 import Firebase from "firebase";
-import { EventBus } from "../config/event-bus.js";
 import { dbfs } from "../config/db";
-
+import { EventBus } from "../config/event-bus.js";
+import { ModelSelect } from "vue-search-select";
+import { ModelListSelect } from "vue-search-select";
+import "vue-search-select/dist/VueSearchSelect.css";
+import { dbfs } from "../config/db";
 
 var housesRef = dbfs.collection("houses");
 export default {
   components: {
-   ImageUploader
+    ImageUploader,
+    ModelSelect,
+    ModelListSelect
   },
-  data: 
-  
-  function() {
+  data: function() {
     return {
       
       
@@ -356,24 +297,22 @@ export default {
       resetImg:false,
     
       
+
       house: {
         type: "",
-        city: "",
+        city: null,
         location: "",
         area: "",
         price: "",
-        floor:"",
-        tel:"",
-        desc:"",
-        balcony:"",
+        floor: "",
+        tel: "",
+        desc: "",
+        balcony: "",
         parking: "",
-        elevator:"",
-        furnished:""
-        
-      },
-      filters: {
-         city:null,
-         region: null
+
+        elevator: "",
+        furnished: ""
+
       },
      
       cityVariants: [],
@@ -385,13 +324,11 @@ export default {
   },
 
   mounted() {
-    
-   // Listen for the 'clicked-event' and its payload.  
-      EventBus.$on("clicked-event", url=> {  
-      console.log(`Received: ${url} :)`);  
-      this.img=url;
-      });  
-   
+    // Listen for the 'clicked-event' and its payload.
+    EventBus.$on("clicked-event", url => {
+      console.log(`Received: ${url} :)`);
+      this.img = url;
+    });
 
     var i = 0;
     dbfs
@@ -404,71 +341,64 @@ export default {
           i++;
         });
       });
+    // var j = 0;
+    // dbfs
+    //   .collection("cities")
+    //   .orderBy("name", "asc")
+
+    //   .get()
+    //   .then(querySnapshot => {
+    //     querySnapshot.docs.forEach(doc => {
+    //       this.regionVariants.push({ value: j, text: doc.data().regions });
+    //       j++;
+    //     });
+    //   });
     var j = 0;
+    var jj = 0;
+    var temp = [];
     dbfs
       .collection("cities")
       .orderBy("name", "asc")
-
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
-        
-          this.regionVariants.push({ value: j, text: doc.data().regions });
+
+          while (doc.data().regions[jj]) {
+            temp.push({
+              value: doc.data().regions[jj],
+              text: doc.data().regions[jj]
+            });
+            jj++;
+          }
+          this.regionVariants.push({ value: j, text: temp });
+
           j++;
+          jj = 0;
+          temp = [];
         });
       });
-
   },
 
   methods: {
-    reset(){
-      this.house.area='',
-      this.house.price='',
-      this.house.tel='',
-      this.house.desc='',
-      this.house.balcony='',
-      this.house.parking='',
-      this.house.elevator='',
-      this.house.furnished='',
-      this.addr1=
-      this.addr2=
-      this.floor='',
-      document.getElementById('city').selectedIndex = 0;
-      document.getElementById('location').selectedIndex = 0;
+    reset() {
+      (this.house.area = ""),
+        (this.house.price = ""),
+        (this.house.tel = ""),
+        (this.house.type = ""),
+        (this.house.desc = ""),
+        (this.house.balcony = ""),
+        (this.house.parking = ""),
+        (this.house.elevator = ""),
+        (this.house.furnished = ""),
+        (this.addr1 = this.addr2 = this.house.floor = ""),
+        (this.house.city = null),
+        (this.house.location = null);
+      //   (document.getElementById("city").selectedIndex = 0);
+      // document.getElementById("location").selectedIndex = 0;
     },
 
-    
-    onChange: function() {
-      this.filters.region = null;
-     },
-
-  
     //Firestore
     submitHouse: function() {
-      
-      this.house.city = this.filters.city;
-      this.house.location = this.filters.location;
-    
-
-    // if (this.city != null && this.region != null) {
-    //     this.$router.push({
-    //       name: "Houses",
-    //       query: {
-    //         city: this.cityVariants[this.city].text,
-    //         region: this.region
-    //       }
-    //     });
-    //   } else if (this.city != null) {
-    //     this.$router.push({
-    //       name: "Houses",
-    //       query: { city: this.cityVariants[this.city].text }
-    //     });
-    //   } else {
-    //     this.$router.push({ name: "Houses" });
-    //   }
-
-
-
       this.addr1 = this.addr1.trim(); 
 
         if (this.addr1 == "" || isNaN(this.addr2) ) {
@@ -499,7 +429,11 @@ export default {
           ) {
              alert("Please fill all fields");
             return false;
+            
           } else {
+            this.house.balcony = false;
+          }
+
 
             if (this.house.rent == "rent" ) {
               this.house.rent=true;
@@ -531,43 +465,37 @@ export default {
               this.house.furnished=false;
             }
 
-           
+           this.house.city = this.cityVariants[this.house.city].text;
+          this.house.image = this.img;
+          this.house.address = this.addr1 + " " + this.addr2.toString();
 
-
-
-
-         
-          this.house.city = this.cityVariants[this.filters.city].text;
-          this.house.image=this.img;
-          this.house.address=this.addr1 + ' ' + this.addr2.toString();
           //this.house.moreInfo=this.selected;
-          this.house.floor=this.house.floor;
-          console.log("desc:  "+this.house.desc)
-       
+          this.house.floor = parseInt(this.house.floor);
+          console.log("desc:  " + this.house.desc);
+
           var house = housesRef.doc();
           house.set(this.house);
           house.update({
-           created: Firebase.firestore.FieldValue.serverTimestamp()
+            created: Firebase.firestore.FieldValue.serverTimestamp()
           });
           document.getElementById("form").reset();
           alert("Property listed successfully");
 
-          this.resetImg=true;
+          this.resetImg = true;
           EventBus.$emit("reset", this.resetImg);
           this.reset();
-          }
         }
-    }  }
+      }
+    }
+  }
 };
 </script>
 
 
 <style scoped>
-
-
- .mt-lg-2{
+.mt-lg-2 {
   align-self: auto;
-  } 
+}
 .container {
   /* max-width: 5000px; */
   /* position: auto;   */
@@ -639,10 +567,8 @@ export default {
 
 
 .btn-danger {
-    color: #fff;
-    background-color:#b34c37;
-    border-color: #b34c37;
+  color: #fff;
+  background-color: #b34c37;
+  border-color: #b34c37;
 }
-
-
 </style>

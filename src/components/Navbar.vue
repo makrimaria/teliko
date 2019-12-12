@@ -43,6 +43,7 @@
             </b-nav-item>
           </b-nav>
         </Slide>
+        <!-- <div id="toggleButton" class="sidemenu-right"><font-awesome-icon style="font-size: 30px;" icon="comments" /></div> -->
       </div>
     </div>
   </div>
@@ -58,10 +59,12 @@ export default {
   mounted() {
     $(".bm-burger-button").click(function() {
       $("#wrapper").addClass("blur");
+      $("#openButton-mobile").hide(500);
     });
-    $(".bm-cross-button, .nav.unblur, #wrapper, #toggleButton").click(
+    $(".bm-cross-button, .nav.unblur, #wrapper").click(
       function() {
         $("#wrapper").removeClass("blur");
+        $("#openButton-mobile").show(500);
       }
     );
   }
@@ -185,7 +188,7 @@ a:hover {
   }
 }
 .bm-burger-button {
-  z-index: 999;
+  z-index: 998;
   top: 5px;
   left: 0;
   background-color: #b34c37;

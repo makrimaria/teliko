@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-left:-150px;">
+  <div>
     <div >
       <p>Upload an image</p>
       <input type="file" id=uploader @change="previewImage" accept="image/*">
