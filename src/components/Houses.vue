@@ -45,7 +45,15 @@
             <b-form-input v-model="filters.areaMin" type="number" placeholder="From"></b-form-input>
             <br />
             <b-form-input v-model="filters.areaMax" type="number" placeholder="To"></b-form-input>
+
           </b-form-group>
+<b-form-group label="Floor" id="floor">
+
+                           <b-form-input value="floor" v-model="filters.floor" id="floor" type="number" placeholder="0,1,.."></b-form-input>
+
+
+</b-form-group>
+
 
            <b-form-group label="Additional">
             
@@ -79,84 +87,7 @@
              </b-form-group>
     
 
-          <!-- 
-        <hr />
-
-        <b-form-group label="Heating Type">
-          <b-form-radio-group v-model="headVariant" class="mt-lg-2">
-            <b-form-radio value="any" inline>Any</b-form-radio>
-
-            <b-form-radio value="autonomous" inline>Autonomous heating System</b-form-radio>
-            <br />
-            <b-form-radio value="central" inline>Central Heating</b-form-radio>
-            <b-form-radio :value="null" inline>None</b-form-radio>
-          </b-form-radio-group>
-        </b-form-group>
-
-        <hr />
-
-        <b-form-group label="with price(€) from:" label-for="price-style-variant">
-          <b-form-select v-model="tableVariant" :options="priceMin" id="price-style-variant">
-            <template v-slot:first>
-              <option value>min</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-
-        <b-form-group label="to:" label-for="price-style-variant">
-          <b-form-select v-model="tableVariant" :options="priceMax" id="price-style-variant">
-            <template v-slot:first>
-              <option value>max</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-        <hr />
-        <b-form-group label="Floor" label-for="table-style-variant">
-          <b-form-select v-model="tableVariant" :options="floorVariants" id="table-style-variant">
-            <template v-slot:first>
-              <option value>Select floor</option>
-            </template>
-          </b-form-select>
-        </b-form-group>
-
-        <hr />
-
-        <b-table
-          :striped="striped"
-          :bordered="bordered"
-          :borderless="borderless"
-          :outlined="outlined"
-          :small="small"
-          :hover="hover"
-          :dark="dark"
-          :fixed="fixed"
-          :foot-clone="footClone"
-          :no-border-collapse="noCollapse"
-          :items="items"
-          :fields="fields"
-          :head-variant="headVariant"
-          :table-variant="tableVariant"
-        ></b-table>
-
-        <b-form-group label="Key Features">
-          <b-form-checkbox v-model="furnished" inline>Furnished</b-form-checkbox>
-          <b-form-checkbox v-model="storage" inline>Storage</b-form-checkbox>
-          <b-form-checkbox v-model="secureDoor" inline>Secure Door</b-form-checkbox>
-          <br />
-          <b-form-checkbox v-model="alarm" inline>Alarm</b-form-checkbox>
-
-          <b-form-checkbox v-model="elevator" inline>Elevator</b-form-checkbox>
-          <b-form-checkbox v-model="garden" inline>Garden</b-form-checkbox>
-          <br />
-          <b-form-checkbox v-model="petsWelcome" inline>Pets welcome</b-form-checkbox>
-
-          <b-form-checkbox v-model="parking" inline>Parking</b-form-checkbox>
-          <b-form-checkbox v-model="balcony" inline>Balcony</b-form-checkbox>
-          <br />
-          <b-form-checkbox v-model="fireplace" inline>Fireplace</b-form-checkbox>
-          <b-form-checkbox v-model="view" inline>View</b-form-checkbox>
-          <b-form-checkbox v-model="swimmingPool" inline>Swimming pool</b-form-checkbox>
-          </b-form-group>-->
+          
           <div style="text-align: center;">
             <b-button
               type="submit"
@@ -180,12 +111,12 @@
         <h2>No properties match your criteria</h2>
       </b-col>
       <b-col v-else-if="loaded == true" md="8" lg="8" style="margin: auto;">
-        <b-button squared variant="outline-secondary">
+        <!-- <b-button squared variant="outline-secondary">
           <font-awesome-icon style="font-size: 1.1rem;" icon="list" />
         </b-button>
         <b-button squared variant="outline-secondary">
           <font-awesome-icon style="font-size: 1.1rem;" icon="th" />
-        </b-button>
+        </b-button> -->
         <b-form-select v-model="perPage" :options="itemsPerPage" @change="onChange()"></b-form-select>
         <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
         <jw-pagination
@@ -246,7 +177,8 @@ export default {
         balcony: null,
         parking: null,
         elevator:null,
-        furnished:null
+        furnished:null,
+        floor:null
       },
       cityVariants: [],
       regionVariants: [],
@@ -254,7 +186,8 @@ export default {
       furnished: false,
       elevator: false,    
       parking: false,
-      balcony: false
+      balcony: false,
+      floor:'',
     };
   },
   created() {
@@ -281,6 +214,7 @@ export default {
       this.filters.parking = null;
       this.filters.elevator = null;
       this.filters.furnished = null;
+      this.filters.floor = null;
 
     },
     onChange: function() {
@@ -330,11 +264,11 @@ export default {
         
            query = query.where("balcony", "==", true);
          }
-        else if (this.filters.balcony === null) {
-        {
-           query = query.where("balcony", "==", false);
-         }
-      }
+      //   else if (this.filters.balcony === null) {
+      //   {
+      //      query = query.where("balcony", "==", false);
+      //    }
+      // }
 
 
       //parking
@@ -344,13 +278,13 @@ export default {
         
           query = query.where("parking", "==", true);
          }
-       else if (this.filters.parking === null) {
-        {
-           query = query.where("parking", "==", false);
-         }
-      }
-      console.log(this.filters.balcony)
-      console.log(this.filters.parking)
+      //  else if (this.filters.parking === null) {
+      //   {
+      //      query = query.where("parking", "==", false);
+      //    }
+      // }
+      // console.log(this.filters.balcony)
+      // console.log(this.filters.parking)
 
 
     //elevator
@@ -359,11 +293,11 @@ export default {
         
         query = query.where("elevator", "==", true);
          }
-      else if (this.filters.elevator === null) {
-       {
-          query = query.where("elevator", "==", false);
-        }
-    }
+    //   else if (this.filters.elevator === null) {
+    //    {
+    //       query = query.where("elevator", "==", false);
+    //     }
+    // }
 
     //furnished
 
@@ -371,11 +305,29 @@ export default {
         
         query = query.where("furnished", "==", true);
          }
-      else if (this.filters.furnished === null) {
-       {
-          query = query.where("furnished", "==", false);
+    //   else if (this.filters.furnished === null) {
+    //    {
+    //       query = query.where("furnished", "==", false);
+    //     }
+    // }
+
+
+        if (this.filters.floor != null){
+         query = query.where("floor", "==", parseInt(this.filters.floor));
         }
-    }
+
+        
+     
+
+
+
+    //  if (this.filters.floor != null) {
+    //     query = query.where(
+    //       "floor",
+    //       "==",
+    //      this.filters.floor
+    //     );
+    //   }
 
 
 
@@ -452,7 +404,7 @@ export default {
             );
             self.filters.city = self.cityVariants[index].value;
           }
-          if (self.$route.query.region != null) {
+          if (self.$route.query.region != null ) {
             self.filters.region = self.$route.query.region;
           }
         });
@@ -516,12 +468,21 @@ export default {
               self.filters.rent = "Sale";
             }
           }
+
+
+
+
+     
+
+
+
+
           //Price range
           if (self.$route.query.priceMin != null) {
             console.log(self.$route.query.priceMin);
             self.filters.priceMin = self.$route.query.priceMin;
           }
-          if (self.$route.query.priceMax != null) {
+          if (self.$route.query.priceMax != null && self.$route.query.priceMax != 0) {
             self.filters.priceMax = self.$route.query.priceMax;
           }
           //Area range
@@ -578,6 +539,9 @@ export default {
           query = query.where("type", "==", this.$route.query.type);
         }
 
+
+       
+
         if (this.$route.query.rent != null) {
           if (JSON.parse(this.$route.query.rent) == true) {
             query = query.where("rent", "==", true);
@@ -604,7 +568,7 @@ export default {
                 );
               });
             }
-            if (self.$route.query.priceMax != null) {
+            if (self.$route.query.priceMax != null && self.$route.query.priceMax != 0) {
               self.houses = self.houses.filter(function(house) {
                 return (
                   parseInt(house.data.price) <=
@@ -615,7 +579,10 @@ export default {
           })
           //Get houses based on area. Executes javascript after fetching data from firestore
           .then(() => {
-            var self = this;
+         
+            
+
+
             if (self.$route.query.areaMin != null) {
               self.houses = self.houses.filter(function(house) {
                 return (
@@ -632,6 +599,7 @@ export default {
                 );
               });
             }
+            
           });
       } else {
         //Fetch all houses
@@ -644,6 +612,9 @@ export default {
             });
           });
       }
+
+    
+    
     }
   }
 };

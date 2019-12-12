@@ -195,7 +195,7 @@
 
               </div>
 
-               <div v-if="this.parking != -1" > 
+               <div v-if="house[0].furnished == true" > 
                  <ion-icon
                 name="checkmark"
                 style="margin-right:15px;"
@@ -211,6 +211,9 @@
                 <b>Furnished</b> <br />
 
               </div>
+
+              
+             
               
             </div>
           </b-col>

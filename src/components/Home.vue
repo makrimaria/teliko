@@ -12,6 +12,7 @@
       </div>
     </div>
     <Intro />
+    <h3>Added Recently</h3>
     <b-container>
       <Cards :houses="houses" :pageOfItems="pageOfItems"></Cards>
       <jw-pagination style="display: none;" :items="houses" @changePage="onChangePage"></jw-pagination>
@@ -44,7 +45,7 @@ export default {
     dbfs
       .collection("houses")
       .orderBy("created", "desc")
-      .limit(3)
+      .limit(4)
       .get()
       .then(querySnapshot => {
         querySnapshot.docs.forEach(doc => {
@@ -87,6 +88,14 @@ body {
   padding-bottom: 50px;
   /* height: 300%;  */
 }
+
+h3 {
+    font-family: "Rajdhani", sans-serif;
+    
+    
+
+}
+
 
 /* #search {
   width: 357px;
