@@ -278,6 +278,7 @@
 <script>
 import Maps from "./Maps";
 import { dbfs } from "../config/db";
+import { EventBus } from "../config/event-bus.js";
 export default {
   name: "Details",
   components: {Maps},
@@ -299,23 +300,27 @@ export default {
         if (doc && doc.exists) {
           this.house.push(doc.data());
         }
-
-    this.$axios
-       .get('https://maps.googleapis.com/maps/api/geocode/json?address='+this.house[0].address+'&key=AIzaSyAMbSAUUQQTUzoFpoytDVVL5kU3vROVcyE')
-       .then(response => (this.info = response))
-       .catch(error => console.log(error))
       
-      });
+      
+      //EventBus.$emit("lon", this.info.data[0].lon);
+       
+      })
+      
   },
+
+
   methods: {
     toggle: function() {
       this.isOpen = !this.isOpen;
-
-var a=JSON.stringify(this.info)
-      console.log("info :: "+a)
-      console.log('add:: '+this.house[0].address)
+      //request for map api 
+        var str1=this.house[0].address+" "+this.house[0].city+" "+this.house[0].location;
+        console.log("str: "+str1)
+        var EncURL = encodeURIComponent(str1);
+        console.log("URL: "+EncURL)
+      EventBus.$emit("EencURL", str1); //TODO EncURL
     }
   }
+  
 };
 </script>
 

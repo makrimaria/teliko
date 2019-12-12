@@ -311,7 +311,7 @@
 
 
   <ImageUploader style="margin-left:-80px;" >        </ImageUploader>
-
+<br>
         <button v-on:click="submitHouse" style="margin-bottom:15px; margin-left:100px; width:200px;" type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
 
 
