@@ -218,9 +218,10 @@
             </div>
           </b-col>
         </b-row>
-
-
-  <Maps></Maps>
+  <br>
+  <button class="ref" @click="refresh()">Click twice for Map</button>
+  <Maps  v-show="isOpenMap"></Maps>
+  <br>
   <br>
 
   
@@ -286,7 +287,9 @@ export default {
     return {
       info: null,
       house: [],
-      isOpen: false
+      isOpen: false,
+      isOpenMap:false,
+      clicked:0
     };
   },
 
@@ -310,14 +313,20 @@ export default {
 
 
   methods: {
-    toggle: function() {
-      this.isOpen = !this.isOpen;
+    refresh: function() {
       //request for map api 
         var str1=this.house[0].address+" "+this.house[0].city+" "+this.house[0].location;
-        console.log("str: "+str1)
-        var EncURL = encodeURIComponent(str1);
-        console.log("URL: "+EncURL)
-      EventBus.$emit("EencURL", str1); //TODO EncURL
+        //var EncURL = encodeURIComponent(str1);
+        EventBus.$emit("EencURL", str1); 
+        this.clicked++;
+        console.log("clicked: "+this.clicked)
+        if(this.clicked==2){
+          this.isOpenMap = !this.isOpenMap;
+        }
+    },
+
+    toggle: function() {
+      this.isOpen = !this.isOpen;
     }
   }
   
@@ -340,6 +349,22 @@ export default {
   font-family: "Rajdhani", sans-serif;
   float: left;
 }
+.ref {
+  margin: 0px;
+  padding: 10px 30px;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  line-height: 1.3;
+  box-shadow: 1px 1px 7px;
+  color: #202129;
+  background-color: whitesmoke;
+  font-size: 20px;
+  font-family: "Rajdhani", sans-serif;
+} 
 
 .telephone {
   margin: 0px;
