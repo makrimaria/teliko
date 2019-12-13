@@ -38,9 +38,6 @@
             <b-nav-item>
               <router-link to="/faq" exact>FAQ</router-link>
             </b-nav-item>
-            <b-nav-item>
-              <router-link to="/contactt" exact>Contact</router-link>
-            </b-nav-item>
           </b-nav>
         </Slide>
         <!-- <div id="toggleButton" class="sidemenu-right"><font-awesome-icon style="font-size: 30px;" icon="comments" /></div> -->
