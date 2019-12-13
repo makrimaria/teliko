@@ -15,10 +15,10 @@
       <font-awesome-icon style="font-size: 30px;" icon="comments" />
     </b-button>
     <div id="openButton-mobile">
-      <font-awesome-icon style="font-size: 30px; color: white;" icon="comments" />
+      <font-awesome-icon class="mobile" style="font-size: 30px; color: white;" icon="comments" />
     </div>
     <div id="closeButton-mobile">
-      <font-awesome-icon style="font-size: 30px; color: white;" icon="times" />
+      <font-awesome-icon class="mobile" style="font-size: 30px; color: white;" icon="times" />
     </div>
   </div>
 </template>
@@ -121,6 +121,11 @@ button:active {
 }
 @media (min-width: 768px) {
   #openButton-mobile, #closeButton-mobile {
+    width: 0px;
+    height: 0px;
+  }
+
+  .mobile {
     display: none;
   }
 }
@@ -141,7 +146,7 @@ button:active {
   }
 
   #openButton-mobile {
-    display: block;
+
     z-index: 999;
     top: 5px;
     right: 0;
@@ -157,7 +162,6 @@ button:active {
     display: none;
     z-index: 999;
     bottom: 0px;
-    
     background-color: #b34c37;
     border: 5px solid #b34c37;
     border-right: 22px solid #b34c38;
