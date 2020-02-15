@@ -34,7 +34,7 @@
     "vue2-gmap-custom-marker": "^5.5.9",
     "vue2-google-maps": "^0.10.7",
     "vuefire": "^2.2.0",
-    "yarn": "^1.19.1"
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
