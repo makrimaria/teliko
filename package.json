@@ -18,7 +18,7 @@
     "bootstrap-vue": "^2.0.4",
     "core-js": "^3.1.2",
     "firebase": "^7.5.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jw-vue-pagination": "^1.0.3",
     "mdbootstrap": "^4.10.0",
     "mdbvue": "^6.0.0",
